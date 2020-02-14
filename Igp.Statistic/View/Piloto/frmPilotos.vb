@@ -56,13 +56,14 @@ Public Class frmPilotos
 
         Dim idPiloto As Integer = Convert.ToInt32(dgvPilotos.Rows(e.RowIndex).Cells("id").Value)
 
-        Dim frmeditar As New frmEditPiloto(idPiloto)
+        'Dim frmeditar As New frmEditPiloto(idPiloto)
+        Dim frmeditar As New EditarEmpleado(idPiloto)
         AddHandler frmeditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditPiloto_FormClosing)
 
-        frmEditPiloto.txtid.Text = dgvPilotos.CurrentRow.Cells(0).Value.ToString
-        frmEditPiloto.txtnombre.Text = dgvPilotos.CurrentRow.Cells(1).Value.ToString
+        'frmEditPiloto.txtid.Text = dgvPilotos.CurrentRow.Cells(0).Value.ToString
+        'frmEditPiloto.txtnombre.Text = dgvPilotos.CurrentRow.Cells(1).Value.ToString
 
-        frmEditPiloto.ShowDialog()
+        EditarEmpleado.ShowDialog()
 
     End Sub
 
@@ -72,7 +73,8 @@ Public Class frmPilotos
         ' para actualizar la informacion del listado
         '
 
-        Dim frmEdit As frmEditPiloto = TryCast(sender, frmEditPiloto)
+        'Dim frmEdit As frmEditPiloto = TryCast(sender, frmEditPiloto)
+        Dim frmEdit As EditarEmpleado = TryCast(sender, EditarEmpleado)
 
         If frmEdit.DialogResult = DialogResult.OK Then
             CargarListaPilotos()

@@ -30,6 +30,34 @@ Public NotInheritable Class PilotosDAL
 
     End Function
 
+    Public Shared Function ObtenerById(ByVal idEmpleado As Integer) As PilotoEntity
+
+        Dim Piloto As PilotoEntity = Nothing
+
+        Using conn As New SqlConnection(coruta)
+            conn.Open()
+
+
+            Dim cmd As SqlCommand
+            cmd = New SqlCommand("SYS_ObtenerPilotbyID", conn)
+            cmd.CommandType = CommandType.StoredProcedure
+
+            Dim rdr As SqlDataReader = cmd.ExecuteReader()
+
+            While rdr.Read()
+                Piloto = (ConvertirPiloto(rdr, True))
+            End While
+
+            conn.Close()
+
+
+
+        End Using
+
+        Return Piloto
+
+    End Function
+
     Private Shared Function ConvertirPiloto(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As PilotoEntity
 
         Dim Piloto As New PilotoEntity()

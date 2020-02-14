@@ -1,7 +1,7 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmEditPiloto
-    Inherits System.Windows.Forms.Form
 
+    Inherits System.Windows.Forms.Form
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
@@ -15,12 +15,12 @@ Partial Class frmEditPiloto
     End Sub
 
     'Required by the Windows Form Designer
-    Private components As System.ComponentModel.IContainer
+    Private components As System.ComponentModel.IContainer = Nothing
 
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmEditPiloto))
         Me.btnNuevo = New System.Windows.Forms.Button()
@@ -32,7 +32,7 @@ Partial Class frmEditPiloto
         Me.pictureBox1 = New System.Windows.Forms.PictureBox()
         Me.cboNacion = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
-        CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        DirectCast(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnNuevo
@@ -164,7 +164,8 @@ Partial Class frmEditPiloto
         Me.Name = "frmEditPiloto"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmEditPiloto"
-        CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        AddHandler Me.Load, New System.EventHandler(AddressOf Me.frmEditPiloto_Load)
+        DirectCast(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

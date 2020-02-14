@@ -1,5 +1,6 @@
 ﻿Imports Igp.AccessControl.Entidades
 Imports Igp.AccessControl
+Imports System.Windows.Forms
 Public Class frmEditPiloto
 
     Private _idEmpleado As Nullable(Of Integer) = Nothing
@@ -23,6 +24,15 @@ Public Class frmEditPiloto
     Private Sub frmEditPiloto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargarNacion()
         txtnombre.SelectAll()
+
+        If _idEmpleado.HasValue Then
+            Dim Piloto As PilotoEntity = PilotosDAL.ObtenerById(_idEmpleado.Value)
+
+            _idEmpleado = Piloto.id
+            txtnombre.Text = Piloto.nombre
+            cboNacion.Text = Piloto.nacion
+
+        End If
     End Sub
 
     Private Sub btnNuevo_Click(sender As Object, e As EventArgs) Handles btnNuevo.Click
@@ -31,6 +41,8 @@ Public Class frmEditPiloto
           .nombre = txtnombre.Text,
           .nacion = Convert.ToInt16(cboNacion.SelectedValue)
           }
+
+        '.id = _idEmpleado.GetValueOrDefault(),
 
         MsgBox(Piloto.id)
 

@@ -55,7 +55,6 @@ Partial Public Class frmEditPiloto_OLD
         Dim Piloto As New PilotoEntity() With {
             .id = _idEmpleado.GetValueOrDefault(),
             .nombre = txtNombre.Text,
-            .nacion = Convert.ToInt16(cboNacion.SelectedValue),
             .imagen = ImageHelper.ImageToByteArray(picImagenEmpleado.Image)
             }
 
