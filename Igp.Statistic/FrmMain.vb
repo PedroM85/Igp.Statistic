@@ -94,7 +94,7 @@ Public Class FrmMain
 
     Private Sub btnPiloto_Click(sender As Object, e As EventArgs) Handles btnPiloto.Click
         btnPiloto.BackColor = Color.FromArgb(122, 181, 66)
-        AbrirFormEnPanel(Of frmPilotos)()
+        AbrirFormEnPanel(Of ListaEmpleados)()
     End Sub
 
 

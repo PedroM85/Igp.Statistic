@@ -39,8 +39,10 @@ Public NotInheritable Class PilotosDAL
 
 
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ObtenerPilotbyID", conn)
+            cmd = New SqlCommand("SYS_ObtenerPilotobyID", conn)
             cmd.CommandType = CommandType.StoredProcedure
+
+            cmd.Parameters.AddWithValue("@id", idEmpleado)
 
             Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
@@ -142,13 +144,15 @@ Public NotInheritable Class PilotosDAL
 
 
 
-            cmd.Parameters.AddWithValue("@nPiloto", Piloto.nombre)
-            cmd.Parameters.AddWithValue("@naPiloto", Piloto.nacion)
-
-            Dim imageParam As SqlParameter = cmd.Parameters.Add("@bPiloto", System.Data.SqlDbType.Image)
-            imageParam.Value = Piloto.imagen
-
             cmd.Parameters.AddWithValue("@id", Piloto.id)
+            cmd.Parameters.AddWithValue("@nPiloto", Piloto.nombre)
+
+            'cmd.Parameters.AddWithValue("@naPiloto", Piloto.nacion)
+
+            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@bPiloto", System.Data.SqlDbType.Image)
+            'imageParam.Value = Piloto.imagen
+
+
 
             cmd.ExecuteNonQuery()
         End Using

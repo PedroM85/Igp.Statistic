@@ -26,7 +26,7 @@ Public Partial Class EditarEmpleado
     Private Sub EditarEmpleado_Load(ByVal sender As Object, ByVal e As EventArgs)
 
         CargarEstadoCivil()
-        'CargarEstudio()
+        CargarEstudio()
 
         'por defecto se carga una imagen de no disponible
         picImagenEmpleado.Image = ImageHelper.ObtenerImagenNoDisponible()
@@ -35,14 +35,14 @@ Public Partial Class EditarEmpleado
         ' se carga la informacion del empleado que se quiere editar
         '
         If _idEmpleado.HasValue Then
-            Dim empleado As PilotoEntity = PilotosDAL.ObtenerById(_idEmpleado.Value)
+            Dim empleado As EmpleadoEntity = EmpleadosDAL.ObtenerById(_idEmpleado.Value)
 
-            _idEmpleado = empleado.id
-            txtNombre.Text = empleado.nombre
+            _idEmpleado = empleado.IdEmpleado
+            txtNombre.Text = empleado.Nombre
             'txtApellido.Text = empleado.Apellido
             'dtpFechaNacimiento.Value = empleado.FechaNacimiento
 
-            'cbEstadoCivil.SelectedValue = Convert.ToInt32(empleado.EstadoCivil)
+            cbEstadoCivil.SelectedValue = Convert.ToInt32(empleado.EstadoCivil)
 
             If empleado.Imagen Is Nothing Then
                 picImagenEmpleado.Image = ImageHelper.ObtenerImagenNoDisponible()
@@ -54,7 +54,7 @@ Public Partial Class EditarEmpleado
             ' Se obtienen los estudios del empleado
             '
 
-            'AsignarEstudios(empleado)
+            AsignarEstudios(empleado)
         End If
 
 
@@ -64,27 +64,27 @@ Public Partial Class EditarEmpleado
 
         cbEstadoCivil.DisplayMember = "Descripcion"
         cbEstadoCivil.ValueMember = "IdEstadoCivil"
-        cbEstadoCivil.DataSource = NacionDAL.ObtenerTodos()
+        cbEstadoCivil.DataSource = EstadoCivilDAL.ObtenerTodos()
 
     End Sub
 
-    'Private Sub CargarEstudio()
-    '	dgvEstudios.AutoGenerateColumns = False
-    '	dgvEstudios.DataSource = EstudiosDAL.ObtenerTodos()
-    'End Sub
+	Private Sub CargarEstudio()
+		dgvEstudios.AutoGenerateColumns = False
+		dgvEstudios.DataSource = EstudiosDAL.ObtenerTodos()
+	End Sub
 
-    'Private Sub AsignarEstudios(empleado As PilotoEntity)
+	Private Sub AsignarEstudios(empleado As EmpleadoEntity)
 
-    '    Dim rows As List(Of DataGridViewRow) = (From row In dgvEstudios.Rows.Cast(Of DataGridViewRow)()
-    '                                            Let idEstudio = Convert.ToInt32(row.Cells("IdEstudio").Value)
-    '                                            Join dd In empleado.Estudios On idEstudio Equals dd.IdEstudio
-    '                                            Select row).ToList()
+        Dim rows As List(Of DataGridViewRow) = (From row In dgvEstudios.Rows.Cast(Of DataGridViewRow)() _
+                                                 Let idEstudio = Convert.ToInt32(row.Cells("IdEstudio").Value) _
+                                                 Join dd In empleado.Estudios On idEstudio Equals dd.IdEstudio _
+                                                 Select row).ToList()
 
 
-    '    'rows.ForEach(Function(o) o.Cells("Seleccion").Value = True)
-    '    rows.ForEach(Function(o) InlineAssignHelper(o.Cells("Seleccion").Value, True))
+        'rows.ForEach(Function(o) o.Cells("Seleccion").Value = True)
+        rows.ForEach(Function(o) InlineAssignHelper(o.Cells("Seleccion").Value, True))
 
-    'End Sub
+	End Sub
 
     Private Sub btnBuscarImagen_Click(ByVal sender As Object, ByVal e As EventArgs)
 
@@ -98,16 +98,19 @@ Public Partial Class EditarEmpleado
     End Sub
 
 	Private Sub btnGuardar_Click(sender As Object, e As EventArgs)
-        '
-        ' Se crea la entidad
-        '
-        Dim empleado As New PilotoEntity() With {
-                                                   .id = _idEmpleado.GetValueOrDefault(),
-                                                   .nombre = txtNombre.Text,
-                                                   .imagen = ImageHelper.ImageToByteArray(picImagenEmpleado.Image)
+		'
+		' Se crea la entidad
+		'
+        Dim empleado As New EmpleadoEntity() With { _
+                                                   .IdEmpleado = _idEmpleado.GetValueOrDefault(), _
+                                                   .Nombre = txtNombre.Text, _
+                                                   .Apellido = txtApellido.Text, _
+                                                   .FechaNacimiento = dtpFechaNacimiento.Value, _
+                                                   .EstadoCivil = Convert.ToInt16(cbEstadoCivil.SelectedValue), _
+                                                   .Imagen = ImageHelper.ImageToByteArray(picImagenEmpleado.Image) _
                                                   }
 
-        MsgBox(empleado.id)
+        MsgBox(empleado.IdEmpleado)
         '
         ' Se asignan los estudios seleccionados, se unicializa la lista 
         ' para cargar la selecciond el usuario
@@ -129,9 +132,9 @@ Public Partial Class EditarEmpleado
         '
         ' se graba 
         '
-        PilotosDAL.Save(empleado)
+        EmpleadosDAL.Save(empleado)
 
-        Me.DialogResult = DialogResult.OK
+		Me.DialogResult = DialogResult.OK
         Me.Close()
 
 	End Sub

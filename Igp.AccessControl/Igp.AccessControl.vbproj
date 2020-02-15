@@ -65,6 +65,12 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmpleadosDAL.vb" />
+    <Compile Include="Entidades\EmpleadoEntity.vb" />
+    <Compile Include="Entidades\EstadoCivilEntity.vb" />
+    <Compile Include="Entidades\EstudioEntity.vb" />
+    <Compile Include="EstadoCivilDAL.vb" />
+    <Compile Include="EstudiosDAL.vb" />
     <Compile Include="RutaSQL.vb" />
     <Compile Include="Entidades\NacionEntity.vb" />
     <Compile Include="Entidades\PilotoEntity.vb" />
