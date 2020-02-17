@@ -27,18 +27,18 @@ Partial Class FrmMain
         Me.PanelFormularios = New System.Windows.Forms.Panel()
         Me.LOGO = New System.Windows.Forms.PictureBox()
         Me.PanelMenu = New System.Windows.Forms.Panel()
+        Me.btnConfiguracion = New System.Windows.Forms.Button()
+        Me.btnPiloto = New System.Windows.Forms.Button()
+        Me.btnNacion = New System.Windows.Forms.Button()
+        Me.btnCircuito = New System.Windows.Forms.Button()
+        Me.btnCampeonato = New System.Windows.Forms.Button()
+        Me.btnDashboard = New System.Windows.Forms.Button()
+        Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PanelBarraTitulo = New System.Windows.Forms.Panel()
         Me.btnRestaurar = New System.Windows.Forms.PictureBox()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnMaximizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.btnDashboard = New System.Windows.Forms.Button()
-        Me.btnPiloto = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.PanelContenedor.SuspendLayout()
         Me.PanelFormularios.SuspendLayout()
         CType(Me.LOGO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,11 +89,11 @@ Partial Class FrmMain
         'PanelMenu
         '
         Me.PanelMenu.BackColor = System.Drawing.Color.Black
-        Me.PanelMenu.Controls.Add(Me.Button9)
-        Me.PanelMenu.Controls.Add(Me.Button8)
-        Me.PanelMenu.Controls.Add(Me.Button7)
-        Me.PanelMenu.Controls.Add(Me.Button6)
+        Me.PanelMenu.Controls.Add(Me.btnConfiguracion)
         Me.PanelMenu.Controls.Add(Me.btnPiloto)
+        Me.PanelMenu.Controls.Add(Me.btnNacion)
+        Me.PanelMenu.Controls.Add(Me.btnCircuito)
+        Me.PanelMenu.Controls.Add(Me.btnCampeonato)
         Me.PanelMenu.Controls.Add(Me.btnDashboard)
         Me.PanelMenu.Controls.Add(Me.Panel1)
         Me.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left
@@ -102,6 +102,94 @@ Partial Class FrmMain
         Me.PanelMenu.Name = "PanelMenu"
         Me.PanelMenu.Size = New System.Drawing.Size(200, 519)
         Me.PanelMenu.TabIndex = 1
+        '
+        'btnConfiguracion
+        '
+        Me.btnConfiguracion.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnConfiguracion.FlatAppearance.BorderSize = 0
+        Me.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnConfiguracion.ForeColor = System.Drawing.SystemColors.Control
+        Me.btnConfiguracion.Location = New System.Drawing.Point(0, 320)
+        Me.btnConfiguracion.Name = "btnConfiguracion"
+        Me.btnConfiguracion.Size = New System.Drawing.Size(200, 45)
+        Me.btnConfiguracion.TabIndex = 9
+        Me.btnConfiguracion.Text = "Configuracion"
+        Me.btnConfiguracion.UseVisualStyleBackColor = True
+        '
+        'btnPiloto
+        '
+        Me.btnPiloto.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnPiloto.FlatAppearance.BorderSize = 0
+        Me.btnPiloto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPiloto.ForeColor = System.Drawing.SystemColors.Control
+        Me.btnPiloto.Location = New System.Drawing.Point(0, 275)
+        Me.btnPiloto.Name = "btnPiloto"
+        Me.btnPiloto.Size = New System.Drawing.Size(200, 45)
+        Me.btnPiloto.TabIndex = 8
+        Me.btnPiloto.Text = "Pilotos"
+        Me.btnPiloto.UseVisualStyleBackColor = True
+        '
+        'btnNacion
+        '
+        Me.btnNacion.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnNacion.FlatAppearance.BorderSize = 0
+        Me.btnNacion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnNacion.ForeColor = System.Drawing.SystemColors.Control
+        Me.btnNacion.Location = New System.Drawing.Point(0, 230)
+        Me.btnNacion.Name = "btnNacion"
+        Me.btnNacion.Size = New System.Drawing.Size(200, 45)
+        Me.btnNacion.TabIndex = 7
+        Me.btnNacion.Text = "Naciones"
+        Me.btnNacion.UseVisualStyleBackColor = True
+        '
+        'btnCircuito
+        '
+        Me.btnCircuito.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnCircuito.FlatAppearance.BorderSize = 0
+        Me.btnCircuito.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCircuito.ForeColor = System.Drawing.SystemColors.Control
+        Me.btnCircuito.Location = New System.Drawing.Point(0, 185)
+        Me.btnCircuito.Name = "btnCircuito"
+        Me.btnCircuito.Size = New System.Drawing.Size(200, 45)
+        Me.btnCircuito.TabIndex = 6
+        Me.btnCircuito.Text = "Circuitos"
+        Me.btnCircuito.UseVisualStyleBackColor = True
+        '
+        'btnCampeonato
+        '
+        Me.btnCampeonato.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnCampeonato.FlatAppearance.BorderSize = 0
+        Me.btnCampeonato.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCampeonato.ForeColor = System.Drawing.Color.White
+        Me.btnCampeonato.Location = New System.Drawing.Point(0, 140)
+        Me.btnCampeonato.Name = "btnCampeonato"
+        Me.btnCampeonato.Size = New System.Drawing.Size(200, 45)
+        Me.btnCampeonato.TabIndex = 5
+        Me.btnCampeonato.Text = "Campeonato"
+        Me.btnCampeonato.UseVisualStyleBackColor = True
+        '
+        'btnDashboard
+        '
+        Me.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnDashboard.FlatAppearance.BorderSize = 0
+        Me.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDashboard.ForeColor = System.Drawing.Color.White
+        Me.btnDashboard.Image = Global.Igp.Statistic.My.Resources.Resources.Button3_Image
+        Me.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnDashboard.Location = New System.Drawing.Point(0, 95)
+        Me.btnDashboard.Name = "btnDashboard"
+        Me.btnDashboard.Size = New System.Drawing.Size(200, 45)
+        Me.btnDashboard.TabIndex = 4
+        Me.btnDashboard.Text = "Dashboard"
+        Me.btnDashboard.UseVisualStyleBackColor = True
+        '
+        'Panel1
+        '
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.Panel1.Location = New System.Drawing.Point(0, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(200, 95)
+        Me.Panel1.TabIndex = 3
         '
         'PanelBarraTitulo
         '
@@ -170,80 +258,6 @@ Partial Class FrmMain
         Me.btnCerrar.TabIndex = 0
         Me.btnCerrar.TabStop = False
         '
-        'Panel1
-        '
-        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(200, 95)
-        Me.Panel1.TabIndex = 3
-        '
-        'btnDashboard
-        '
-        Me.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDashboard.ForeColor = System.Drawing.Color.White
-        Me.btnDashboard.Image = Global.Igp.Statistic.My.Resources.Resources.Button3_Image
-        Me.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnDashboard.Location = New System.Drawing.Point(0, 95)
-        Me.btnDashboard.Name = "btnDashboard"
-        Me.btnDashboard.Size = New System.Drawing.Size(200, 45)
-        Me.btnDashboard.TabIndex = 4
-        Me.btnDashboard.Text = "Dashboard"
-        Me.btnDashboard.UseVisualStyleBackColor = True
-        '
-        'btnPiloto
-        '
-        Me.btnPiloto.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnPiloto.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnPiloto.ForeColor = System.Drawing.Color.White
-        Me.btnPiloto.Location = New System.Drawing.Point(0, 140)
-        Me.btnPiloto.Name = "btnPiloto"
-        Me.btnPiloto.Size = New System.Drawing.Size(200, 45)
-        Me.btnPiloto.TabIndex = 5
-        Me.btnPiloto.Text = "Piloto"
-        Me.btnPiloto.UseVisualStyleBackColor = True
-        '
-        'Button6
-        '
-        Me.Button6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button6.Location = New System.Drawing.Point(0, 185)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(200, 45)
-        Me.Button6.TabIndex = 6
-        Me.Button6.Text = "Button6"
-        Me.Button6.UseVisualStyleBackColor = True
-        '
-        'Button7
-        '
-        Me.Button7.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button7.Location = New System.Drawing.Point(0, 230)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(200, 45)
-        Me.Button7.TabIndex = 7
-        Me.Button7.Text = "Button7"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
-        'Button8
-        '
-        Me.Button8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button8.Location = New System.Drawing.Point(0, 275)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(200, 45)
-        Me.Button8.TabIndex = 8
-        Me.Button8.Text = "Button8"
-        Me.Button8.UseVisualStyleBackColor = True
-        '
-        'Button9
-        '
-        Me.Button9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button9.Location = New System.Drawing.Point(0, 320)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(200, 45)
-        Me.Button9.TabIndex = 9
-        Me.Button9.Text = "Button9"
-        Me.Button9.UseVisualStyleBackColor = True
-        '
         'FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -277,11 +291,11 @@ Partial Class FrmMain
     Friend WithEvents btnMinimizar As PictureBox
     Friend WithEvents btnMaximizar As PictureBox
     Friend WithEvents btnCerrar As PictureBox
-    Friend WithEvents Button9 As Button
-    Friend WithEvents Button8 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button6 As Button
+    Friend WithEvents btnConfiguracion As Button
     Friend WithEvents btnPiloto As Button
+    Friend WithEvents btnNacion As Button
+    Friend WithEvents btnCircuito As Button
+    Friend WithEvents btnCampeonato As Button
     Friend WithEvents btnDashboard As Button
     Friend WithEvents Panel1 As Panel
 End Class

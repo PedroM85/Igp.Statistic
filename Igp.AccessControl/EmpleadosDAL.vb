@@ -91,10 +91,8 @@ Public NotInheritable Class EmpleadosDAL
 			cmd.CommandType = CommandType.StoredProcedure
 
 
-			cmd.Parameters.AddWithValue("@Nombre", empleado.Nombre)
-			cmd.Parameters.AddWithValue("@Apellido", empleado.Apellido)
-			cmd.Parameters.AddWithValue("@FechaNacimiento", empleado.FechaNacimiento)
-			cmd.Parameters.AddWithValue("@EstadoCivil", empleado.EstadoCivil)
+			cmd.Parameters.AddWithValue("@nPiloto", empleado.Nombre)
+			cmd.Parameters.AddWithValue("@idNacion", empleado.EstadoCivil)
 
 			'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
 			'imageParam.Value = empleado.Imagen

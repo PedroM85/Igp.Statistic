@@ -90,6 +90,7 @@ Public Class FrmMain
     End Sub
 
     Private Sub btnDashboard_Click(sender As Object, e As EventArgs) Handles btnDashboard.Click
+        btnDashboard.BackColor = Color.FromArgb(122, 181, 66)
         AbrirFormEnPanel(Of frmDashboard)()
     End Sub
 
@@ -97,6 +98,18 @@ Public Class FrmMain
         btnPiloto.BackColor = Color.FromArgb(122, 181, 66)
         AbrirFormEnPanel(Of frmPiloto)()
     End Sub
+
+    Private Sub btnCircuito_Click(sender As Object, e As EventArgs) Handles btnCircuito.Click
+        btnCircuito.BackColor = Color.FromArgb(122, 181, 66)
+        AbrirFormEnPanel(Of frmCircuito)()
+    End Sub
+
+    Private Sub btnNacion_Click(sender As Object, e As EventArgs) Handles btnNacion.Click
+        btnNacion.BackColor = Color.FromArgb(122, 181, 66)
+        AbrirFormEnPanel(Of frmNacion)()
+    End Sub
+
+
 
 
 #End Region
@@ -130,8 +143,22 @@ Public Class FrmMain
         If (Application.OpenForms("frmDashboard") Is Nothing) Then
             btnDashboard.BackColor = Color.FromArgb(0, 0, 0)
         End If
-        If (Application.OpenForms("frmPilotos") Is Nothing) Then
-            btnPiloto.BackColor = Color.FromArgb(0, 0, 0)
+        If (Application.OpenForms("frmCampeonato") Is Nothing) Then
+            btnCampeonato.BackColor = Color.FromArgb(0, 0, 0)
         End If
+        If (Application.OpenForms("frmCircuito") Is Nothing) Then
+            btnCircuito.BackColor = Color.FromArgb(0, 0, 0)
+        End If
+        If (Application.OpenForms("frmNacion") Is Nothing) Then
+            btnNacion.BackColor = Color.FromArgb(0, 0, 0)
+        End If
+        If (Application.OpenForms("frmPiloto") Is Nothing) Then
+            btnCampeonato.BackColor = Color.FromArgb(0, 0, 0)
+        End If
+        If (Application.OpenForms("frmConfiguracion") Is Nothing) Then
+            btnConfiguracion.BackColor = Color.FromArgb(0, 0, 0)
+        End If
+
+
     End Sub
 End Class

@@ -95,10 +95,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="View\Circuito\frmCircuito.Designer.vb">
+      <DependentUpon>frmCircuito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\Circuito\frmCircuito.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\DashBoard\frmDashboard.Designer.vb">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
     <Compile Include="View\DashBoard\frmDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Nacion\frmEditNacion.Designer.vb">
+      <DependentUpon>frmEditNacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\Nacion\frmEditNacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Nacion\frmNacion.Designer.vb">
+      <DependentUpon>frmNacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\Nacion\frmNacion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Piloto\frmEditPiloto.designer.vb">
@@ -124,8 +142,17 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Circuito\frmCircuito.resx">
+      <DependentUpon>frmCircuito.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DashBoard\frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Nacion\frmEditNacion.resx">
+      <DependentUpon>frmEditNacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Nacion\frmNacion.resx">
+      <DependentUpon>frmNacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Piloto\frmEditPiloto.resx">
       <DependentUpon>frmEditPiloto.vb</DependentUpon>
@@ -164,6 +191,8 @@
     <Content Include="Scripts\IpgManager_1102_2153.sql" />
     <Content Include="Scripts\IpgManager_1302_2137.sql" />
     <Content Include="Scripts\IpgManager_1402_2352.sql" />
+    <Content Include="Scripts\IpgManager_1702_1035.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
