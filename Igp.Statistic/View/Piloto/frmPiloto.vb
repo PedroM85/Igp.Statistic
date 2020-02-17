@@ -9,13 +9,13 @@ Imports Igp.AccessControl
 Imports Igp.Helpers
 Imports Igp.AccessControl.Entidades
 
-Public Partial Class ListaEmpleados
+Partial Public Class frmPiloto
 	Inherits Form
 	Public Sub New()
 		InitializeComponent()
 	End Sub
 
-	Private Sub frmListaEmpleados_Load(sender As Object, e As EventArgs)
+	Private Sub frmListaEmpleados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		CargarListaEmpleados()
 	End Sub
 
@@ -25,16 +25,16 @@ Public Partial Class ListaEmpleados
 
 		For Each row As DataGridViewRow In dgvEmpleados.Rows
 			'se asigna el alto de la fila para poder ver la imagen correctamente
-			row.Height = 120
+			'row.Height = 120
 
 			'se recupera la entidad que es asignada como dato
 			Dim empleado As EmpleadoEntity = TryCast(row.DataBoundItem, EmpleadoEntity)
 
-			If empleado.Imagen Is Nothing Then
-				row.Cells("Imagen").Value = ImageHelper.ObtenerImagenNoDisponible()
-			Else
-				row.Cells("Imagen").Value = ImageHelper.ByteArrayToImage(empleado.Imagen)
-			End If
+			'If empleado.Imagen Is Nothing Then
+			'	row.Cells("Imagen").Value = ImageHelper.ObtenerImagenNoDisponible()
+			'Else
+			'	row.Cells("Imagen").Value = ImageHelper.ByteArrayToImage(empleado.Imagen)
+			'End If
 		Next
 
 	End Sub
@@ -46,7 +46,8 @@ Public Partial Class ListaEmpleados
 		Dim frmEditar As New EditarEmpleado()
 		AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
 
-		frmEditar.Show()
+
+		frmEditar.ShowDialog()
 
 	End Sub
 
@@ -66,19 +67,23 @@ Public Partial Class ListaEmpleados
 	End Sub
 
 
-    Private Sub dgvEmpleados_CellContentDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs)
+	Private Sub dgvEmpleados_CellContentDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs)
 
-        Dim IdEmpleado As Integer = Convert.ToInt32(dgvEmpleados.Rows(e.RowIndex).Cells("IdEmpleado").Value)
+		Dim IdEmpleado As Integer = Convert.ToInt32(dgvEmpleados.Rows(e.RowIndex).Cells("IdEmpleado").Value)
 
-        '
-        ' al pasarle un id de empleado este lo cargara para su edicion
-        '
-        Dim frmEditar As New EditarEmpleado(IdEmpleado)
-        AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
+		'
+		' al pasarle un id de empleado este lo cargara para su edicion
+		'
+		Dim frmEditar As New EditarEmpleado(IdEmpleado)
+		AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
 
-        frmEditar.Show()
+		frmEditar.ShowDialog()
 
-    End Sub
+	End Sub
+
+	Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
+		Me.Close()
+	End Sub
 
 
 End Class

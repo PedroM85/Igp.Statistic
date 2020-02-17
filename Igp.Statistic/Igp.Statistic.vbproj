@@ -101,40 +101,16 @@
     <Compile Include="View\DashBoard\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Piloto\EditarEmpleado.designer.vb">
-      <DependentUpon>EditarEmpleado.vb</DependentUpon>
+    <Compile Include="View\Piloto\frmEditPiloto.designer.vb">
+      <DependentUpon>frmEditPiloto.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Piloto\EditarEmpleado.vb">
+    <Compile Include="View\Piloto\frmEditPiloto.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Piloto\frmEditPiloto_1.Designer.vb">
-      <DependentUpon>frmEditPiloto_1.vb</DependentUpon>
+    <Compile Include="View\Piloto\frmPiloto.designer.vb">
+      <DependentUpon>frmPiloto.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Piloto\frmEditPiloto_1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Piloto\frmPilotos_1.Designer.vb">
-      <DependentUpon>frmPilotos_1.vb</DependentUpon>
-    </Compile>
-    <Compile Include="View\Piloto\frmPilotos_1.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Piloto\frmEditPiloto_OLD.Designer.vb">
-      <DependentUpon>frmEditPiloto_OLD.vb</DependentUpon>
-    </Compile>
-    <Compile Include="View\Piloto\frmEditPiloto_OLD.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Piloto\frmPiloto_OLD.Designer.vb">
-      <DependentUpon>frmPiloto_OLD.vb</DependentUpon>
-    </Compile>
-    <Compile Include="View\Piloto\frmPiloto_OLD.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\Piloto\ListaEmpleados.designer.vb">
-      <DependentUpon>ListaEmpleados.vb</DependentUpon>
-    </Compile>
-    <Compile Include="View\Piloto\ListaEmpleados.vb">
+    <Compile Include="View\Piloto\frmPiloto.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -151,23 +127,11 @@
     <EmbeddedResource Include="View\DashBoard\frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Piloto\EditarEmpleado.resx">
-      <DependentUpon>EditarEmpleado.vb</DependentUpon>
+    <EmbeddedResource Include="View\Piloto\frmEditPiloto.resx">
+      <DependentUpon>frmEditPiloto.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Piloto\frmEditPiloto_1.resx">
-      <DependentUpon>frmEditPiloto_1.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Piloto\frmPilotos_1.resx">
-      <DependentUpon>frmPilotos_1.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Piloto\frmEditPiloto_OLD.resx">
-      <DependentUpon>frmEditPiloto_OLD.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Piloto\frmPiloto_OLD.resx">
-      <DependentUpon>frmPiloto_OLD.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\Piloto\ListaEmpleados.resx">
-      <DependentUpon>ListaEmpleados.vb</DependentUpon>
+    <EmbeddedResource Include="View\Piloto\frmPiloto.resx">
+      <DependentUpon>frmPiloto.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -33,7 +33,7 @@ Namespace Entidades
                 Return m_Apellido
             End Get
             Set(ByVal value As String)
-                m_Apellido = Value
+                m_Apellido = value
             End Set
         End Property
         Private m_Apellido As String
@@ -65,11 +65,11 @@ Namespace Entidades
         End Property
         Private m_Imagen As Byte()
 
-        Public ReadOnly Property NombreCompleto() As String
-            Get
-                Return [String].Format("{0}, {1}", Me.Apellido, Me.Nombre)
-            End Get
-        End Property
+        'Public ReadOnly Property NombreCompleto() As String
+        '    Get
+        '        Return [String].Format("{0}, {1}", Me.Apellido, Me.Nombre)
+        '    End Get
+        'End Property
 
         Public Property Estudios() As List(Of EstudioEntity)
             Get
@@ -80,5 +80,7 @@ Namespace Entidades
             End Set
         End Property
         Private m_Estudios As List(Of EstudioEntity)
+
+
     End Class
 End Namespace

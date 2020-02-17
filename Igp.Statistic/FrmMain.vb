@@ -4,6 +4,7 @@ Public Class FrmMain
     'RESIZE DEL FORMULARIO- CAMBIAR TAMAÑO
     Dim cGrip As Integer = 10
 
+
     Protected Overrides Sub WndProc(ByRef m As Message)
         If (m.Msg = 132) Then
             Dim pos As Point = New Point((m.LParam.ToInt32 And 65535), (m.LParam.ToInt32 + 16))
@@ -94,7 +95,7 @@ Public Class FrmMain
 
     Private Sub btnPiloto_Click(sender As Object, e As EventArgs) Handles btnPiloto.Click
         btnPiloto.BackColor = Color.FromArgb(122, 181, 66)
-        AbrirFormEnPanel(Of ListaEmpleados)()
+        AbrirFormEnPanel(Of frmPiloto)()
     End Sub
 
 

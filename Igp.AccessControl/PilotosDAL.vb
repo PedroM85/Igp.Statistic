@@ -66,11 +66,11 @@ Public NotInheritable Class PilotosDAL
 
         Piloto.id = Convert.ToInt32(reader("id"))
         Piloto.nombre = Convert.ToString(reader("nPiloto"))
-        'Piloto.nacion = Convert.ToString(reader("naPiloto"))
+        Piloto.nacion = Convert.ToString(reader("idNacion"))
 
-        If reader("bPiloto") IsNot DBNull.Value Then
-            Piloto.imagen = DirectCast(reader("bPiloto"), Byte())
-        End If
+        'If reader("bPiloto") IsNot DBNull.Value Then
+        '    Piloto.imagen = DirectCast(reader("bPiloto"), Byte())
+        'End If
 
         'If cargarRelaciones Then
         '    Piloto.nacion = EstudiosDAL.ObtenerAsignadoEmpleado(Piloto.IdEmpleado)

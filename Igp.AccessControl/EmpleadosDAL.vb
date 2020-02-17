@@ -63,8 +63,9 @@ Public NotInheritable Class EmpleadosDAL
 
 		Dim empleado As New EmpleadoEntity()
 
-		empleado.IdEmpleado = Convert.ToInt32(reader("Id"))
-		empleado.Nombre = Convert.ToString(reader("nPiloto"))
+		empleado.IdEmpleado = Convert.ToInt32(reader("Id")).ToString.Trim
+		empleado.Nombre = Convert.ToString(reader("nPiloto")).Trim
+		empleado.Apellido = Convert.ToString(reader("idNacion")).Trim
 		'empleado.Apellido = Convert.ToString(reader("Apellido"))
 		'empleado.FechaNacimiento = Convert.ToDateTime(reader("FechaNacimiento"))
 		'empleado.EstadoCivil = Convert.ToInt16(reader("EstadoCivil"))
@@ -119,7 +120,7 @@ Public NotInheritable Class EmpleadosDAL
 			cmd.Parameters.AddWithValue("@nPiloto", empleado.Nombre)
 			'cmd.Parameters.AddWithValue("@Apellido", empleado.Apellido)
 			'cmd.Parameters.AddWithValue("@FechaNacimiento", empleado.FechaNacimiento)
-			'cmd.Parameters.AddWithValue("@EstadoCivil", empleado.EstadoCivil)
+			cmd.Parameters.AddWithValue("@idNacion", empleado.EstadoCivil)
 
 			'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
 			'imageParam.Value = empleado.Imagen
@@ -185,5 +186,58 @@ Public NotInheritable Class EmpleadosDAL
 
 	End Function
 
+	Public Shared Function delete(empleado As EmpleadoEntity) As EmpleadoEntity
+		Using scope As New TransactionScope()
+			'
+			' Graba datos empleado
+			'
+			If Existe(empleado.IdEmpleado) Then
+				borrar(empleado)
+			Else
+				MsgBox("No hay datos que eliminar")
 
+			End If
+
+			'
+			' graba los estudios relacionado con el empleado, 
+			' se eliminan las opciones existentes
+			' y se ingresan la nueva seleccion del usuario
+			'
+			'EstudiosDAL.EliminarPorEmpleado(empleado)
+
+			'For Each estudio As EstudioEntity In empleado.Estudios
+			'EstudiosDAL.RelacionarConEmpleado(empleado, estudio)
+			'Next
+
+
+			scope.Complete()
+		End Using
+
+		Return empleado
+	End Function
+
+	Private Shared Function borrar(empleado As EmpleadoEntity) As EmpleadoEntity
+		Using conn As New SqlConnection(coruta)
+			conn.Open()
+
+			Dim cmd As SqlCommand
+			cmd = New SqlCommand("SYS_DeletePiloto", conn)
+			cmd.CommandType = CommandType.StoredProcedure
+
+
+			'cmd.Parameters.AddWithValue("@nPiloto", empleado.Nombre)
+			'cmd.Parameters.AddWithValue("@Apellido", empleado.Apellido)
+			'cmd.Parameters.AddWithValue("@FechaNacimiento", empleado.FechaNacimiento)
+			'cmd.Parameters.AddWithValue("@idNacion", empleado.EstadoCivil)
+
+			'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
+			'imageParam.Value = empleado.Imagen
+
+			cmd.Parameters.AddWithValue("@id", empleado.IdEmpleado)
+
+			cmd.ExecuteNonQuery()
+		End Using
+
+		Return empleado
+	End Function
 End Class

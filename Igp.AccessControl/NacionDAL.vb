@@ -42,8 +42,8 @@ Public NotInheritable Class NacionDAL
 
         Dim Nacion As New NacionEntity()
 
-        Nacion.IdNacion = Convert.ToInt32(reader("id"))
-        Nacion.Descripcion = Convert.ToString(reader("Nacion"))
+        Nacion.IdNacion = Convert.ToInt32(reader("id")).ToString.Trim
+        Nacion.Descripcion = Convert.ToString(reader("idNacion")).Trim
 
 
         Return Nacion

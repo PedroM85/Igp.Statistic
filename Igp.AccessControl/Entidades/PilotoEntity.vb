@@ -8,16 +8,16 @@ Namespace Entidades
 
         End Sub
 
-        Private m_nacion As Short
+        Private m_nacion As String
         Private m_id As Integer
         Private m_nombre As String
         Private m_imagen As Byte()
 
-        Public Property nacion() As Short
+        Public Property nacion() As String
             Get
                 Return m_nacion
             End Get
-            Set(value As Short)
+            Set(value As String)
                 m_nacion = value
             End Set
         End Property

@@ -1,0 +1,13 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+
+CREATE PROCEDURE [dbo].[SYS_SelectallPilotos]
+	AS
+
+ 
+	SELECT * from SYS_Piloto
+
+
+GO
