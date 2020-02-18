@@ -22,9 +22,87 @@ Partial Class frmEditCircuito
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New System.ComponentModel.Container
+        Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.btnCancelar = New System.Windows.Forms.Button()
+        Me.btnGuardar = New System.Windows.Forms.Button()
+        Me.label2 = New System.Windows.Forms.Label()
+        Me.txtCircuito = New System.Windows.Forms.TextBox()
+        Me.SuspendLayout()
+        '
+        'btnEliminar
+        '
+        Me.btnEliminar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnEliminar.FlatAppearance.BorderSize = 0
+        Me.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnEliminar.Location = New System.Drawing.Point(419, 248)
+        Me.btnEliminar.Name = "btnEliminar"
+        Me.btnEliminar.Size = New System.Drawing.Size(81, 23)
+        Me.btnEliminar.TabIndex = 22
+        Me.btnEliminar.Text = "Eliminar"
+        Me.btnEliminar.UseVisualStyleBackColor = True
+        '
+        'btnCancelar
+        '
+        Me.btnCancelar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnCancelar.Cursor = System.Windows.Forms.Cursors.Default
+        Me.btnCancelar.FlatAppearance.BorderSize = 0
+        Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancelar.Location = New System.Drawing.Point(506, 248)
+        Me.btnCancelar.Name = "btnCancelar"
+        Me.btnCancelar.Size = New System.Drawing.Size(81, 23)
+        Me.btnCancelar.TabIndex = 21
+        Me.btnCancelar.Text = "Cancelar"
+        Me.btnCancelar.UseVisualStyleBackColor = True
+        '
+        'btnGuardar
+        '
+        Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnGuardar.FlatAppearance.BorderSize = 0
+        Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGuardar.Location = New System.Drawing.Point(332, 248)
+        Me.btnGuardar.Name = "btnGuardar"
+        Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
+        Me.btnGuardar.TabIndex = 20
+        Me.btnGuardar.Text = "Guardar"
+        Me.btnGuardar.UseVisualStyleBackColor = True
+        '
+        'label2
+        '
+        Me.label2.AutoSize = True
+        Me.label2.Location = New System.Drawing.Point(95, 81)
+        Me.label2.Name = "label2"
+        Me.label2.Size = New System.Drawing.Size(45, 13)
+        Me.label2.TabIndex = 19
+        Me.label2.Text = "Circuito:"
+        '
+        'txtCircuito
+        '
+        Me.txtCircuito.Location = New System.Drawing.Point(145, 78)
+        Me.txtCircuito.Name = "txtCircuito"
+        Me.txtCircuito.Size = New System.Drawing.Size(225, 20)
+        Me.txtCircuito.TabIndex = 18
+        '
+        'frmEditCircuito
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(603, 286)
+        Me.Controls.Add(Me.btnEliminar)
+        Me.Controls.Add(Me.btnCancelar)
+        Me.Controls.Add(Me.btnGuardar)
+        Me.Controls.Add(Me.label2)
+        Me.Controls.Add(Me.txtCircuito)
+        Me.Name = "frmEditCircuito"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmEditCircuito"
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
     End Sub
+
+    Private WithEvents btnEliminar As Button
+    Private WithEvents btnCancelar As Button
+    Private WithEvents btnGuardar As Button
+    Private WithEvents label2 As Label
+    Private WithEvents txtCircuito As TextBox
 End Class

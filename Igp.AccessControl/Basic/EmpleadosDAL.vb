@@ -116,12 +116,7 @@ Public NotInheritable Class EmpleadosDAL
 
 
 			cmd.Parameters.AddWithValue("@nPiloto", empleado.Nombre)
-			'cmd.Parameters.AddWithValue("@Apellido", empleado.Apellido)
-			'cmd.Parameters.AddWithValue("@FechaNacimiento", empleado.FechaNacimiento)
 			cmd.Parameters.AddWithValue("@idNacion", empleado.EstadoCivil)
-
-			'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
-			'imageParam.Value = empleado.Imagen
 
 			cmd.Parameters.AddWithValue("@id", empleado.IdEmpleado)
 
@@ -141,18 +136,6 @@ Public NotInheritable Class EmpleadosDAL
 			Else
 				AgregarNuevo(empleado)
 			End If
-
-			'
-			' graba los estudios relacionado con el empleado, 
-			' se eliminan las opciones existentes
-			' y se ingresan la nueva seleccion del usuario
-			'
-			'EstudiosDAL.EliminarPorEmpleado(empleado)
-
-			'For Each estudio As EstudioEntity In empleado.Estudios
-			'EstudiosDAL.RelacionarConEmpleado(empleado, estudio)
-			'Next
-
 
 			scope.Complete()
 		End Using

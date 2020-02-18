@@ -65,17 +65,19 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CircuitoDAL.vb" />
-    <Compile Include="EmpleadosDAL.vb" />
-    <Compile Include="Entidades\CircuitoEntity.vb" />
-    <Compile Include="Entidades\EmpleadoEntity.vb" />
-    <Compile Include="Entidades\EstadoCivilEntity.vb" />
-    <Compile Include="Entidades\EstudioEntity.vb" />
-    <Compile Include="EstadoCivilDAL.vb" />
-    <Compile Include="EstudiosDAL.vb" />
+    <Compile Include="Circuitos\CircuitoDAL.vb" />
+    <Compile Include="Basic\EmpleadosDAL.vb" />
+    <Compile Include="Circuitos\Entidades\CircuitoEntity.vb" />
+    <Compile Include="Basic\Entidades\EmpleadoEntity.vb" />
+    <Compile Include="Basic\Entidades\EstadoCivilEntity.vb" />
+    <Compile Include="Basic\Entidades\EstudioEntity.vb" />
+    <Compile Include="Basic\EstadoCivilDAL.vb" />
+    <Compile Include="Basic\EstudiosDAL.vb" />
+    <Compile Include="Configuracion\ConfigDAL.vb" />
+    <Compile Include="Configuracion\Entidades\ConfigEntity.vb" />
     <Compile Include="RutaSQL.vb" />
-    <Compile Include="Entidades\NacionEntity.vb" />
-    <Compile Include="Entidades\PilotoEntity.vb" />
+    <Compile Include="Nacion\Entidades\NacionEntity.vb" />
+    <Compile Include="Pilotos\Entidades\PilotoEntity.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -91,8 +93,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="NacionDAL.vb" />
-    <Compile Include="PilotosDAL.vb" />
+    <Compile Include="Nacion\NacionDAL.vb" />
+    <Compile Include="Pilotos\PilotosDAL.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">

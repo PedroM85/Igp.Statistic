@@ -101,6 +101,24 @@
     <Compile Include="View\Circuito\frmCircuito.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="View\Circuito\frmEditCircuito.Designer.vb">
+      <DependentUpon>frmEditCircuito.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\Circuito\frmEditCircuito.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Configuracion\frmConfiguracion.Designer.vb">
+      <DependentUpon>frmConfiguracion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\Configuracion\frmConfiguracion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Configuracion\frmEditConfig.Designer.vb">
+      <DependentUpon>frmEditConfig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\Configuracion\frmEditConfig.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\DashBoard\frmDashboard.Designer.vb">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
@@ -144,6 +162,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Circuito\frmCircuito.resx">
       <DependentUpon>frmCircuito.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Circuito\frmEditCircuito.resx">
+      <DependentUpon>frmEditCircuito.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Configuracion\frmConfiguracion.resx">
+      <DependentUpon>frmConfiguracion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\DashBoard\frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
@@ -192,6 +216,7 @@
     <Content Include="Scripts\IpgManager_1302_2137.sql" />
     <Content Include="Scripts\IpgManager_1402_2352.sql" />
     <Content Include="Scripts\IpgManager_1702_1035.sql" />
+    <Content Include="Scripts\IpgManager_1702_1814.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

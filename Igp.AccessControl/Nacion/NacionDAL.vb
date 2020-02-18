@@ -145,7 +145,7 @@ Public NotInheritable Class NacionDAL
             cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@nPiloto", nacion.Descripcion)
+            cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
 
 
             cmd.Parameters.AddWithValue("@id", nacion.IdNacion)

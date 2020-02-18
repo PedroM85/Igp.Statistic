@@ -93,7 +93,7 @@ Partial Class frmCircuito
         Me.dgvCircuitos.Location = New System.Drawing.Point(183, 47)
         Me.dgvCircuitos.Name = "dgvCircuitos"
         Me.dgvCircuitos.ReadOnly = True
-        Me.dgvCircuitos.Size = New System.Drawing.Size(265, 391)
+        Me.dgvCircuitos.Size = New System.Drawing.Size(228, 391)
         Me.dgvCircuitos.TabIndex = 22
         '
         'Id

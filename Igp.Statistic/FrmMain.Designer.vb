@@ -25,25 +25,25 @@ Partial Class FrmMain
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMain))
         Me.PanelContenedor = New System.Windows.Forms.Panel()
         Me.PanelFormularios = New System.Windows.Forms.Panel()
-        Me.LOGO = New System.Windows.Forms.PictureBox()
         Me.PanelMenu = New System.Windows.Forms.Panel()
         Me.btnConfiguracion = New System.Windows.Forms.Button()
         Me.btnPiloto = New System.Windows.Forms.Button()
         Me.btnNacion = New System.Windows.Forms.Button()
         Me.btnCircuito = New System.Windows.Forms.Button()
         Me.btnCampeonato = New System.Windows.Forms.Button()
-        Me.btnDashboard = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PanelBarraTitulo = New System.Windows.Forms.Panel()
+        Me.LOGO = New System.Windows.Forms.PictureBox()
+        Me.btnDashboard = New System.Windows.Forms.Button()
         Me.btnRestaurar = New System.Windows.Forms.PictureBox()
         Me.btnMinimizar = New System.Windows.Forms.PictureBox()
         Me.btnMaximizar = New System.Windows.Forms.PictureBox()
         Me.btnCerrar = New System.Windows.Forms.PictureBox()
         Me.PanelContenedor.SuspendLayout()
         Me.PanelFormularios.SuspendLayout()
-        CType(Me.LOGO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelMenu.SuspendLayout()
         Me.PanelBarraTitulo.SuspendLayout()
+        CType(Me.LOGO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnRestaurar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnMinimizar, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.btnMaximizar, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,18 +73,6 @@ Partial Class FrmMain
         Me.PanelFormularios.Name = "PanelFormularios"
         Me.PanelFormularios.Size = New System.Drawing.Size(824, 519)
         Me.PanelFormularios.TabIndex = 2
-        '
-        'LOGO
-        '
-        Me.LOGO.BackColor = System.Drawing.Color.Transparent
-        Me.LOGO.Image = CType(resources.GetObject("LOGO.Image"), System.Drawing.Image)
-        Me.LOGO.Location = New System.Drawing.Point(135, 79)
-        Me.LOGO.Margin = New System.Windows.Forms.Padding(2)
-        Me.LOGO.Name = "LOGO"
-        Me.LOGO.Size = New System.Drawing.Size(550, 314)
-        Me.LOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
-        Me.LOGO.TabIndex = 0
-        Me.LOGO.TabStop = False
         '
         'PanelMenu
         '
@@ -168,21 +156,6 @@ Partial Class FrmMain
         Me.btnCampeonato.Text = "Campeonato"
         Me.btnCampeonato.UseVisualStyleBackColor = True
         '
-        'btnDashboard
-        '
-        Me.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top
-        Me.btnDashboard.FlatAppearance.BorderSize = 0
-        Me.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnDashboard.ForeColor = System.Drawing.Color.White
-        Me.btnDashboard.Image = Global.Igp.Statistic.My.Resources.Resources.Button3_Image
-        Me.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.btnDashboard.Location = New System.Drawing.Point(0, 95)
-        Me.btnDashboard.Name = "btnDashboard"
-        Me.btnDashboard.Size = New System.Drawing.Size(200, 45)
-        Me.btnDashboard.TabIndex = 4
-        Me.btnDashboard.Text = "Dashboard"
-        Me.btnDashboard.UseVisualStyleBackColor = True
-        '
         'Panel1
         '
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
@@ -204,6 +177,33 @@ Partial Class FrmMain
         Me.PanelBarraTitulo.Name = "PanelBarraTitulo"
         Me.PanelBarraTitulo.Size = New System.Drawing.Size(1024, 32)
         Me.PanelBarraTitulo.TabIndex = 0
+        '
+        'LOGO
+        '
+        Me.LOGO.BackColor = System.Drawing.Color.Transparent
+        Me.LOGO.Image = CType(resources.GetObject("LOGO.Image"), System.Drawing.Image)
+        Me.LOGO.Location = New System.Drawing.Point(135, 79)
+        Me.LOGO.Margin = New System.Windows.Forms.Padding(2)
+        Me.LOGO.Name = "LOGO"
+        Me.LOGO.Size = New System.Drawing.Size(550, 314)
+        Me.LOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.LOGO.TabIndex = 0
+        Me.LOGO.TabStop = False
+        '
+        'btnDashboard
+        '
+        Me.btnDashboard.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnDashboard.FlatAppearance.BorderSize = 0
+        Me.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnDashboard.ForeColor = System.Drawing.Color.White
+        Me.btnDashboard.Image = Global.Igp.Statistic.My.Resources.Resources.Button3_Image
+        Me.btnDashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnDashboard.Location = New System.Drawing.Point(0, 95)
+        Me.btnDashboard.Name = "btnDashboard"
+        Me.btnDashboard.Size = New System.Drawing.Size(200, 45)
+        Me.btnDashboard.TabIndex = 4
+        Me.btnDashboard.Text = "Dashboard"
+        Me.btnDashboard.UseVisualStyleBackColor = True
         '
         'btnRestaurar
         '
@@ -270,10 +270,10 @@ Partial Class FrmMain
         Me.Text = "None"
         Me.PanelContenedor.ResumeLayout(False)
         Me.PanelFormularios.ResumeLayout(False)
-        CType(Me.LOGO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelMenu.ResumeLayout(False)
         Me.PanelBarraTitulo.ResumeLayout(False)
         Me.PanelBarraTitulo.PerformLayout()
+        CType(Me.LOGO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnRestaurar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnMinimizar, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.btnMaximizar, System.ComponentModel.ISupportInitialize).EndInit()
