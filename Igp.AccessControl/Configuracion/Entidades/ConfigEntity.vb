@@ -5,8 +5,9 @@ Imports System.Text
 Namespace Entidades
     Public Class ConfigEntity
 
-        Public Sub New(id As String, desc As String, valor As String, type As String)
+        Public Sub New(idv As String, desc As String, valor As String, type As String, id As Int32)
             Me.Id = id
+            Me.idv = idv
             Me.Descripcion = desc
             Me.Valor = valor
             Me.type = type
@@ -14,17 +15,26 @@ Namespace Entidades
 
         Public Sub New()
         End Sub
+        Private m_idv As String
         Private m_type As String
         Private m_valor As String
-        Private m_Id As String
+        Private m_Id As Int32
         Private m_Descripcion As String
 
-        Public Property Id() As String
+        Public Property id As Int32
             Get
                 Return m_Id
             End Get
-            Set(value As String)
+            Set(value As Int32)
                 m_Id = value
+            End Set
+        End Property
+        Public Property Idv() As String
+            Get
+                Return m_idv
+            End Get
+            Set(value As String)
+                m_idv = value
             End Set
         End Property
 

@@ -149,6 +149,12 @@
     <Compile Include="View\Piloto\frmPiloto.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="View\Temporada\frmTemporada.Designer.vb">
+      <DependentUpon>frmTemporada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="View\Temporada\frmTemporada.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FrmMain.resx">
@@ -169,6 +175,9 @@
     <EmbeddedResource Include="View\Configuracion\frmConfiguracion.resx">
       <DependentUpon>frmConfiguracion.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Configuracion\frmEditConfig.resx">
+      <DependentUpon>frmEditConfig.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\DashBoard\frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </EmbeddedResource>
@@ -183,6 +192,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Piloto\frmPiloto.resx">
       <DependentUpon>frmPiloto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Temporada\frmTemporada.resx">
+      <DependentUpon>frmTemporada.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

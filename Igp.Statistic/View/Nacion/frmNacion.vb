@@ -77,4 +77,6 @@ Partial Public Class frmNacion
 
         frmEditar.ShowDialog()
     End Sub
+
+
 End Class

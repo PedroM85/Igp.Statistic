@@ -10,7 +10,7 @@ Imports Igp.AccessControl.Entidades
 Partial Public Class frmConfiguracion
     Inherits Form
 
-    Private pruebalago As New ConfigDAL
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -22,10 +22,11 @@ Partial Public Class frmConfiguracion
     Private Sub frmConfiguracion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         CargarListaConfig()
-        dgvConfiguracion_cellbegininit()
+
     End Sub
 
     Private Sub CargarListaConfig()
+        dgvConfiguracion.AutoGenerateColumns = False
         dgvConfiguracion.DataSource = ConfigDAL.ObtenerTodos
 
         For Each row As DataGridViewRow In dgvConfiguracion.Rows
@@ -38,43 +39,7 @@ Partial Public Class frmConfiguracion
         Me.Close()
     End Sub
 
-    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
 
-        dgvconfiguracion_cellbendedit(False)
-
-        Try
-            'Dim IdEmpleado As Integer = Convert.ToInt32(dgvNacion.Rows(e.RowIndex).Cells("IdEmpleado").Value) IdNacion
-            Dim IdEmpleado As Integer = 1 'Convert.ToInt32(dgvConfiguracion.Rows(e.RowIndex).Cells("ID").value)
-            '
-            ' al pasarle un id de empleado este lo cargara para su edicion
-            '
-            Dim frmEditar As New frmEditConfig(IdEmpleado)
-            AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
-
-            frmEditar.ShowDialog()
-        Catch ex As Exception
-            MsgBox("Seleccion del Datagridview: " + ex.ToString)
-        End Try
-
-    End Sub
-
-    Dim temp As String
-    Private Sub dgvConfiguracion_cellbegininit()
-        temp = dgvConfiguracion.Cell(3).Value.ToString
-    End Sub
-
-    Private Sub dgvconfiguracion_cellbendedit(cambio As Boolean)
-
-        Dim algo As String = dgvConfiguracion.Currents.Cell(3).Value.ToString
-
-
-        If algo = temp Then
-            cambio = False
-        Else
-            cambio = True
-        End If
-
-    End Sub
 
     Private Sub frmEditar_FormClosing(sender As Object, e As FormClosingEventArgs)
         '
@@ -82,11 +47,25 @@ Partial Public Class frmConfiguracion
         ' para actualizar la informacion del listado
         '
 
-        Dim frmEdit As frmEditNacion = TryCast(sender, frmEditNacion)
+        Dim frmEdit As frmEditConfig = TryCast(sender, frmEditConfig)
 
         If frmEdit.DialogResult = DialogResult.OK Then
             CargarListaConfig()
         End If
+
+    End Sub
+
+    Private Sub dgvConfiguracion_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvConfiguracion.CellContentDoubleClick
+
+        'Dim IdEmpleado As Integer = Convert.ToInt32(dgvNacion.Rows(e.RowIndex).Cells("IdEmpleado").Value) IdNacion
+        Dim IdConfig As Integer = Convert.ToInt32(dgvConfiguracion.Rows(e.RowIndex).Cells("ida").Value)
+        '
+        ' al pasarle un id de empleado este lo cargara para su edicion
+        '
+        Dim frmEditar As New frmEditConfig(IdConfig)
+            AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
+
+            frmEditar.ShowDialog()
 
     End Sub
 End Class

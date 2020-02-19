@@ -6,7 +6,7 @@
   <DefaultUser>dbo</DefaultUser>
   <DefaultFilegroup>PRIMARY</DefaultFilegroup>
   <DatabaseVersion>12</DatabaseVersion>
-  <ServerVersion>12.0.2269.0</ServerVersion>
+  <ServerVersion>12.0.2000.8</ServerVersion>
   <IsAzure>False</IsAzure>
   <MaxDataFileSize>10485760</MaxDataFileSize>
   <WriteToFileOptions>

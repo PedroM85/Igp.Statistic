@@ -1,0 +1,8 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE PROCEDURE [dbo].[SYS_SelectallCircuito]
+as	
+	Select * from SYS_Circuito
+GO

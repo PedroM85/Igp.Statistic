@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Nacion\NacionDAL.vb" />
     <Compile Include="Pilotos\PilotosDAL.vb" />
+    <Compile Include="Temporada\TempoDAL.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
