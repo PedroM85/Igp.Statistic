@@ -2,7 +2,6 @@
 Imports System.Linq
 Imports System.Text
 Imports Igp.AccessControl.Entidades
-Imports Igp.AccessControl.RutaSQL
 Imports System.Data.SqlClient
 Imports System.Transactions
 Public NotInheritable Class ConfigDAL
@@ -33,7 +32,41 @@ Public NotInheritable Class ConfigDAL
 
 
     End Function
+    'Public Shared Function PARCONFIG(ByVal idTempo As String) As ConfigEntity
+    Public Shared Function PARCONFIG() As ConfigEntity
 
+        Dim Tempo As ConfigEntity = Nothing
+
+        Using conn As New SqlConnection(coruta)
+            conn.Open()
+
+            Dim cmd As SqlCommand
+            cmd = New SqlCommand("CON_CONFIGPILOTO", conn)
+            cmd.CommandType = CommandType.StoredProcedure
+
+
+            cmd.Parameters.AddWithValue("@id", "NPILOTO")
+
+            Dim reader As SqlDataReader = cmd.ExecuteReader()
+
+            If reader.Read() Then
+                Tempo = ConvertirconfigPAR(reader, True)
+            End If
+
+        End Using
+
+        Return Tempo
+
+    End Function
+    Private Shared Function ConvertirconfigPAR(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As ConfigEntity
+        Dim config As New ConfigEntity()
+
+
+        ' config.Idv = Convert.ToString(reader("PAR_idv")).ToString.Trim
+        config.Valor = Convert.ToString(reader("PAR_numeric")).Trim
+
+        Return config
+    End Function
     Public Shared Function ObtenerById(ByVal idConfig As Integer) As ConfigEntity
 
         Dim Config As ConfigEntity = Nothing

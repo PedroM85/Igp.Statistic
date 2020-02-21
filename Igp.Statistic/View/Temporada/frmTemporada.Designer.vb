@@ -24,13 +24,13 @@ Partial Class frmTemporada
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTemporada))
         Me.dgvTemporada = New System.Windows.Forms.DataGridView()
-        Me.IdEmpleado = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreCompleto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Equipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnNuevoEmpleado = New System.Windows.Forms.Button()
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
+        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreCompleto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Equipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvTemporada, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -42,35 +42,13 @@ Partial Class frmTemporada
         Me.dgvTemporada.BackgroundColor = System.Drawing.SystemColors.Control
         Me.dgvTemporada.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvTemporada.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvTemporada.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdEmpleado, Me.NombreCompleto, Me.Equipo})
+        Me.dgvTemporada.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.NombreCompleto, Me.Equipo})
         Me.dgvTemporada.Location = New System.Drawing.Point(150, 71)
         Me.dgvTemporada.Name = "dgvTemporada"
         Me.dgvTemporada.ReadOnly = True
+        Me.dgvTemporada.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.dgvTemporada.Size = New System.Drawing.Size(347, 391)
         Me.dgvTemporada.TabIndex = 16
-        '
-        'IdEmpleado
-        '
-        Me.IdEmpleado.DataPropertyName = "IdEmpleado"
-        Me.IdEmpleado.HeaderText = "IdEmpleado"
-        Me.IdEmpleado.Name = "IdEmpleado"
-        Me.IdEmpleado.ReadOnly = True
-        Me.IdEmpleado.Visible = False
-        '
-        'NombreCompleto
-        '
-        Me.NombreCompleto.DataPropertyName = "Nombre"
-        Me.NombreCompleto.HeaderText = "Nombre Completo"
-        Me.NombreCompleto.Name = "NombreCompleto"
-        Me.NombreCompleto.ReadOnly = True
-        Me.NombreCompleto.Width = 200
-        '
-        'Equipo
-        '
-        Me.Equipo.DataPropertyName = "Apellido"
-        Me.Equipo.HeaderText = "Equipo"
-        Me.Equipo.Name = "Equipo"
-        Me.Equipo.ReadOnly = True
         '
         'lblHelp
         '
@@ -120,6 +98,29 @@ Partial Class frmTemporada
         Me.BtnCerrarForm.TabIndex = 18
         Me.BtnCerrarForm.TabStop = False
         '
+        'Id
+        '
+        Me.Id.DataPropertyName = "IdTempo"
+        Me.Id.HeaderText = "Id"
+        Me.Id.Name = "Id"
+        Me.Id.ReadOnly = True
+        Me.Id.Visible = False
+        '
+        'NombreCompleto
+        '
+        Me.NombreCompleto.DataPropertyName = "Descripcion"
+        Me.NombreCompleto.HeaderText = "Nombre Completo"
+        Me.NombreCompleto.Name = "NombreCompleto"
+        Me.NombreCompleto.ReadOnly = True
+        Me.NombreCompleto.Width = 150
+        '
+        'Equipo
+        '
+        Me.Equipo.DataPropertyName = "isactive"
+        Me.Equipo.HeaderText = "Equipo"
+        Me.Equipo.Name = "Equipo"
+        Me.Equipo.ReadOnly = True
+        '
         'frmTemporada
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -141,11 +142,11 @@ Partial Class frmTemporada
     End Sub
 
     Private WithEvents dgvTemporada As DataGridView
-    Friend WithEvents IdEmpleado As DataGridViewTextBoxColumn
-    Friend WithEvents NombreCompleto As DataGridViewTextBoxColumn
-    Friend WithEvents Equipo As DataGridViewTextBoxColumn
     Public WithEvents lblHelp As Label
     Private WithEvents Label1 As Label
     Friend WithEvents BtnCerrarForm As PictureBox
     Private WithEvents btnNuevoEmpleado As Button
+    Friend WithEvents Id As DataGridViewTextBoxColumn
+    Friend WithEvents NombreCompleto As DataGridViewTextBoxColumn
+    Friend WithEvents Equipo As DataGridViewTextBoxColumn
 End Class

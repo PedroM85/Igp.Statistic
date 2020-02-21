@@ -2,105 +2,169 @@
 Imports System.Linq
 Imports System.Text
 Imports Igp.AccessControl.Entidades
-Imports Igp.AccessControl.RutaSQL
+Imports Igp.AccessControl.Conexion
+Imports Igp.AccessControl
 Imports System.Data.SqlClient
 Imports System.Transactions
+
 Public NotInheritable Class TempoDAL
+    Inherits Conexion
 
     Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
-    Public Shared Function ObtenerTodos() As List(Of NacionEntity)
+    Public Shared Function ObtenerTodos() As List(Of TempoEntity)
 
-        Dim lista As New List(Of NacionEntity)()
+        Dim Tempo As New List(Of TempoEntity)()
+
+        'Try
+        '    conectar()
+
+        '    Dim cmd As New SqlCommand("SYS_SelectallTempo", RutaSQL)
+        '    cmd.CommandType = CommandType.StoredProcedure
+
+        '    Dim rdr As SqlDataReader = cmd.ExecuteReader()
+
+
+        '    While rdr.Read()
+        '        Tempo.Add(ConvertirTempo(rdr, False))
+        '    End While
+
+        '    desconectar()
+
+        '    Return Tempo
+        'Catch ex As Exception
+
+        'End Try
+
+
+
 
         Using conn As New SqlConnection(coruta)
             conn.Open()
 
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_SelectallNaciones", conn)
+            cmd = New SqlCommand("SYS_SelectallTempo", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
             Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
 
             While rdr.Read()
-                lista.Add(ConvertirNacion(rdr, False))
+                Tempo.Add(ConvertirTempo(rdr, False))
             End While
 
             conn.Close()
         End Using
 
-        Return lista
+        Return Tempo
 
 
     End Function
-    Public Shared Function ObtenerById(ByVal idEmpleado As Integer) As NacionEntity
 
-        Dim nacion As NacionEntity = Nothing
+    Public Shared Function ObtenerById(ByVal idTempo As Integer) As TempoEntity
+
+        Dim Tempo As TempoEntity = Nothing
 
         Using conn As New SqlConnection(coruta)
             conn.Open()
 
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ObtenerNacionbyID", conn)
+            cmd = New SqlCommand("SYS_ObtenerTempobyID", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", idEmpleado)
+            cmd.Parameters.AddWithValue("@id", idTempo)
 
             Dim reader As SqlDataReader = cmd.ExecuteReader()
 
             If reader.Read() Then
-                nacion = ConvertirNacion(reader, True)
+                Tempo = ConvertirTempo(reader, True)
             End If
 
         End Using
 
-        Return nacion
+        Return Tempo
 
     End Function
-    Private Shared Function ConvertirNacion(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As NacionEntity
+    Public Shared Function ObtenerbyActive() As List(Of TempoEntity)
 
-        Dim Nacion As New NacionEntity()
+        Dim Tempo As New List(Of TempoEntity)()
 
-        Nacion.IdNacion = Convert.ToInt32(reader("id")).ToString.Trim
-        Nacion.Descripcion = Convert.ToString(reader("idNacion")).Trim
+        Using conn As New SqlConnection(coruta)
+            conn.Open()
+
+            Dim cmd As SqlCommand
+            cmd = New SqlCommand("SYS_SelectaTempoactive", conn)
+            cmd.CommandType = CommandType.StoredProcedure
+
+            Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
 
-        Return Nacion
+            While rdr.Read()
+                Tempo.Add(ConvertirTempo(rdr, False))
+            End While
+
+            conn.Close()
+        End Using
+
+        Return Tempo
+
 
     End Function
 
-    Public Shared Function Save(nacion As NacionEntity) As NacionEntity
+    Private Shared Function ConvertirTempo(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As TempoEntity
+
+        Dim Tempo As New TempoEntity()
+        Dim chance As Byte
+
+        Tempo.Idtempo = Convert.ToInt32(reader("idTem")).ToString.Trim
+        Tempo.Descripcion = Convert.ToString(reader("Temporada")).Trim
+        chance = Convert.ToString(reader("isactive")).Trim
+
+
+        If chance = "0" Then
+            Tempo.isactive = "Inactivo"
+        Else
+            Tempo.isactive = "Activo"
+        End If
+
+        Return Tempo
+
+    End Function
+
+    Public Shared Function Save(Tempo As TempoEntity) As TempoEntity
         Using scope As New TransactionScope()
             '
             ' Graba datos empleado
             '
-            If Existe(nacion.IdNacion) Then
-                Actualizar(nacion)
+            If Existe(Tempo.Idtempo) Then
+                Actualizar(Tempo)
+            ElseIf (Tempo.Idtempo) Then
+                AgregarNuevo(Tempo)
             Else
-                AgregarNuevo(nacion)
+                borrar(Tempo)
+
             End If
 
 
             scope.Complete()
         End Using
 
-        Return nacion
+        Return Tempo
 
     End Function
 
 
-    Public Shared Function Existe(idEmpleado As Integer) As Boolean
+    Public Shared Function Existe(idTempo As Integer) As Boolean
         Using conn As New SqlConnection(coruta)
             conn.Open()
-
-
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ExisteNacion", conn)
+
+
+            cmd = New SqlCommand("SYS_ExisteTempo", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", idEmpleado)
+            cmd.Parameters.AddWithValue("@id", idTempo)
 
             Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
@@ -113,103 +177,63 @@ Public NotInheritable Class TempoDAL
 
     End Function
 
-    Private Shared Function AgregarNuevo(nacion As NacionEntity) As NacionEntity
+    Private Shared Function AgregarNuevo(Tempo As TempoEntity) As TempoEntity
         Using conn As New SqlConnection(coruta)
             conn.Open()
 
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_InsertNacion", conn)
+            cmd = New SqlCommand("SYS_InsertTempo", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
-
-            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
-            'imageParam.Value = empleado.Imagen
-
+            cmd.Parameters.AddWithValue("@Tempo", Tempo.Descripcion)
+            cmd.Parameters.AddWithValue("@isactive", Tempo.isactive)
             '
             ' se recupera el id generado por la tabla
             '
-            nacion.IdNacion = Convert.ToInt32(cmd.ExecuteScalar())
+            Tempo.Idtempo = Convert.ToInt32(cmd.ExecuteScalar())
         End Using
 
-        Return nacion
+        Return Tempo
     End Function
 
-    Private Shared Function Actualizar(nacion As NacionEntity) As NacionEntity
+    Private Shared Function Actualizar(Tempo As TempoEntity) As TempoEntity
         Using conn As New SqlConnection(coruta)
-            conn.Open()
 
+            conn.Open()
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_UpdateNacion", conn)
+            cmd = New SqlCommand("SYS_UpdateTempo", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
-
-
-            cmd.Parameters.AddWithValue("@id", nacion.IdNacion)
+            cmd.Parameters.AddWithValue("@Tempo", Tempo.Descripcion)
+            cmd.Parameters.AddWithValue("@isactive", Tempo.isactive)
+            cmd.Parameters.AddWithValue("@id", Tempo.Idtempo)
 
             cmd.ExecuteNonQuery()
         End Using
 
-        Return nacion
+        Return Tempo
     End Function
 
-    Public Shared Function delete(nacion As NacionEntity) As NacionEntity
-        Using scope As New TransactionScope()
-            '
-            ' Graba datos empleado
-            '
-            If Existe(nacion.IdNacion) Then
-                borrar(nacion)
-            Else
-                MsgBox("No hay datos que eliminar")
-
-            End If
-
-            '
-            ' graba los estudios relacionado con el empleado, 
-            ' se eliminan las opciones existentes
-            ' y se ingresan la nueva seleccion del usuario
-            '
-            'EstudiosDAL.EliminarPorEmpleado(empleado)
-
-            'For Each estudio As EstudioEntity In empleado.Estudios
-            'EstudiosDAL.RelacionarConEmpleado(empleado, estudio)
-            'Next
-
-
-            scope.Complete()
-        End Using
-
-        Return nacion
-    End Function
-
-    Private Shared Function borrar(nacion As NacionEntity) As NacionEntity
+    Private Shared Function borrar(Tempo As TempoEntity) As TempoEntity
         Using conn As New SqlConnection(coruta)
             conn.Open()
 
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_DeleteNacion", conn)
+            cmd = New SqlCommand("SYS_DeleteTempo", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
 
-            'cmd.Parameters.AddWithValue("@nPiloto", empleado.Nombre)
-            'cmd.Parameters.AddWithValue("@Apellido", empleado.Apellido)
-            'cmd.Parameters.AddWithValue("@FechaNacimiento", empleado.FechaNacimiento)
-            'cmd.Parameters.AddWithValue("@idNacion", empleado.EstadoCivil)
 
-            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
-            'imageParam.Value = empleado.Imagen
-
-            cmd.Parameters.AddWithValue("@id", nacion.IdNacion)
+            cmd.Parameters.AddWithValue("@id", Tempo.Idtempo)
 
             cmd.ExecuteNonQuery()
         End Using
 
-        Return nacion
+        Return Tempo
     End Function
+
 
 End Class
 

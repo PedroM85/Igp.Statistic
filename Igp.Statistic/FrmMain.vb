@@ -1,4 +1,7 @@
 ﻿Imports System.Runtime.InteropServices
+Imports Igp.AccessControl.Entidades
+Imports Igp.AccessControl
+
 Public Class FrmMain
 #Region "FUNCIONALIDADES DEL FORMULARIO"
     'RESIZE DEL FORMULARIO- CAMBIAR TAMAÑO
@@ -114,6 +117,16 @@ Public Class FrmMain
         AbrirFormEnPanel(Of frmConfiguracion)()
     End Sub
 
+    Private Sub btnTemporada_Click(sender As Object, e As EventArgs) Handles btnTemporada.Click
+        btnTemporada.BackColor = Color.FromArgb(122, 181, 66)
+        AbrirFormEnPanel(Of frmTemporada)()
+    End Sub
+
+    Private Sub btnPosicion_Click(sender As Object, e As EventArgs) Handles btnPosicion.Click
+        btnPosicion.BackColor = Color.FromArgb(122, 181, 66)
+        AbrirFormEnPanel(Of frmPosicion)()
+    End Sub
+
 
 
 
@@ -163,7 +176,15 @@ Public Class FrmMain
         If (Application.OpenForms("frmConfiguracion") Is Nothing) Then
             btnConfiguracion.BackColor = Color.FromArgb(0, 0, 0)
         End If
+        If (Application.OpenForms("frmTemporada") Is Nothing) Then
+            btnTemporada.BackColor = Color.FromArgb(0, 0, 0)
+        End If
+        If (Application.OpenForms("frmPosicion") Is Nothing) Then
+            btnPosicion.BackColor = Color.FromArgb(0, 0, 0)
+        End If
+
 
 
     End Sub
+
 End Class

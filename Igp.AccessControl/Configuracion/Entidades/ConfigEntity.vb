@@ -29,7 +29,7 @@ Namespace Entidades
                 m_Id = value
             End Set
         End Property
-        Public Property Idv() As String
+        Public Property Idv As String
             Get
                 Return m_idv
             End Get

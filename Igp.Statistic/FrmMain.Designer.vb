@@ -26,6 +26,7 @@ Partial Class FrmMain
         Me.PanelContenedor = New System.Windows.Forms.Panel()
         Me.PanelFormularios = New System.Windows.Forms.Panel()
         Me.PanelMenu = New System.Windows.Forms.Panel()
+        Me.btnTemporada = New System.Windows.Forms.Button()
         Me.btnConfiguracion = New System.Windows.Forms.Button()
         Me.btnPiloto = New System.Windows.Forms.Button()
         Me.btnNacion = New System.Windows.Forms.Button()
@@ -33,6 +34,7 @@ Partial Class FrmMain
         Me.btnCampeonato = New System.Windows.Forms.Button()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.PanelBarraTitulo = New System.Windows.Forms.Panel()
+        Me.btnPosicion = New System.Windows.Forms.Button()
         Me.LOGO = New System.Windows.Forms.PictureBox()
         Me.btnDashboard = New System.Windows.Forms.Button()
         Me.btnRestaurar = New System.Windows.Forms.PictureBox()
@@ -77,6 +79,8 @@ Partial Class FrmMain
         'PanelMenu
         '
         Me.PanelMenu.BackColor = System.Drawing.Color.Black
+        Me.PanelMenu.Controls.Add(Me.btnPosicion)
+        Me.PanelMenu.Controls.Add(Me.btnTemporada)
         Me.PanelMenu.Controls.Add(Me.btnConfiguracion)
         Me.PanelMenu.Controls.Add(Me.btnPiloto)
         Me.PanelMenu.Controls.Add(Me.btnNacion)
@@ -90,6 +94,19 @@ Partial Class FrmMain
         Me.PanelMenu.Name = "PanelMenu"
         Me.PanelMenu.Size = New System.Drawing.Size(200, 519)
         Me.PanelMenu.TabIndex = 1
+        '
+        'btnTemporada
+        '
+        Me.btnTemporada.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnTemporada.FlatAppearance.BorderSize = 0
+        Me.btnTemporada.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnTemporada.ForeColor = System.Drawing.SystemColors.Control
+        Me.btnTemporada.Location = New System.Drawing.Point(0, 365)
+        Me.btnTemporada.Name = "btnTemporada"
+        Me.btnTemporada.Size = New System.Drawing.Size(200, 45)
+        Me.btnTemporada.TabIndex = 10
+        Me.btnTemporada.Text = "Temporada"
+        Me.btnTemporada.UseVisualStyleBackColor = True
         '
         'btnConfiguracion
         '
@@ -177,6 +194,19 @@ Partial Class FrmMain
         Me.PanelBarraTitulo.Name = "PanelBarraTitulo"
         Me.PanelBarraTitulo.Size = New System.Drawing.Size(1024, 32)
         Me.PanelBarraTitulo.TabIndex = 0
+        '
+        'btnPosicion
+        '
+        Me.btnPosicion.Dock = System.Windows.Forms.DockStyle.Top
+        Me.btnPosicion.FlatAppearance.BorderSize = 0
+        Me.btnPosicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPosicion.ForeColor = System.Drawing.SystemColors.Control
+        Me.btnPosicion.Location = New System.Drawing.Point(0, 410)
+        Me.btnPosicion.Name = "btnPosicion"
+        Me.btnPosicion.Size = New System.Drawing.Size(200, 45)
+        Me.btnPosicion.TabIndex = 11
+        Me.btnPosicion.Text = "Posicion"
+        Me.btnPosicion.UseVisualStyleBackColor = True
         '
         'LOGO
         '
@@ -298,4 +328,6 @@ Partial Class FrmMain
     Friend WithEvents btnCampeonato As Button
     Friend WithEvents btnDashboard As Button
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents btnTemporada As Button
+    Friend WithEvents btnPosicion As Button
 End Class

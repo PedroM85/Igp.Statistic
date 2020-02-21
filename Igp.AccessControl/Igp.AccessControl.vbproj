@@ -73,9 +73,9 @@
     <Compile Include="Basic\Entidades\EstudioEntity.vb" />
     <Compile Include="Basic\EstadoCivilDAL.vb" />
     <Compile Include="Basic\EstudiosDAL.vb" />
+    <Compile Include="Conexion\Conexion.vb" />
     <Compile Include="Configuracion\ConfigDAL.vb" />
     <Compile Include="Configuracion\Entidades\ConfigEntity.vb" />
-    <Compile Include="RutaSQL.vb" />
     <Compile Include="Nacion\Entidades\NacionEntity.vb" />
     <Compile Include="Pilotos\Entidades\PilotoEntity.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="Nacion\NacionDAL.vb" />
     <Compile Include="Pilotos\PilotosDAL.vb" />
+    <Compile Include="Temporada\Entity\TempoEntity.vb" />
     <Compile Include="Temporada\TempoDAL.vb" />
   </ItemGroup>
   <ItemGroup>
