@@ -247,6 +247,9 @@
     <Content Include="Scripts\IpgManager_1402_2352.sql" />
     <Content Include="Scripts\IpgManager_1702_1035.sql" />
     <Content Include="Scripts\IpgManager_1702_1814.sql" />
+    <Content Include="Scripts\IpgManager_1802_1758.sql" />
+    <Content Include="Scripts\IpgManager_1902_1809.sql" />
+    <Content Include="Scripts\IpgManager_2002_2046.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
