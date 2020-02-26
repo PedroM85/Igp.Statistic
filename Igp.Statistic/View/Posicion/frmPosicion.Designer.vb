@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmPosicion
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,27 +20,29 @@ Partial Class frmPosicion
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPosicion))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.dgvPosicion1 = New System.Windows.Forms.DataGridView()
+        Me.dgvPosicion = New System.Windows.Forms.DataGridView()
         Me.txtPuesto = New System.Windows.Forms.TextBox()
         Me.cboPiloto = New System.Windows.Forms.ComboBox()
         Me.cboCircuito = New System.Windows.Forms.ComboBox()
         Me.cboTempo = New System.Windows.Forms.ComboBox()
-        Me.dgvPosicion = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.Temporada = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TemNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Circuito = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CirNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NomNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Puesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LleNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Puntos = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
-        CType(Me.dgvPosicion1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvPosicion, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -71,7 +73,6 @@ Partial Class frmPosicion
         'GroupBox1
         '
         Me.GroupBox1.Controls.Add(Me.dgvPosicion)
-        Me.GroupBox1.Controls.Add(Me.dgvPosicion1)
         Me.GroupBox1.Controls.Add(Me.txtPuesto)
         Me.GroupBox1.Controls.Add(Me.cboPiloto)
         Me.GroupBox1.Controls.Add(Me.cboCircuito)
@@ -83,20 +84,19 @@ Partial Class frmPosicion
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
-        'dgvPosicion1
+        'dgvPosicion
         '
-        Me.dgvPosicion1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPosicion1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temporada, Me.Circuito, Me.Nombre, Me.Puesto, Me.Puntos})
-        Me.dgvPosicion1.GridColor = System.Drawing.SystemColors.ActiveCaption
-        Me.dgvPosicion1.Location = New System.Drawing.Point(85, 174)
-        Me.dgvPosicion1.Name = "dgvPosicion1"
-        Me.dgvPosicion1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvPosicion1.Size = New System.Drawing.Size(652, 230)
-        Me.dgvPosicion1.TabIndex = 4
+        Me.dgvPosicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvPosicion.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temporada, Me.TemNum, Me.Circuito, Me.CirNum, Me.Nombre, Me.NomNum, Me.Puesto, Me.LleNum, Me.Puntos})
+        Me.dgvPosicion.GridColor = System.Drawing.SystemColors.ActiveCaption
+        Me.dgvPosicion.Location = New System.Drawing.Point(6, 58)
+        Me.dgvPosicion.Name = "dgvPosicion"
+        Me.dgvPosicion.Size = New System.Drawing.Size(734, 230)
+        Me.dgvPosicion.TabIndex = 4
         '
         'txtPuesto
         '
-        Me.txtPuesto.Location = New System.Drawing.Point(387, 31)
+        Me.txtPuesto.Location = New System.Drawing.Point(457, 32)
         Me.txtPuesto.Name = "txtPuesto"
         Me.txtPuesto.Size = New System.Drawing.Size(100, 20)
         Me.txtPuesto.TabIndex = 3
@@ -105,7 +105,7 @@ Partial Class frmPosicion
         '
         Me.cboPiloto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboPiloto.FormattingEnabled = True
-        Me.cboPiloto.Location = New System.Drawing.Point(260, 31)
+        Me.cboPiloto.Location = New System.Drawing.Point(330, 32)
         Me.cboPiloto.Name = "cboPiloto"
         Me.cboPiloto.Size = New System.Drawing.Size(121, 21)
         Me.cboPiloto.TabIndex = 2
@@ -114,7 +114,7 @@ Partial Class frmPosicion
         '
         Me.cboCircuito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboCircuito.FormattingEnabled = True
-        Me.cboCircuito.Location = New System.Drawing.Point(133, 31)
+        Me.cboCircuito.Location = New System.Drawing.Point(203, 32)
         Me.cboCircuito.Name = "cboCircuito"
         Me.cboCircuito.Size = New System.Drawing.Size(121, 21)
         Me.cboCircuito.TabIndex = 1
@@ -123,46 +123,66 @@ Partial Class frmPosicion
         '
         Me.cboTempo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboTempo.FormattingEnabled = True
-        Me.cboTempo.Location = New System.Drawing.Point(6, 31)
+        Me.cboTempo.Location = New System.Drawing.Point(76, 32)
         Me.cboTempo.Name = "cboTempo"
         Me.cboTempo.Size = New System.Drawing.Size(121, 21)
         Me.cboTempo.TabIndex = 0
         '
-        'dgvPosicion
+        'btnGuardar
         '
-        Me.dgvPosicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPosicion.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1})
-        Me.dgvPosicion.GridColor = System.Drawing.SystemColors.ActiveCaption
-        Me.dgvPosicion.Location = New System.Drawing.Point(56, 76)
-        Me.dgvPosicion.Name = "dgvPosicion"
-        Me.dgvPosicion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvPosicion.Size = New System.Drawing.Size(652, 81)
-        Me.dgvPosicion.TabIndex = 5
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "123"
-        Me.Column1.Name = "Column1"
+        Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnGuardar.FlatAppearance.BorderSize = 0
+        Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGuardar.Location = New System.Drawing.Point(709, 417)
+        Me.btnGuardar.Name = "btnGuardar"
+        Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
+        Me.btnGuardar.TabIndex = 23
+        Me.btnGuardar.Text = "Guardar"
+        Me.btnGuardar.UseVisualStyleBackColor = True
         '
         'Temporada
         '
         Me.Temporada.HeaderText = "Temporada"
         Me.Temporada.Name = "Temporada"
         '
+        'TemNum
+        '
+        Me.TemNum.HeaderText = "Column1"
+        Me.TemNum.Name = "TemNum"
+        Me.TemNum.Visible = False
+        '
         'Circuito
         '
         Me.Circuito.HeaderText = "Circuito"
         Me.Circuito.Name = "Circuito"
+        '
+        'CirNum
+        '
+        Me.CirNum.HeaderText = "Column1"
+        Me.CirNum.Name = "CirNum"
+        Me.CirNum.Visible = False
         '
         'Nombre
         '
         Me.Nombre.HeaderText = "Nombre"
         Me.Nombre.Name = "Nombre"
         '
+        'NomNum
+        '
+        Me.NomNum.HeaderText = "Column1"
+        Me.NomNum.Name = "NomNum"
+        Me.NomNum.Visible = False
+        '
         'Puesto
         '
         Me.Puesto.HeaderText = "Puesto"
         Me.Puesto.Name = "Puesto"
+        '
+        'LleNum
+        '
+        Me.LleNum.HeaderText = "Column1"
+        Me.LleNum.Name = "LleNum"
+        Me.LleNum.Visible = False
         '
         'Puntos
         '
@@ -174,7 +194,8 @@ Partial Class frmPosicion
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(862, 470)
+        Me.ClientSize = New System.Drawing.Size(798, 449)
+        Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtnCerrarForm)
@@ -184,7 +205,6 @@ Partial Class frmPosicion
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
-        CType(Me.dgvPosicion1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvPosicion, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -198,12 +218,15 @@ Partial Class frmPosicion
     Friend WithEvents cboCircuito As ComboBox
     Friend WithEvents cboTempo As ComboBox
     Friend WithEvents txtPuesto As TextBox
-    Friend WithEvents dgvPosicion1 As DataGridView
     Friend WithEvents dgvPosicion As DataGridView
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Private WithEvents btnGuardar As Button
     Friend WithEvents Temporada As DataGridViewTextBoxColumn
+    Friend WithEvents TemNum As DataGridViewTextBoxColumn
     Friend WithEvents Circuito As DataGridViewTextBoxColumn
+    Friend WithEvents CirNum As DataGridViewTextBoxColumn
     Friend WithEvents Nombre As DataGridViewTextBoxColumn
+    Friend WithEvents NomNum As DataGridViewTextBoxColumn
     Friend WithEvents Puesto As DataGridViewTextBoxColumn
+    Friend WithEvents LleNum As DataGridViewTextBoxColumn
     Friend WithEvents Puntos As DataGridViewTextBoxColumn
 End Class

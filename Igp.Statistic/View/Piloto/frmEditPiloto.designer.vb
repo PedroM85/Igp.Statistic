@@ -149,7 +149,6 @@ Partial Class EditarEmpleado
         Me.Name = "EditarEmpleado"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "EditarEmpleado"
-        AddHandler Me.Load, New System.EventHandler(AddressOf Me.EditarEmpleado_Load)
         Me.groupBox1.ResumeLayout(False)
         Me.groupBox1.PerformLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()

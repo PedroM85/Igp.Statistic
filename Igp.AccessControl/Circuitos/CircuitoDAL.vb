@@ -2,7 +2,7 @@
 Imports System.Linq
 Imports System.Text
 Imports Igp.AccessControl.Entidades
-Imports Igp.AccessControl.RutaSQL
+
 Imports System.Data.SqlClient
 Imports System.Transactions
 

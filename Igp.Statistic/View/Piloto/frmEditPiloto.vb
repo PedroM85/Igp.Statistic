@@ -107,5 +107,4 @@ Public Partial Class EditarEmpleado
     End Sub
 
 
-
 End Class

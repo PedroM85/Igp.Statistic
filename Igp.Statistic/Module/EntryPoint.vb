@@ -1,22 +1,31 @@
 ﻿Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Windows.Forms
+Imports Igp.AccessControl
 
-NotInheritable Class entrepoint
+Module entrepoint
 
-    Private Sub New()
-
-    End Sub
+    Public oAppPAR As Parameters
 
 
-    Friend Shared Sub Main()
+
+    Public Sub Main()
+        oAppPAR = New Parameters
+
         Application.EnableVisualStyles()
         Application.SetCompatibleTextRenderingDefault(False)
+
+        'If oAppPAR.GetValue("NPILOTO") = "S" And oAppPAR.newsession Then
+        'If oAppPAR.GetValue("NPILOTO") = "N" Then
+        'MsgBox(oAppPAR.GetValue("NPILOTO"))
+        '        MsgBox(oAppPAR.GetValue("NPILOTO").ToString)
         Application.Run(FrmMain)
+        ''End If
+
 
 
 
     End Sub
 
 
-End Class
+End Module

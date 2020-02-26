@@ -66,7 +66,7 @@ Partial Public Class frmCircuito
     Private Sub btnNuevoEmpleado_Click(sender As Object, e As EventArgs) Handles btnNuevoEmpleado.Click
         ' sino se le pasa un id ,el formulario entrara en modo alta
         '
-        Dim frmEditar As New frmCircuito()
+        Dim frmEditar As New frmEditCircuito()
         AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
 
 

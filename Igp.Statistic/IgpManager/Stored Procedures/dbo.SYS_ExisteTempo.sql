@@ -1,0 +1,11 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+
+CREATE PROCEDURE [dbo].[SYS_ExisteTempo]
+	@id as int
+AS
+
+SELECT COUNT(*) FROM sys_temporada	  WHERE idtem = @id
+GO
