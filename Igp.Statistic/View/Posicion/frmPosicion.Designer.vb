@@ -27,11 +27,6 @@ Partial Class frmPosicion
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.dgvPosicion = New System.Windows.Forms.DataGridView()
-        Me.txtPuesto = New System.Windows.Forms.TextBox()
-        Me.cboPiloto = New System.Windows.Forms.ComboBox()
-        Me.cboCircuito = New System.Windows.Forms.ComboBox()
-        Me.cboTempo = New System.Windows.Forms.ComboBox()
-        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.Temporada = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TemNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Circuito = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -41,6 +36,11 @@ Partial Class frmPosicion
         Me.Puesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LleNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Puntos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtPuesto = New System.Windows.Forms.TextBox()
+        Me.cboPiloto = New System.Windows.Forms.ComboBox()
+        Me.cboCircuito = New System.Windows.Forms.ComboBox()
+        Me.cboTempo = New System.Windows.Forms.ComboBox()
+        Me.btnGuardar = New System.Windows.Forms.Button()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvPosicion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,52 +94,6 @@ Partial Class frmPosicion
         Me.dgvPosicion.Size = New System.Drawing.Size(734, 230)
         Me.dgvPosicion.TabIndex = 4
         '
-        'txtPuesto
-        '
-        Me.txtPuesto.Location = New System.Drawing.Point(457, 32)
-        Me.txtPuesto.Name = "txtPuesto"
-        Me.txtPuesto.Size = New System.Drawing.Size(100, 20)
-        Me.txtPuesto.TabIndex = 3
-        '
-        'cboPiloto
-        '
-        Me.cboPiloto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboPiloto.FormattingEnabled = True
-        Me.cboPiloto.Location = New System.Drawing.Point(330, 32)
-        Me.cboPiloto.Name = "cboPiloto"
-        Me.cboPiloto.Size = New System.Drawing.Size(121, 21)
-        Me.cboPiloto.TabIndex = 2
-        '
-        'cboCircuito
-        '
-        Me.cboCircuito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboCircuito.FormattingEnabled = True
-        Me.cboCircuito.Location = New System.Drawing.Point(203, 32)
-        Me.cboCircuito.Name = "cboCircuito"
-        Me.cboCircuito.Size = New System.Drawing.Size(121, 21)
-        Me.cboCircuito.TabIndex = 1
-        '
-        'cboTempo
-        '
-        Me.cboTempo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboTempo.FormattingEnabled = True
-        Me.cboTempo.Location = New System.Drawing.Point(76, 32)
-        Me.cboTempo.Name = "cboTempo"
-        Me.cboTempo.Size = New System.Drawing.Size(121, 21)
-        Me.cboTempo.TabIndex = 0
-        '
-        'btnGuardar
-        '
-        Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
-        Me.btnGuardar.FlatAppearance.BorderSize = 0
-        Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuardar.Location = New System.Drawing.Point(709, 417)
-        Me.btnGuardar.Name = "btnGuardar"
-        Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
-        Me.btnGuardar.TabIndex = 23
-        Me.btnGuardar.Text = "Guardar"
-        Me.btnGuardar.UseVisualStyleBackColor = True
-        '
         'Temporada
         '
         Me.Temporada.HeaderText = "Temporada"
@@ -188,6 +142,52 @@ Partial Class frmPosicion
         '
         Me.Puntos.HeaderText = "Puntos"
         Me.Puntos.Name = "Puntos"
+        '
+        'txtPuesto
+        '
+        Me.txtPuesto.Location = New System.Drawing.Point(457, 32)
+        Me.txtPuesto.Name = "txtPuesto"
+        Me.txtPuesto.Size = New System.Drawing.Size(100, 20)
+        Me.txtPuesto.TabIndex = 3
+        '
+        'cboPiloto
+        '
+        Me.cboPiloto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboPiloto.FormattingEnabled = True
+        Me.cboPiloto.Location = New System.Drawing.Point(330, 32)
+        Me.cboPiloto.Name = "cboPiloto"
+        Me.cboPiloto.Size = New System.Drawing.Size(121, 21)
+        Me.cboPiloto.TabIndex = 2
+        '
+        'cboCircuito
+        '
+        Me.cboCircuito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboCircuito.FormattingEnabled = True
+        Me.cboCircuito.Location = New System.Drawing.Point(203, 32)
+        Me.cboCircuito.Name = "cboCircuito"
+        Me.cboCircuito.Size = New System.Drawing.Size(121, 21)
+        Me.cboCircuito.TabIndex = 1
+        '
+        'cboTempo
+        '
+        Me.cboTempo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboTempo.FormattingEnabled = True
+        Me.cboTempo.Location = New System.Drawing.Point(76, 32)
+        Me.cboTempo.Name = "cboTempo"
+        Me.cboTempo.Size = New System.Drawing.Size(121, 21)
+        Me.cboTempo.TabIndex = 0
+        '
+        'btnGuardar
+        '
+        Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.btnGuardar.FlatAppearance.BorderSize = 0
+        Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnGuardar.Location = New System.Drawing.Point(709, 417)
+        Me.btnGuardar.Name = "btnGuardar"
+        Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
+        Me.btnGuardar.TabIndex = 23
+        Me.btnGuardar.Text = "Guardar"
+        Me.btnGuardar.UseVisualStyleBackColor = True
         '
         'frmPosicion
         '

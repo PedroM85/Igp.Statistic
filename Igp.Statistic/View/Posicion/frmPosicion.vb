@@ -196,4 +196,5 @@ Partial Public Class frmPosicion
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
+
 End Class
