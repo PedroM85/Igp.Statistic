@@ -9,7 +9,16 @@ CREATE PROCEDURE [dbo].[ADD_InsertPosicion]
 	@idPiloto as nchar(40),
 	@idllegada as int
 AS
-insert SYS_Posicion (idTemporada,idCircuito,idPiloto,Posllegada)
+begin
+Declare @InsertedFecha as datetime
 
-values (@idtemporada,@idCircuito,@idPiloto,@idllegada)
+Set @InsertedFecha=GETDATE()
+Select CONVERT(varchar,@InsertedFecha,21)
+
+
+insert SYS_Posicion (idTemporada,idCircuito,idPiloto,Posllegada,InsertedFecha,ModifyFecha)
+
+values (@idtemporada,@idCircuito,@idPiloto,@idllegada,@InsertedFecha,null)
+
+end
 GO
