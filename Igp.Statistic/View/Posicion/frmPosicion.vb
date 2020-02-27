@@ -13,6 +13,7 @@ Partial Public Class frmPosicion
 
     Private _idPosicion As Nullable(Of Integer) = Nothing
     Private _idCircuito As Nullable(Of Integer) = Nothing
+    Private _id As Nullable(Of Integer) = Nothing
 
     Public Sub New()
 
@@ -23,8 +24,9 @@ Partial Public Class frmPosicion
 
     End Sub
 
-    Public Sub New(idPosicion As Integer, idCircuito As Integer)
+    Public Sub New(id As Integer, idPosicion As Integer, idCircuito As Integer)
         Me.New()
+        _id = id
         _idPosicion = idPosicion
         _idCircuito = idCircuito
     End Sub
@@ -177,7 +179,7 @@ Partial Public Class frmPosicion
         'Dim func As New PosicionDAL
         Try
             For j As Integer = 0 To dgvPosicion.Rows.Count - 2
-                posicion.id = _idPosicion.GetValueOrDefault()
+                posicion.id = _id.GetValueOrDefault()
                 posicion.Temporada = Convert.ToString(dgvPosicion.Rows(j).Cells(1).Value)
                 posicion.Circuito = Convert.ToInt32(dgvPosicion.Rows(j).Cells(3).Value)
                 posicion.Piloto = Convert.ToString(dgvPosicion.Rows(j).Cells(5).Value)

@@ -65,6 +65,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campeonato\CampeoDAL.vb" />
+    <Compile Include="Campeonato\Entidades\CampeoEntity.vb" />
     <Compile Include="Circuitos\CircuitoDAL.vb" />
     <Compile Include="Basic\EmpleadosDAL.vb" />
     <Compile Include="Circuitos\Entidades\CircuitoEntity.vb" />

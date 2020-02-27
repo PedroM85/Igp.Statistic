@@ -127,6 +127,11 @@ Public Class FrmMain
         AbrirFormEnPanel(Of frmPosicion)()
     End Sub
 
+    Private Sub btnCampeonato_Click(sender As Object, e As EventArgs) Handles btnCampeonato.Click
+        btnCampeonato.BackColor = Color.FromArgb(122, 181, 66)
+        AbrirFormEnPanel(Of frmCampeonato)()
+    End Sub
+
 
 
 

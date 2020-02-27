@@ -4,6 +4,7 @@ Imports System.Text
 Imports Igp.AccessControl.Entidades
 Imports System.Data.SqlClient
 Imports System.Transactions
+
 Public Class PosicionDAL
     Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
 
@@ -16,7 +17,8 @@ Public Class PosicionDAL
             ' Graba datos empleado
             '
             If Existe(Posicion.Circuito, Posicion.Piloto, Posicion.Temporada) Then
-                Actualizar(Posicion)
+                'Actualizar(Posicion)
+                MsgBox("El registro ya Existe.")
             Else
                 AgregarNuevo(Posicion)
             End If
@@ -42,6 +44,7 @@ Public Class PosicionDAL
             cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
             cmd.Parameters.AddWithValue("@idPiloto", idpiloto)
             cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
+
 
             Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
@@ -84,7 +87,7 @@ Public Class PosicionDAL
             conn.Open()
 
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_UpdateConfig", conn)
+            cmd = New SqlCommand("ADD_UpdatePosicion", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
 
