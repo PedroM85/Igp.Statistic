@@ -74,7 +74,7 @@ Public NotInheritable Class CircuitoDAL
     Public Shared Function Save(Circuito As CircuitoEntity) As CircuitoEntity
         Using scope As New TransactionScope()
             '
-            ' Graba datos empleado
+            ' Graba datos Circuito
             '
             If Existe(Circuito.Id) Then
                 Actualizar(Circuito)
@@ -125,8 +125,7 @@ Public NotInheritable Class CircuitoDAL
 
             cmd.Parameters.AddWithValue("@nCircuito", Circuito.Circuito)
 
-            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
-            'imageParam.Value = empleado.Imagen
+
 
             '
             ' se recupera el id generado por la tabla

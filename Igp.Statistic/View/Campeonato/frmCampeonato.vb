@@ -50,32 +50,32 @@ Partial Public Class frmCampeonato
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
         '_idTemporada = cboTemporada.SelectedValue
         '_idCircuito = cboCircuito.SelectedValue
-        Try
-            If _idTemporada.ToString Then
+        'Try
+        '    If String.IsNullOrEmpty(_idTemporada.ToString) = False Then
 
 
-                Dim Campeo As CampeoEntity = CampeoDAL.ObtenerByTempoCircui(_idTemporada.ToString)
+        '        Dim Campeo As CampeoEntity = CampeoDAL.ObtenerByTempoCircui(_idTemporada.ToString, _idCircuito.ToString)
 
-                _idTemporada = Campeo.bytem
-                _idCircuito = Campeo.bycir
-                'txtNacion.Text = nacion.Descripcion
-                'txtApellido.Text = empleado.Apellido
-                'dtpFechaNacimiento.Value = empleado.FechaNacimiento
+        '        '_idTemporada  = Campeo.bytem
+        '        '_idCircuito = Campeo.bycir
+        '        'txtNacion.Text = nacion.Descripcion
+        '        'txtApellido.Text = empleado.Apellido
+        '        'dtpFechaNacimiento.Value = empleado.FechaNacimiento
 
-                'cbEstadoCivil.SelectedValue = Convert.ToInt32(empleado.Apellido)
+        '        'cbEstadoCivil.SelectedValue = Convert.ToInt32(empleado.Apellido)
 
 
-            End If
-        Catch ex As Exception
-            MsgBox("Funcion EditNacion_load: " + ex.ToString)
-        End Try
+        '    End If
+        'Catch ex As Exception
+        '    MsgBox("Funcion EditNacion_load: " + ex.ToString)
+        'End Try
         CargarBusqueda()
     End Sub
 
     Private Sub CargarBusqueda()
         dgvData.AutoGenerateColumns = False
         dgvData.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
-        dgvData.DataSource = CampeoDAL.ObtenerByTempoCircui(_idTemporada)
+        dgvData.DataSource = CampeoDAL.ObtenerByTempoCircui(_idTemporada, _idCircuito)
 
         For Each row As DataGridViewRow In dgvData.Rows
             Dim Campeo As CampeoEntity = TryCast(row.DataBoundItem, CampeoEntity)

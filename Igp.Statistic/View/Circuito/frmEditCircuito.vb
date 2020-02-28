@@ -47,15 +47,31 @@ Partial Public Class frmEditCircuito
     End Sub
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-        Dim Circuito As New CircuitoEntity() With
+        If String.IsNullOrEmpty(txtCircuito.Text) Then
+            MessageBox.Show("No hay registro para guardar.")
+        Else
+
+
+            Dim Circuito As New CircuitoEntity() With
         {
         .Id = _idCircuito.GetValueOrDefault,
         .Circuito = txtCircuito.Text
         }
 
-        CircuitoDAL.Save(Circuito)
+            CircuitoDAL.Save(Circuito)
+            Me.DialogResult = DialogResult.OK
+            Me.Close()
+        End If
 
-        Me.DialogResult = DialogResult.OK
+
+
+    End Sub
+
+    Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
         Me.Close()
+    End Sub
+
+    Private Sub btnEliminar_Click(sender As Object, e As EventArgs) Handles btnEliminar.Click
+        MessageBox.Show("Esto falta implementar")
     End Sub
 End Class

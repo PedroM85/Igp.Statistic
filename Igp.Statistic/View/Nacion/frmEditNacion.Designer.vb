@@ -32,7 +32,7 @@ Partial Class frmEditNacion
         'label2
         '
         Me.label2.AutoSize = True
-        Me.label2.Location = New System.Drawing.Point(149, 85)
+        Me.label2.Location = New System.Drawing.Point(89, 83)
         Me.label2.Name = "label2"
         Me.label2.Size = New System.Drawing.Size(44, 13)
         Me.label2.TabIndex = 14
@@ -40,7 +40,7 @@ Partial Class frmEditNacion
         '
         'txtNacion
         '
-        Me.txtNacion.Location = New System.Drawing.Point(199, 82)
+        Me.txtNacion.Location = New System.Drawing.Point(139, 80)
         Me.txtNacion.Name = "txtNacion"
         Me.txtNacion.Size = New System.Drawing.Size(225, 20)
         Me.txtNacion.TabIndex = 13
@@ -50,7 +50,7 @@ Partial Class frmEditNacion
         Me.btnEliminar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnEliminar.FlatAppearance.BorderSize = 0
         Me.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEliminar.Location = New System.Drawing.Point(473, 252)
+        Me.btnEliminar.Location = New System.Drawing.Point(209, 140)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(81, 23)
         Me.btnEliminar.TabIndex = 17
@@ -63,7 +63,7 @@ Partial Class frmEditNacion
         Me.btnCancelar.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnCancelar.FlatAppearance.BorderSize = 0
         Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCancelar.Location = New System.Drawing.Point(560, 252)
+        Me.btnCancelar.Location = New System.Drawing.Point(296, 140)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(81, 23)
         Me.btnCancelar.TabIndex = 16
@@ -75,7 +75,7 @@ Partial Class frmEditNacion
         Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnGuardar.FlatAppearance.BorderSize = 0
         Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuardar.Location = New System.Drawing.Point(386, 252)
+        Me.btnGuardar.Location = New System.Drawing.Point(122, 140)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
         Me.btnGuardar.TabIndex = 15
@@ -87,7 +87,7 @@ Partial Class frmEditNacion
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(666, 300)
+        Me.ClientSize = New System.Drawing.Size(462, 234)
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnGuardar)
@@ -95,7 +95,7 @@ Partial Class frmEditNacion
         Me.Controls.Add(Me.txtNacion)
         Me.Name = "frmEditNacion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frmEditNacion"
+        Me.Text = "Editor de Naciones"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

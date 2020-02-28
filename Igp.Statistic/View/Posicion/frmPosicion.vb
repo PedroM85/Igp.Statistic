@@ -35,6 +35,10 @@ Partial Public Class frmPosicion
     End Sub
 
     Private Sub frmPosicion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        With dgvPosicion
+            .AutoGenerateColumns = False
+            .AllowUserToAddRows = False
+        End With
         CargaListaTempo()
         CargaListaPiloto()
         CargaListaCircuito()
@@ -90,27 +94,27 @@ Partial Public Class frmPosicion
 
                         Select Case txtPuesto.Text
                             Case "1"
-                                Punto = 25
+                                Punto = Convert.ToInt32(25)
                             Case "2"
-                                Punto = 18
+                                Punto = Convert.ToInt32(18)
                             Case "3"
-                                Punto = 15
+                                Punto = Convert.ToInt32(15)
                             Case "4"
-                                Punto = 12
+                                Punto = Convert.ToInt32(12)
                             Case "5"
-                                Punto = 10
+                                Punto = Convert.ToInt32(10)
                             Case "6"
-                                Punto = 8
+                                Punto = Convert.ToInt32(8)
                             Case "7"
-                                Punto = 6
+                                Punto = Convert.ToInt32(6)
                             Case "8"
-                                Punto = 4
+                                Punto = Convert.ToInt32(4)
                             Case "9"
-                                Punto = 2
+                                Punto = Convert.ToInt32(2)
                             Case "10"
-                                Punto = 1
+                                Punto = Convert.ToInt32(1)
                             Case > "11"
-                                Punto = 0
+                                Punto = Convert.ToInt32(0)
                         End Select
 
 
@@ -119,7 +123,7 @@ Partial Public Class frmPosicion
 
                         dgvPosicion.Rows.Add(row)
                         cboPiloto.Focus()
-                        'txtPuesto.SelectAll()
+
                         With dgvPosicion
                             .AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
                         End With
@@ -175,15 +179,17 @@ Partial Public Class frmPosicion
     End Function
 
     Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-        Dim posicion As New PosicionEntity
+        Dim posicion As New PosicionEntity()
+
         'Dim func As New PosicionDAL
         Try
-            For j As Integer = 0 To dgvPosicion.Rows.Count - 2
+            For j As Integer = 0 To dgvPosicion.Rows.Count - 1
                 posicion.id = _id.GetValueOrDefault()
                 posicion.Temporada = Convert.ToString(dgvPosicion.Rows(j).Cells(1).Value)
                 posicion.Circuito = Convert.ToInt32(dgvPosicion.Rows(j).Cells(3).Value)
                 posicion.Piloto = Convert.ToString(dgvPosicion.Rows(j).Cells(5).Value)
                 posicion.llegada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(7).Value)
+                posicion.Ptsllegada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(8).Value)
 
                 PosicionDAL.Save(posicion)
             Next

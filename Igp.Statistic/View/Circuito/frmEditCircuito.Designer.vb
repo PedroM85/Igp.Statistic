@@ -34,7 +34,7 @@ Partial Class frmEditCircuito
         Me.btnEliminar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnEliminar.FlatAppearance.BorderSize = 0
         Me.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnEliminar.Location = New System.Drawing.Point(419, 248)
+        Me.btnEliminar.Location = New System.Drawing.Point(190, 135)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(81, 23)
         Me.btnEliminar.TabIndex = 22
@@ -47,7 +47,7 @@ Partial Class frmEditCircuito
         Me.btnCancelar.Cursor = System.Windows.Forms.Cursors.Default
         Me.btnCancelar.FlatAppearance.BorderSize = 0
         Me.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnCancelar.Location = New System.Drawing.Point(506, 248)
+        Me.btnCancelar.Location = New System.Drawing.Point(277, 135)
         Me.btnCancelar.Name = "btnCancelar"
         Me.btnCancelar.Size = New System.Drawing.Size(81, 23)
         Me.btnCancelar.TabIndex = 21
@@ -59,7 +59,7 @@ Partial Class frmEditCircuito
         Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnGuardar.FlatAppearance.BorderSize = 0
         Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuardar.Location = New System.Drawing.Point(332, 248)
+        Me.btnGuardar.Location = New System.Drawing.Point(103, 135)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
         Me.btnGuardar.TabIndex = 20
@@ -69,7 +69,7 @@ Partial Class frmEditCircuito
         'label2
         '
         Me.label2.AutoSize = True
-        Me.label2.Location = New System.Drawing.Point(95, 81)
+        Me.label2.Location = New System.Drawing.Point(84, 65)
         Me.label2.Name = "label2"
         Me.label2.Size = New System.Drawing.Size(45, 13)
         Me.label2.TabIndex = 19
@@ -77,16 +77,16 @@ Partial Class frmEditCircuito
         '
         'txtCircuito
         '
-        Me.txtCircuito.Location = New System.Drawing.Point(145, 78)
+        Me.txtCircuito.Location = New System.Drawing.Point(134, 62)
         Me.txtCircuito.Name = "txtCircuito"
-        Me.txtCircuito.Size = New System.Drawing.Size(225, 20)
+        Me.txtCircuito.Size = New System.Drawing.Size(201, 20)
         Me.txtCircuito.TabIndex = 18
         '
         'frmEditCircuito
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(603, 286)
+        Me.ClientSize = New System.Drawing.Size(459, 218)
         Me.Controls.Add(Me.btnEliminar)
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnGuardar)
@@ -94,7 +94,7 @@ Partial Class frmEditCircuito
         Me.Controls.Add(Me.txtCircuito)
         Me.Name = "frmEditCircuito"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "frmEditCircuito"
+        Me.Text = "Editor de Circuitos"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

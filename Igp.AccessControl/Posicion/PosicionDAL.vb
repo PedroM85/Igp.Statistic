@@ -69,13 +69,9 @@ Public Class PosicionDAL
             cmd.Parameters.AddWithValue("@idCircuito", Posicion.Circuito)
             cmd.Parameters.AddWithValue("@idPiloto", Posicion.Piloto)
             cmd.Parameters.AddWithValue("@idllegada", Posicion.llegada)
+            cmd.Parameters.AddWithValue("@Pllegada", Posicion.Ptsllegada)
 
-            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
-            'imageParam.Value = empleado.Imagen
 
-            '
-            ' se recupera el id generado por la tabla
-            '
             Posicion.id = Convert.ToInt32(cmd.ExecuteScalar())
         End Using
 

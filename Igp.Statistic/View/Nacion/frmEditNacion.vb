@@ -44,16 +44,22 @@ Partial Public Class frmEditNacion
 	End Sub
 
 	Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-		Dim nacion As New NacionEntity() With
+		If String.IsNullOrEmpty(txtNacion.Text) Then
+			MessageBox.Show("No hay ningun registro para guardar")
+		Else
+
+
+			Dim nacion As New NacionEntity() With
 		{
 		.IdNacion = _idEmpleado.GetValueOrDefault,
 		.Descripcion = txtNacion.Text
 		}
 
-		NacionDAL.Save(nacion)
+			NacionDAL.Save(nacion)
 
-		Me.DialogResult = DialogResult.OK
-		Me.Close()
+			Me.DialogResult = DialogResult.OK
+			Me.Close()
+		End If
 	End Sub
 
 	Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click

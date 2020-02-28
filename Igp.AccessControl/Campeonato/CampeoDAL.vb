@@ -9,7 +9,7 @@ Public NotInheritable Class CampeoDAL
     Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
 
     'Public Shared Function ObtenerByTempoCircui(ByVal idTemporada As String, ByVal idCircuito As String) As CampeoEntity
-    Public Shared Function ObtenerByTempoCircui(ByVal idTemporada As String)
+    Public Shared Function ObtenerByTempoCircui(ByVal idTemporada As String, ByVal idCircuito As String)
 
 
         Dim Campeo As CampeoEntity = Nothing
@@ -24,9 +24,10 @@ Public NotInheritable Class CampeoDAL
             cmd = New SqlCommand("REP_CampeobyTempoCircui", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
-            cmd.Parameters.AddWithValue("@idTemporada", Campeo.bytem)
+            'cmd.Parameters.AddWithValue("@idTemporada", Campeo.bytem)
             cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
-            cmd.Parameters.AddWithValue("@idCircuito", Campeo.bycir)
+            cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
+            'cmd.Parameters.AddWithValue("@idCircuito", Campeo.bycir)
 
             Dim reader As SqlDataReader = cmd.ExecuteReader()
 
@@ -34,7 +35,7 @@ Public NotInheritable Class CampeoDAL
 
             While reader.Read()
                 'Campeo = (ConvertirCampeo(reader, True))
-                Campeo1.Add(ConvertirCampeo(reader, True))
+                Campeo1.Add(ConvertirCampeo(reader))
             End While
 
 
@@ -46,7 +47,7 @@ Public NotInheritable Class CampeoDAL
 
     End Function
 
-    Private Shared Function ConvertirCampeo(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As CampeoEntity
+    Private Shared Function ConvertirCampeo(ByVal reader As IDataReader) As CampeoEntity
 
         Dim Campeo As New CampeoEntity()
 

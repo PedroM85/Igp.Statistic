@@ -76,7 +76,7 @@ Partial Public Class frmTemporada
     Private Sub btnNuevoEmpleado_Click(sender As Object, e As EventArgs) Handles btnNuevoEmpleado.Click
         ' sino se le pasa un id ,el formulario entrara en modo alta
         '
-        Dim frmEditar As New frmEditNacion()
+        Dim frmEditar As New frmeditTempo()
         AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
 
 

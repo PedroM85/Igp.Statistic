@@ -15,17 +15,26 @@ Module entrepoint
         Application.EnableVisualStyles()
         Application.SetCompatibleTextRenderingDefault(False)
 
-        'If oAppPAR.GetValue("NPILOTO") = "S" And oAppPAR.newsession Then
-        'If oAppPAR.GetValue("NPILOTO") = "N" Then
-        'MsgBox(oAppPAR.GetValue("NPILOTO"))
-        '        MsgBox(oAppPAR.GetValue("NPILOTO").ToString)
-        Application.Run(FrmMain)
-        ''End If
 
+        '=================================================
+        'Esto es para el sistema de login
 
+        'Dim login As frmLogin = New frmLogin
+        'login.ShowDialog()
 
+        'Sistema de Login
+        'If (login.DialogResult = DialogResult.OK) Then
 
+        Application.Run(New FrmMain)
+
+        'End If
+        '=================================================
     End Sub
+
+
+
+
+
 
 
 End Module

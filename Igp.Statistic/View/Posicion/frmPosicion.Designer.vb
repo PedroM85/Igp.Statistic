@@ -27,6 +27,11 @@ Partial Class frmPosicion
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.dgvPosicion = New System.Windows.Forms.DataGridView()
+        Me.txtPuesto = New System.Windows.Forms.TextBox()
+        Me.cboPiloto = New System.Windows.Forms.ComboBox()
+        Me.cboCircuito = New System.Windows.Forms.ComboBox()
+        Me.cboTempo = New System.Windows.Forms.ComboBox()
+        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.Temporada = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TemNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Circuito = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -36,11 +41,6 @@ Partial Class frmPosicion
         Me.Puesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LleNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Puntos = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.txtPuesto = New System.Windows.Forms.TextBox()
-        Me.cboPiloto = New System.Windows.Forms.ComboBox()
-        Me.cboCircuito = New System.Windows.Forms.ComboBox()
-        Me.cboTempo = New System.Windows.Forms.ComboBox()
-        Me.btnGuardar = New System.Windows.Forms.Button()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvPosicion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,55 +94,6 @@ Partial Class frmPosicion
         Me.dgvPosicion.Size = New System.Drawing.Size(734, 230)
         Me.dgvPosicion.TabIndex = 4
         '
-        'Temporada
-        '
-        Me.Temporada.HeaderText = "Temporada"
-        Me.Temporada.Name = "Temporada"
-        '
-        'TemNum
-        '
-        Me.TemNum.HeaderText = "Column1"
-        Me.TemNum.Name = "TemNum"
-        Me.TemNum.Visible = False
-        '
-        'Circuito
-        '
-        Me.Circuito.HeaderText = "Circuito"
-        Me.Circuito.Name = "Circuito"
-        '
-        'CirNum
-        '
-        Me.CirNum.HeaderText = "Column1"
-        Me.CirNum.Name = "CirNum"
-        Me.CirNum.Visible = False
-        '
-        'Nombre
-        '
-        Me.Nombre.HeaderText = "Nombre"
-        Me.Nombre.Name = "Nombre"
-        '
-        'NomNum
-        '
-        Me.NomNum.HeaderText = "Column1"
-        Me.NomNum.Name = "NomNum"
-        Me.NomNum.Visible = False
-        '
-        'Puesto
-        '
-        Me.Puesto.HeaderText = "Puesto"
-        Me.Puesto.Name = "Puesto"
-        '
-        'LleNum
-        '
-        Me.LleNum.HeaderText = "Column1"
-        Me.LleNum.Name = "LleNum"
-        Me.LleNum.Visible = False
-        '
-        'Puntos
-        '
-        Me.Puntos.HeaderText = "Puntos"
-        Me.Puntos.Name = "Puntos"
-        '
         'txtPuesto
         '
         Me.txtPuesto.Location = New System.Drawing.Point(457, 32)
@@ -188,6 +139,51 @@ Partial Class frmPosicion
         Me.btnGuardar.TabIndex = 23
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
+        '
+        'Temporada
+        '
+        Me.Temporada.HeaderText = "Temporada"
+        Me.Temporada.Name = "Temporada"
+        '
+        'TemNum
+        '
+        Me.TemNum.HeaderText = "Column1"
+        Me.TemNum.Name = "TemNum"
+        '
+        'Circuito
+        '
+        Me.Circuito.HeaderText = "Circuito"
+        Me.Circuito.Name = "Circuito"
+        '
+        'CirNum
+        '
+        Me.CirNum.HeaderText = "Column1"
+        Me.CirNum.Name = "CirNum"
+        '
+        'Nombre
+        '
+        Me.Nombre.HeaderText = "Nombre"
+        Me.Nombre.Name = "Nombre"
+        '
+        'NomNum
+        '
+        Me.NomNum.HeaderText = "Column1"
+        Me.NomNum.Name = "NomNum"
+        '
+        'Puesto
+        '
+        Me.Puesto.HeaderText = "Puesto"
+        Me.Puesto.Name = "Puesto"
+        '
+        'LleNum
+        '
+        Me.LleNum.HeaderText = "Column1"
+        Me.LleNum.Name = "LleNum"
+        '
+        'Puntos
+        '
+        Me.Puntos.HeaderText = "Puntos"
+        Me.Puntos.Name = "Puntos"
         '
         'frmPosicion
         '

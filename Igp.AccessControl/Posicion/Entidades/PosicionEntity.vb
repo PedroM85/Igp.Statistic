@@ -6,14 +6,17 @@ Namespace Entidades
 
     Public Class PosicionEntity
 
+        Public Sub New(id As Integer)
+            Me.id = id
+        End Sub
         Public Sub New()
-
         End Sub
         Private m_id As Integer
         Private m_Temporada As String
         Private m_Circuito As Integer
         Private m_piloto As String
         Private m_llegada As Integer
+        Private m_ptsllegada As Integer
 
         Public Property id As Integer
             Get
@@ -58,7 +61,17 @@ Namespace Entidades
                 m_llegada = value
             End Set
         End Property
+
+        Public Property Ptsllegada As Integer
+            Get
+                Return m_ptsllegada
+            End Get
+            Set(value As Integer)
+                m_ptsllegada = value
+            End Set
+        End Property
     End Class
+
 
 End Namespace
 
