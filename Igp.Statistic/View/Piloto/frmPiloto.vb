@@ -21,6 +21,7 @@ Partial Public Class frmPiloto
 
 	Private Sub CargarListaEmpleados()
 		dgvEmpleados.AutoGenerateColumns = False
+		dgvEmpleados.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
 		dgvEmpleados.DataSource = EmpleadosDAL.ObtenerTodos()
 
 		For Each row As DataGridViewRow In dgvEmpleados.Rows

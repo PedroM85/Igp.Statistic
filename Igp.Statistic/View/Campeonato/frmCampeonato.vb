@@ -54,10 +54,11 @@ Partial Public Class frmCampeonato
             If _idTemporada.ToString Then
 
 
-                Dim Campeo As CampeoEntity = CampeoDAL.ObtenerByTempoCircui(_idTemporada, _idCircuito)
+                Dim Campeo As CampeoEntity = CampeoDAL.ObtenerByTempoCircui(_idTemporada.ToString)
 
-                _idTemporada = nacion.IdNacion
-                txtNacion.Text = nacion.Descripcion
+                _idTemporada = Campeo.bytem
+                _idCircuito = Campeo.bycir
+                'txtNacion.Text = nacion.Descripcion
                 'txtApellido.Text = empleado.Apellido
                 'dtpFechaNacimiento.Value = empleado.FechaNacimiento
 
@@ -73,8 +74,8 @@ Partial Public Class frmCampeonato
 
     Private Sub CargarBusqueda()
         dgvData.AutoGenerateColumns = False
-        dgvData.AlternatingRowsDefaultCellStyle.BackColor = Color.Aquamarine
-        dgvData.DataSource = CampeoDAL.ObtenerByTempoCircui()
+        dgvData.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
+        dgvData.DataSource = CampeoDAL.ObtenerByTempoCircui(_idTemporada)
 
         For Each row As DataGridViewRow In dgvData.Rows
             Dim Campeo As CampeoEntity = TryCast(row.DataBoundItem, CampeoEntity)
@@ -98,5 +99,9 @@ Partial Public Class frmCampeonato
         End If
 
         cboCircuito.Text = _idCircuito
+    End Sub
+
+    Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
+        Me.Close()
     End Sub
 End Class

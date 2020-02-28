@@ -28,6 +28,7 @@ Partial Public Class frmCircuito
 
     Private Sub CargaListaCircuito()
         dgvCircuitos.AutoGenerateColumns = False
+        dgvCircuitos.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
         dgvCircuitos.DataSource = CircuitoDAL.ObtenerTodos
 
 

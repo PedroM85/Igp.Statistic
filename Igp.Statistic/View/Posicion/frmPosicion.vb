@@ -121,7 +121,7 @@ Partial Public Class frmPosicion
                         cboPiloto.Focus()
                         'txtPuesto.SelectAll()
                         With dgvPosicion
-                            .AlternatingRowsDefaultCellStyle.BackColor = Color.Aquamarine
+                            .AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
                         End With
                     End If
 

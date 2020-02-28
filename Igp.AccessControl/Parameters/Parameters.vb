@@ -46,7 +46,7 @@ Public Class Parameters
                 Item(sId) = oValue
             Loop
         Catch ex As Exception
-
+            MsgBox("Error Cargando la configuracion :" + ex.Message)
         End Try
 
 

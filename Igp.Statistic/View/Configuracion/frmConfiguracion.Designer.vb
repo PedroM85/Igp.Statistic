@@ -43,7 +43,7 @@ Partial Class frmConfiguracion
         Me.dgvConfiguracion.GridColor = System.Drawing.SystemColors.Control
         Me.dgvConfiguracion.Location = New System.Drawing.Point(177, 69)
         Me.dgvConfiguracion.Name = "dgvConfiguracion"
-        Me.dgvConfiguracion.Size = New System.Drawing.Size(440, 322)
+        Me.dgvConfiguracion.Size = New System.Drawing.Size(419, 322)
         Me.dgvConfiguracion.TabIndex = 0
         '
         'ID

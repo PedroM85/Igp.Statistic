@@ -22,6 +22,8 @@ Partial Public Class frmTemporada
 
     Private Sub CargarListaTemp()
         dgvTemporada.AutoGenerateColumns = False
+        dgvTemporada.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
+
         dgvTemporada.DataSource = TempoDAL.ObtenerTodos
 
         For Each row As DataGridViewRow In dgvTemporada.Rows

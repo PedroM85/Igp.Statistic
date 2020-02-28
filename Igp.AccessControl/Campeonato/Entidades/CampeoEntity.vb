@@ -19,7 +19,27 @@ Namespace Entidades
         Private m_Piloto As String
         Private m_Posllegada As Integer
         Private m_Puntos As Integer
+        Private m_byTem As String
+        Private m_byCir As String
 
+
+        Public Property bytem As String
+            Get
+                Return m_byTem
+            End Get
+            Set(value As String)
+                m_byTem = value
+            End Set
+        End Property
+
+        Public Property bycir As String
+            Get
+                Return m_byCir
+            End Get
+            Set(value As String)
+                m_byCir = value
+            End Set
+        End Property
         Public Property id As Integer
             Get
                 Return m_id

@@ -27,6 +27,7 @@ Partial Public Class frmConfiguracion
 
     Private Sub CargarListaConfig()
         dgvConfiguracion.AutoGenerateColumns = False
+        dgvConfiguracion.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
         dgvConfiguracion.DataSource = ConfigDAL.ObtenerTodos
 
         For Each row As DataGridViewRow In dgvConfiguracion.Rows

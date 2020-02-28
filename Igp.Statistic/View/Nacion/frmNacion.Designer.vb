@@ -81,7 +81,7 @@ Partial Class frmNacion
         Me.dgvNacion.Location = New System.Drawing.Point(213, 66)
         Me.dgvNacion.Name = "dgvNacion"
         Me.dgvNacion.ReadOnly = True
-        Me.dgvNacion.Size = New System.Drawing.Size(230, 391)
+        Me.dgvNacion.Size = New System.Drawing.Size(197, 391)
         Me.dgvNacion.TabIndex = 16
         '
         'Id

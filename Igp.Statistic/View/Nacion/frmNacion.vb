@@ -29,6 +29,7 @@ Partial Public Class frmNacion
 
     Private Sub CargarListaNacion()
         dgvNacion.AutoGenerateColumns = False
+        dgvNacion.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
         dgvNacion.DataSource = NacionDAL.ObtenerTodos
 
         For Each row As DataGridViewRow In dgvNacion.Rows

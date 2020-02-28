@@ -24,13 +24,13 @@ Partial Class frmTemporada
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTemporada))
         Me.dgvTemporada = New System.Windows.Forms.DataGridView()
+        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NombreCompleto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Equipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnNuevoEmpleado = New System.Windows.Forms.Button()
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
-        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreCompleto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Equipo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvTemporada, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -47,8 +47,31 @@ Partial Class frmTemporada
         Me.dgvTemporada.Name = "dgvTemporada"
         Me.dgvTemporada.ReadOnly = True
         Me.dgvTemporada.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.dgvTemporada.Size = New System.Drawing.Size(347, 391)
+        Me.dgvTemporada.Size = New System.Drawing.Size(293, 391)
         Me.dgvTemporada.TabIndex = 16
+        '
+        'Id
+        '
+        Me.Id.DataPropertyName = "IdTempo"
+        Me.Id.HeaderText = "Id"
+        Me.Id.Name = "Id"
+        Me.Id.ReadOnly = True
+        Me.Id.Visible = False
+        '
+        'NombreCompleto
+        '
+        Me.NombreCompleto.DataPropertyName = "Descripcion"
+        Me.NombreCompleto.HeaderText = "Nombre Completo"
+        Me.NombreCompleto.Name = "NombreCompleto"
+        Me.NombreCompleto.ReadOnly = True
+        Me.NombreCompleto.Width = 150
+        '
+        'Equipo
+        '
+        Me.Equipo.DataPropertyName = "isactive"
+        Me.Equipo.HeaderText = "Equipo"
+        Me.Equipo.Name = "Equipo"
+        Me.Equipo.ReadOnly = True
         '
         'lblHelp
         '
@@ -97,29 +120,6 @@ Partial Class frmTemporada
         Me.BtnCerrarForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize
         Me.BtnCerrarForm.TabIndex = 18
         Me.BtnCerrarForm.TabStop = False
-        '
-        'Id
-        '
-        Me.Id.DataPropertyName = "IdTempo"
-        Me.Id.HeaderText = "Id"
-        Me.Id.Name = "Id"
-        Me.Id.ReadOnly = True
-        Me.Id.Visible = False
-        '
-        'NombreCompleto
-        '
-        Me.NombreCompleto.DataPropertyName = "Descripcion"
-        Me.NombreCompleto.HeaderText = "Nombre Completo"
-        Me.NombreCompleto.Name = "NombreCompleto"
-        Me.NombreCompleto.ReadOnly = True
-        Me.NombreCompleto.Width = 150
-        '
-        'Equipo
-        '
-        Me.Equipo.DataPropertyName = "isactive"
-        Me.Equipo.HeaderText = "Equipo"
-        Me.Equipo.Name = "Equipo"
-        Me.Equipo.ReadOnly = True
         '
         'frmTemporada
         '
