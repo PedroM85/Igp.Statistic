@@ -11,14 +11,17 @@ Public Class PosicionDAL
     Private sqlDataAdapter As SqlDataAdapter
 
 
+
     Public Shared Function Save(Posicion As PosicionEntity) As PosicionEntity
         Using scope As New TransactionScope()
             '
             ' Graba datos empleado
             '
-            If Existe(Posicion.Circuito, Posicion.Piloto, Posicion.Temporada) Then
+
+
+            If Existe(Posicion.Circuito, Posicion.Piloto, Posicion.Temporada, Posicion.llegada) Then
                 'Actualizar(Posicion)
-                MsgBox("El registro ya Existe.")
+
             Else
                 AgregarNuevo(Posicion)
             End If
@@ -31,7 +34,7 @@ Public Class PosicionDAL
 
     End Function
 
-    Public Shared Function Existe(idCircuito As Integer, idpiloto As Integer, idTemporada As Integer) As Boolean
+    Public Shared Function Existe(idCircuito As Integer, idpiloto As Integer, idTemporada As Integer, Posllegada As Integer) As Boolean
         Using conn As New SqlConnection(coruta)
             conn.Open()
 
@@ -44,15 +47,38 @@ Public Class PosicionDAL
             cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
             cmd.Parameters.AddWithValue("@idPiloto", idpiloto)
             cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
+            cmd.Parameters.AddWithValue("@Posllegada", Posllegada)
+
+            Dim msgparam As SqlParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int)
+
+            msgparam.Direction = ParameterDirection.Output
+            'iDrepeat = msgparam.Value
 
 
             Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+            If IsDBNull(msgparam.Value) Then
 
-            If resultado = 0 Then
-                Return False
+                If resultado = 0 Then
+                    Return False
+                Else
+                    Return True
+                End If
             Else
-                Return True
+                'Dim posicion As New PosicionEntity
+                'posicion.exite = msgparam.Value
+
+                MsgBox("El registro ya N° " & msgparam.Value & " ya existe.")
+                'MsgBox(msgparam.Value)
+                'MsgBox(posicion.exite)
+
+                If resultado = 0 Then
+                    Return False
+                Else
+                    Return True
+                End If
             End If
+
+
         End Using
 
     End Function
@@ -70,6 +96,7 @@ Public Class PosicionDAL
             cmd.Parameters.AddWithValue("@idPiloto", Posicion.Piloto)
             cmd.Parameters.AddWithValue("@idllegada", Posicion.llegada)
             cmd.Parameters.AddWithValue("@Pllegada", Posicion.Ptsllegada)
+
 
 
             Posicion.id = Convert.ToInt32(cmd.ExecuteScalar())

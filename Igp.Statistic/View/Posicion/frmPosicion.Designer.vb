@@ -149,6 +149,7 @@ Partial Class frmPosicion
         '
         Me.TemNum.HeaderText = "Column1"
         Me.TemNum.Name = "TemNum"
+        Me.TemNum.Visible = False
         '
         'Circuito
         '
@@ -159,6 +160,7 @@ Partial Class frmPosicion
         '
         Me.CirNum.HeaderText = "Column1"
         Me.CirNum.Name = "CirNum"
+        Me.CirNum.Visible = False
         '
         'Nombre
         '
@@ -169,6 +171,7 @@ Partial Class frmPosicion
         '
         Me.NomNum.HeaderText = "Column1"
         Me.NomNum.Name = "NomNum"
+        Me.NomNum.Visible = False
         '
         'Puesto
         '
@@ -179,6 +182,7 @@ Partial Class frmPosicion
         '
         Me.LleNum.HeaderText = "Column1"
         Me.LleNum.Name = "LleNum"
+        Me.LleNum.Visible = False
         '
         'Puntos
         '

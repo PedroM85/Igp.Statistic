@@ -4,21 +4,21 @@ SET ANSI_NULLS ON
 GO
 
 CREATE PROCEDURE [dbo].[ADD_InsertPosicion]
-	@idTemporada as nchar(30),
-	@idCircuito as int,
-	@idPiloto as nchar(40),
-	@idllegada as int
+	@idTemporada  int,
+	@idCircuito  int,
+	@idPiloto  int,
+	@idllegada  int,
+	@Pllegada  int
 AS
-begin
-Declare @InsertedFecha as datetime
-
-Set @InsertedFecha=GETDATE()
-Select CONVERT(varchar,@InsertedFecha,21)
 
 
-insert SYS_Posicion (idTemporada,idCircuito,idPiloto,Posllegada,InsertedFecha,ModifyFecha)
+insert into SYS_Posicion 
 
-values (@idtemporada,@idCircuito,@idPiloto,@idllegada,@InsertedFecha,null)
+(idTemporada,idCircuito,idPiloto,Posllegada,Ptsllegada,InsertedFecha,ModifyFecha)
 
-end
+values 
+
+(@idtemporada,@idCircuito,@idPiloto,@idllegada,@Pllegada,GETDATE(),NULL)
+
+
 GO

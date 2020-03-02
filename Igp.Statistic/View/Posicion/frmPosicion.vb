@@ -152,7 +152,7 @@ Partial Public Class frmPosicion
         For Each row As DataGridViewRow In dgvPosicion.Rows
             Dim verificar As String = Convert.ToString(row.Cells("Puesto").Value)
             If rol = verificar Then
-                MessageBox.Show("El Puesto N° : " + rol + ", " + "Ya se encuentra ingresado.")
+                MessageBox.Show("El Puesto N° : " + rol + ", Ya se encuentra ingresado.")
                 txtPuesto.SelectAll()
                 existe = True
             End If
@@ -168,7 +168,7 @@ Partial Public Class frmPosicion
         For Each row As DataGridViewRow In dgvPosicion.Rows
             Dim verificar As String = Convert.ToString(row.Cells("Nombre").Value)
             If rol = verificar Then
-                MessageBox.Show("El Piloto : " + rol.Trim + ", " + "Ya se encuentra ingresado.")
+                MessageBox.Show("El Piloto : " + rol.Trim + ", Ya se encuentra ingresado.")
                 txtPuesto.SelectAll()
                 existe = True
             End If
@@ -185,9 +185,9 @@ Partial Public Class frmPosicion
         Try
             For j As Integer = 0 To dgvPosicion.Rows.Count - 1
                 posicion.id = _id.GetValueOrDefault()
-                posicion.Temporada = Convert.ToString(dgvPosicion.Rows(j).Cells(1).Value)
+                posicion.Temporada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(1).Value)
                 posicion.Circuito = Convert.ToInt32(dgvPosicion.Rows(j).Cells(3).Value)
-                posicion.Piloto = Convert.ToString(dgvPosicion.Rows(j).Cells(5).Value)
+                posicion.Piloto = Convert.ToInt32(dgvPosicion.Rows(j).Cells(5).Value)
                 posicion.llegada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(7).Value)
                 posicion.Ptsllegada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(8).Value)
 

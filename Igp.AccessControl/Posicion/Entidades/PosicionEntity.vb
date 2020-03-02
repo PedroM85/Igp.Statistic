@@ -12,12 +12,21 @@ Namespace Entidades
         Public Sub New()
         End Sub
         Private m_id As Integer
-        Private m_Temporada As String
+        Private m_Temporada As Integer
         Private m_Circuito As Integer
-        Private m_piloto As String
+        Private m_piloto As Integer
         Private m_llegada As Integer
         Private m_ptsllegada As Integer
+        Private m_existe As Integer
 
+        Public Property exite As Integer
+            Get
+                Return m_existe
+            End Get
+            Set(value As Integer)
+                m_existe = value
+            End Set
+        End Property
         Public Property id As Integer
             Get
                 Return m_id
@@ -26,11 +35,12 @@ Namespace Entidades
                 m_id = value
             End Set
         End Property
-        Public Property Temporada As String
+
+        Public Property Temporada As Integer
             Get
                 Return m_Temporada
             End Get
-            Set(value As String)
+            Set(value As Integer)
                 m_Temporada = value
             End Set
         End Property
@@ -44,11 +54,11 @@ Namespace Entidades
             End Set
         End Property
 
-        Public Property Piloto As String
+        Public Property Piloto As Integer
             Get
                 Return m_piloto
             End Get
-            Set(value As String)
+            Set(value As Integer)
                 m_piloto = value
             End Set
         End Property
