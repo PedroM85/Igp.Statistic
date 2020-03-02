@@ -79,6 +79,7 @@
     <Compile Include="Configuracion\ConfigDAL.vb" />
     <Compile Include="Configuracion\Entidades\ConfigEntity.vb" />
     <Compile Include="Nacion\Entidades\NacionEntity.vb" />
+    <Compile Include="Parameters\ParameterEntity.vb" />
     <Compile Include="Parameters\Parameters.vb" />
     <Compile Include="Pilotos\Entidades\PilotoEntity.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

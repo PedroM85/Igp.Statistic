@@ -22,16 +22,13 @@ Partial Class frmPosicion
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPosicion))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.lblContarFilas = New System.Windows.Forms.Label()
         Me.dgvPosicion = New System.Windows.Forms.DataGridView()
-        Me.txtPuesto = New System.Windows.Forms.TextBox()
-        Me.cboPiloto = New System.Windows.Forms.ComboBox()
-        Me.cboCircuito = New System.Windows.Forms.ComboBox()
-        Me.cboTempo = New System.Windows.Forms.ComboBox()
-        Me.btnGuardar = New System.Windows.Forms.Button()
         Me.Temporada = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TemNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Circuito = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -41,9 +38,17 @@ Partial Class frmPosicion
         Me.Puesto = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.LleNum = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Puntos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtPuesto = New System.Windows.Forms.TextBox()
+        Me.cboPiloto = New System.Windows.Forms.ComboBox()
+        Me.cboCircuito = New System.Windows.Forms.ComboBox()
+        Me.cboTempo = New System.Windows.Forms.ComboBox()
+        Me.btnGuardar = New System.Windows.Forms.Button()
+        Me.cmsMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.tsmEliminar = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvPosicion, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.cmsMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -72,6 +77,7 @@ Partial Class frmPosicion
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.lblContarFilas)
         Me.GroupBox1.Controls.Add(Me.dgvPosicion)
         Me.GroupBox1.Controls.Add(Me.txtPuesto)
         Me.GroupBox1.Controls.Add(Me.cboPiloto)
@@ -79,20 +85,91 @@ Partial Class frmPosicion
         Me.GroupBox1.Controls.Add(Me.cboTempo)
         Me.GroupBox1.Location = New System.Drawing.Point(26, 54)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(764, 357)
+        Me.GroupBox1.Size = New System.Drawing.Size(587, 331)
         Me.GroupBox1.TabIndex = 22
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
+        'lblContarFilas
+        '
+        Me.lblContarFilas.AutoSize = True
+        Me.lblContarFilas.ForeColor = System.Drawing.Color.DarkRed
+        Me.lblContarFilas.Location = New System.Drawing.Point(420, 291)
+        Me.lblContarFilas.Name = "lblContarFilas"
+        Me.lblContarFilas.Size = New System.Drawing.Size(137, 13)
+        Me.lblContarFilas.TabIndex = 5
+        Me.lblContarFilas.Text = "[ ?? Regitro cargado de ??]"
+        '
         'dgvPosicion
         '
+        Me.dgvPosicion.AllowUserToAddRows = False
+        Me.dgvPosicion.AllowUserToDeleteRows = False
         Me.dgvPosicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPosicion.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temporada, Me.TemNum, Me.Circuito, Me.CirNum, Me.Nombre, Me.NomNum, Me.Puesto, Me.LleNum, Me.Puntos})
         Me.dgvPosicion.GridColor = System.Drawing.SystemColors.ActiveCaption
         Me.dgvPosicion.Location = New System.Drawing.Point(6, 58)
         Me.dgvPosicion.Name = "dgvPosicion"
-        Me.dgvPosicion.Size = New System.Drawing.Size(734, 230)
+        Me.dgvPosicion.ReadOnly = True
+        Me.dgvPosicion.Size = New System.Drawing.Size(551, 230)
         Me.dgvPosicion.TabIndex = 4
+        '
+        'Temporada
+        '
+        Me.Temporada.HeaderText = "Temporada"
+        Me.Temporada.Name = "Temporada"
+        Me.Temporada.ReadOnly = True
+        '
+        'TemNum
+        '
+        Me.TemNum.HeaderText = "Column1"
+        Me.TemNum.Name = "TemNum"
+        Me.TemNum.ReadOnly = True
+        Me.TemNum.Visible = False
+        '
+        'Circuito
+        '
+        Me.Circuito.HeaderText = "Circuito"
+        Me.Circuito.Name = "Circuito"
+        Me.Circuito.ReadOnly = True
+        '
+        'CirNum
+        '
+        Me.CirNum.HeaderText = "Column1"
+        Me.CirNum.Name = "CirNum"
+        Me.CirNum.ReadOnly = True
+        Me.CirNum.Visible = False
+        '
+        'Nombre
+        '
+        Me.Nombre.HeaderText = "Nombre"
+        Me.Nombre.Name = "Nombre"
+        Me.Nombre.ReadOnly = True
+        '
+        'NomNum
+        '
+        Me.NomNum.HeaderText = "Column1"
+        Me.NomNum.Name = "NomNum"
+        Me.NomNum.ReadOnly = True
+        Me.NomNum.Visible = False
+        '
+        'Puesto
+        '
+        Me.Puesto.HeaderText = "Puesto"
+        Me.Puesto.Name = "Puesto"
+        Me.Puesto.ReadOnly = True
+        '
+        'LleNum
+        '
+        Me.LleNum.HeaderText = "Column1"
+        Me.LleNum.Name = "LleNum"
+        Me.LleNum.ReadOnly = True
+        Me.LleNum.Visible = False
+        '
+        'Puntos
+        '
+        Me.Puntos.HeaderText = "Puntos"
+        Me.Puntos.Name = "Puntos"
+        Me.Puntos.ReadOnly = True
         '
         'txtPuesto
         '
@@ -133,61 +210,24 @@ Partial Class frmPosicion
         Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnGuardar.FlatAppearance.BorderSize = 0
         Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuardar.Location = New System.Drawing.Point(709, 417)
+        Me.btnGuardar.Location = New System.Drawing.Point(502, 400)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
         Me.btnGuardar.TabIndex = 23
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
         '
-        'Temporada
+        'cmsMenu
         '
-        Me.Temporada.HeaderText = "Temporada"
-        Me.Temporada.Name = "Temporada"
+        Me.cmsMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmEliminar})
+        Me.cmsMenu.Name = "ContextMenuStrip1"
+        Me.cmsMenu.Size = New System.Drawing.Size(118, 26)
         '
-        'TemNum
+        'tsmEliminar
         '
-        Me.TemNum.HeaderText = "Column1"
-        Me.TemNum.Name = "TemNum"
-        Me.TemNum.Visible = False
-        '
-        'Circuito
-        '
-        Me.Circuito.HeaderText = "Circuito"
-        Me.Circuito.Name = "Circuito"
-        '
-        'CirNum
-        '
-        Me.CirNum.HeaderText = "Column1"
-        Me.CirNum.Name = "CirNum"
-        Me.CirNum.Visible = False
-        '
-        'Nombre
-        '
-        Me.Nombre.HeaderText = "Nombre"
-        Me.Nombre.Name = "Nombre"
-        '
-        'NomNum
-        '
-        Me.NomNum.HeaderText = "Column1"
-        Me.NomNum.Name = "NomNum"
-        Me.NomNum.Visible = False
-        '
-        'Puesto
-        '
-        Me.Puesto.HeaderText = "Puesto"
-        Me.Puesto.Name = "Puesto"
-        '
-        'LleNum
-        '
-        Me.LleNum.HeaderText = "Column1"
-        Me.LleNum.Name = "LleNum"
-        Me.LleNum.Visible = False
-        '
-        'Puntos
-        '
-        Me.Puntos.HeaderText = "Puntos"
-        Me.Puntos.Name = "Puntos"
+        Me.tsmEliminar.Name = "tsmEliminar"
+        Me.tsmEliminar.Size = New System.Drawing.Size(117, 22)
+        Me.tsmEliminar.Text = "Eliminar"
         '
         'frmPosicion
         '
@@ -206,6 +246,7 @@ Partial Class frmPosicion
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         CType(Me.dgvPosicion, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.cmsMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -229,4 +270,7 @@ Partial Class frmPosicion
     Friend WithEvents Puesto As DataGridViewTextBoxColumn
     Friend WithEvents LleNum As DataGridViewTextBoxColumn
     Friend WithEvents Puntos As DataGridViewTextBoxColumn
+    Friend WithEvents cmsMenu As ContextMenuStrip
+    Friend WithEvents tsmEliminar As ToolStripMenuItem
+    Friend WithEvents lblContarFilas As Label
 End Class

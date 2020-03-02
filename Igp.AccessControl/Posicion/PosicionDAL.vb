@@ -19,7 +19,7 @@ Public Class PosicionDAL
             '
 
 
-            If Existe(Posicion.Circuito, Posicion.Piloto, Posicion.Temporada, Posicion.llegada) Then
+            If Existe(Posicion.Circuito, Posicion.Piloto, Posicion.Temporada, Posicion.llegada, Posicion.exite) Then
                 'Actualizar(Posicion)
 
             Else
@@ -34,7 +34,7 @@ Public Class PosicionDAL
 
     End Function
 
-    Public Shared Function Existe(idCircuito As Integer, idpiloto As Integer, idTemporada As Integer, Posllegada As Integer) As Boolean
+    Public Shared Function Existe(idCircuito As Integer, idpiloto As Integer, idTemporada As Integer, Posllegada As Integer, exite As String) As Boolean
         Using conn As New SqlConnection(coruta)
             conn.Open()
 
@@ -57,7 +57,7 @@ Public Class PosicionDAL
 
             Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
             If IsDBNull(msgparam.Value) Then
-
+                MsgBox("La posicion de llegada: " & Posllegada & " para el piloto: " & exite.Trim & " , ya esta en la base de datos")
                 If resultado = 0 Then
                     Return False
                 Else
@@ -67,7 +67,7 @@ Public Class PosicionDAL
                 'Dim posicion As New PosicionEntity
                 'posicion.exite = msgparam.Value
 
-                MsgBox("El registro ya N° " & msgparam.Value & " ya existe.")
+                MsgBox("El registro N° " & msgparam.Value & " " & exite.Trim & " en puesto " & Posllegada & ", ya existe.")
                 'MsgBox(msgparam.Value)
                 'MsgBox(posicion.exite)
 

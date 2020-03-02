@@ -17,13 +17,13 @@ Namespace Entidades
         Private m_piloto As Integer
         Private m_llegada As Integer
         Private m_ptsllegada As Integer
-        Private m_existe As Integer
+        Private m_existe As String
 
-        Public Property exite As Integer
+        Public Property exite As String
             Get
                 Return m_existe
             End Get
-            Set(value As Integer)
+            Set(value As String)
                 m_existe = value
             End Set
         End Property

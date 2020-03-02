@@ -9,7 +9,7 @@ Imports Igp.AccessControl
 Imports Igp.AccessControl.Entidades
 Partial Public Class frmPosicion
     Inherits Form
-    Dim npiloto As Integer = oAppPAR.GetValue("NPILOTO")
+    '    Dim npiloto As Integer = oAppPAR.GetValue("NPILOTO")
 
     Private _idPosicion As Nullable(Of Integer) = Nothing
     Private _idCircuito As Nullable(Of Integer) = Nothing
@@ -42,6 +42,8 @@ Partial Public Class frmPosicion
         CargaListaTempo()
         CargaListaPiloto()
         CargaListaCircuito()
+        contar_filas()
+        ' Me.dgvPosicion.ContextMenuStrip = Me.cmsMenu
 
     End Sub
 
@@ -74,7 +76,7 @@ Partial Public Class frmPosicion
                     If String.IsNullOrEmpty(txtPuesto.Text) Then
                         MessageBox.Show("No ingreso puesto de llegada")
                         Me.txtPuesto.SelectAll()
-                    ElseIf txtPuesto.Text > npiloto Then
+                    ElseIf txtPuesto.Text > AppPar.npiloto Then
                         MessageBox.Show("El puesto ingresado supera la grilla!")
                         Me.txtPuesto.SelectAll()
                     ElseIf txtPuesto.Text = 0 Then
@@ -123,6 +125,7 @@ Partial Public Class frmPosicion
 
                         dgvPosicion.Rows.Add(row)
                         cboPiloto.Focus()
+                        contar_filas()
 
                         With dgvPosicion
                             .AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
@@ -188,10 +191,12 @@ Partial Public Class frmPosicion
                 posicion.Temporada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(1).Value)
                 posicion.Circuito = Convert.ToInt32(dgvPosicion.Rows(j).Cells(3).Value)
                 posicion.Piloto = Convert.ToInt32(dgvPosicion.Rows(j).Cells(5).Value)
+                posicion.exite = Convert.ToString(dgvPosicion.Rows(j).Cells(4).Value)
                 posicion.llegada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(7).Value)
                 posicion.Ptsllegada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(8).Value)
 
                 PosicionDAL.Save(posicion)
+                contar_filas
             Next
 
 
@@ -200,9 +205,38 @@ Partial Public Class frmPosicion
             MessageBox.Show(ex.Message)
         End Try
 
+        If Me.DialogResult = DialogResult.OK Then
+            Me.Close()
+        Else
 
-        Me.DialogResult = DialogResult.OK
-        Me.Close()
+        End If
+
+    End Sub
+    Sub contar_filas()
+
+        Dim filas As Integer = Me.dgvPosicion.RowCount
+        If filas = 0 Then
+            lblContarFilas.Text = "[ " & filas & " Regitro cargado de " & AppPar.npiloto & "]"
+        ElseIf filas = 1 Then
+            lblContarFilas.Text = "[ " & filas & " Regitro cargado  de " & AppPar.npiloto & "]"
+        Else
+            lblContarFilas.Text = "[ " & filas & " Regitros cargados de " & AppPar.npiloto & "]"
+        End If
     End Sub
 
+    Private Sub dgvPosicion_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvPosicion.KeyDown
+        Try
+            Dim li_index As Integer
+            If e.KeyCode = Keys.Delete Then
+                e.Handled = True
+                li_index = CType(sender, DataGridView).CurrentRow.Index
+                If MessageBox.Show("Deseas Eliminar", "Acceso", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Yes Then
+                    dgvPosicion.Rows.RemoveAt(li_index)
+                    contar_filas()
+                End If
+            End If
+        Catch ex As Exception
+            MessageBox.Show(ex.Message)
+        End Try
+    End Sub
 End Class

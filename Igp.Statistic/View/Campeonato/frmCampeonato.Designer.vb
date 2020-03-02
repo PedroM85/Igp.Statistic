@@ -37,6 +37,7 @@ Partial Class frmCampeonato
         Me.Label3 = New System.Windows.Forms.Label()
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
         Me.btnSearch = New System.Windows.Forms.Button()
+        Me.lblContarFilas = New System.Windows.Forms.Label()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -50,7 +51,7 @@ Partial Class frmCampeonato
         Me.dgvData.Location = New System.Drawing.Point(12, 150)
         Me.dgvData.Name = "dgvData"
         Me.dgvData.ReadOnly = True
-        Me.dgvData.Size = New System.Drawing.Size(776, 310)
+        Me.dgvData.Size = New System.Drawing.Size(647, 310)
         Me.dgvData.TabIndex = 0
         '
         'Id
@@ -165,12 +166,23 @@ Partial Class frmCampeonato
         Me.btnSearch.Text = "Buscar"
         Me.btnSearch.UseVisualStyleBackColor = True
         '
+        'lblContarFilas
+        '
+        Me.lblContarFilas.AutoSize = True
+        Me.lblContarFilas.ForeColor = System.Drawing.Color.DarkRed
+        Me.lblContarFilas.Location = New System.Drawing.Point(525, 463)
+        Me.lblContarFilas.Name = "lblContarFilas"
+        Me.lblContarFilas.Size = New System.Drawing.Size(137, 13)
+        Me.lblContarFilas.TabIndex = 25
+        Me.lblContarFilas.Text = "[ ?? Regitro cargado de ??]"
+        '
         'frmCampeonato
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(800, 472)
+        Me.ClientSize = New System.Drawing.Size(800, 485)
+        Me.Controls.Add(Me.lblContarFilas)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.BtnCerrarForm)
@@ -202,4 +214,5 @@ Partial Class frmCampeonato
     Friend WithEvents Piloto As DataGridViewTextBoxColumn
     Friend WithEvents Llegada As DataGridViewTextBoxColumn
     Friend WithEvents Puntos As DataGridViewTextBoxColumn
+    Friend WithEvents lblContarFilas As Label
 End Class

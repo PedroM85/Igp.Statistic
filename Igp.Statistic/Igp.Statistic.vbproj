@@ -297,15 +297,7 @@
     <Content Include="IgpManager\Tables\dbo.SYS_Posicion.sql" />
     <Content Include="IgpManager\Tables\dbo.SYS_Punto.sql" />
     <Content Include="IgpManager\Tables\dbo.SYS_Temporada.sql" />
-    <Content Include="Scripts\IpgManager_1002_1842.sql" />
-    <Content Include="Scripts\IpgManager_1102_2153.sql" />
-    <Content Include="Scripts\IpgManager_1302_2137.sql" />
-    <Content Include="Scripts\IpgManager_1402_2352.sql" />
-    <Content Include="Scripts\IpgManager_1702_1035.sql" />
-    <Content Include="Scripts\IpgManager_1702_1814.sql" />
-    <Content Include="Scripts\IpgManager_1802_1758.sql" />
-    <Content Include="Scripts\IpgManager_1902_1809.sql" />
-    <Content Include="Scripts\IpgManager_2002_2046.sql" />
+    <Content Include="Scripts\IpgManager_0203_0111.sql" />
     <Content Include="Scripts\IpgManager_2602_1732.sql" />
     <Content Include="Scripts\IpgManager_2802_1826.sql" />
   </ItemGroup>
