@@ -24,7 +24,8 @@ Public Partial Class EditarEmpleado
 	End Sub
 
     Private Sub EditarEmpleado_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-
+        txtNombre.Select()
+        txtNombre.Focus()
         CargarEstadoCivil()
         'CargarEstudio()
 
@@ -53,6 +54,7 @@ Public Partial Class EditarEmpleado
         End If
 
 
+
     End Sub
 
     Private Sub CargarEstadoCivil()
@@ -64,14 +66,17 @@ Public Partial Class EditarEmpleado
     End Sub
 
 
+    Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
+        If String.IsNullOrEmpty(txtNombre.Text.Trim) Then
+            ErrorProvider.SetError(txtNombre, "El campo esta vacio")
+
+        Else
 
 
-
-    Private Sub btnGuardar_Click(sender As Object, e As EventArgs)
-        '
-        ' Se crea la entidad
-        '
-        Dim empleado As New EmpleadoEntity() With {
+            '
+            ' Se crea la entidad
+            '
+            Dim empleado As New EmpleadoEntity() With {
                                                    .IdEmpleado = _idEmpleado.GetValueOrDefault(),
                                                    .Nombre = txtNombre.Text,
                                                    .EstadoCivil = Convert.ToInt16(cbEstadoCivil.SelectedValue)
@@ -79,21 +84,22 @@ Public Partial Class EditarEmpleado
 
 
 
-        EmpleadosDAL.Save(empleado)
+            EmpleadosDAL.Save(empleado)
 
-		Me.DialogResult = DialogResult.OK
-        Me.Close()
+            Me.DialogResult = DialogResult.OK
+            Me.Close()
+        End If
 
-	End Sub
+    End Sub
 
-    Private Sub btnCancelar_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub btnCancelar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnCancelar.Click
 
         Me.DialogResult = DialogResult.Cancel
         Me.Close()
 
     End Sub
 
-    Private Sub btnEliminar_Click(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub btnEliminar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnEliminar.Click
 
         Dim empleado As New EmpleadoEntity() With {
                                                    .IdEmpleado = _idEmpleado.GetValueOrDefault(),
@@ -107,4 +113,10 @@ Public Partial Class EditarEmpleado
     End Sub
 
 
+    Private Sub EditarEmpleado_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyData
+            Case Keys.Enter
+                btnGuardar_Click(sender, e)
+        End Select
+    End Sub
 End Class

@@ -31,6 +31,7 @@ Partial Class frmPiloto
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
+        Me.lblContarFilas = New System.Windows.Forms.Label()
         CType(Me.dgvEmpleados, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -39,16 +40,15 @@ Partial Class frmPiloto
         '
         Me.dgvEmpleados.AllowUserToAddRows = False
         Me.dgvEmpleados.AllowUserToDeleteRows = False
-        Me.dgvEmpleados.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.dgvEmpleados.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.dgvEmpleados.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvEmpleados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvEmpleados.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdEmpleado, Me.NombreCompleto, Me.Equipo})
-        Me.dgvEmpleados.Location = New System.Drawing.Point(152, 71)
+        Me.dgvEmpleados.Location = New System.Drawing.Point(260, 30)
         Me.dgvEmpleados.Name = "dgvEmpleados"
         Me.dgvEmpleados.ReadOnly = True
         Me.dgvEmpleados.Size = New System.Drawing.Size(347, 391)
         Me.dgvEmpleados.TabIndex = 0
-        AddHandler Me.dgvEmpleados.CellContentDoubleClick, New System.Windows.Forms.DataGridViewCellEventHandler(AddressOf Me.dgvEmpleados_CellContentDoubleClick)
         '
         'IdEmpleado
         '
@@ -78,20 +78,19 @@ Partial Class frmPiloto
         Me.btnNuevoEmpleado.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnNuevoEmpleado.FlatAppearance.BorderSize = 0
         Me.btnNuevoEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNuevoEmpleado.Location = New System.Drawing.Point(645, 71)
+        Me.btnNuevoEmpleado.Location = New System.Drawing.Point(496, 449)
         Me.btnNuevoEmpleado.Name = "btnNuevoEmpleado"
         Me.btnNuevoEmpleado.Size = New System.Drawing.Size(111, 31)
         Me.btnNuevoEmpleado.TabIndex = 2
         Me.btnNuevoEmpleado.Text = "Nuevo"
         Me.btnNuevoEmpleado.UseVisualStyleBackColor = True
-        AddHandler Me.btnNuevoEmpleado.Click, New System.EventHandler(AddressOf Me.btnNuevoEmpleado_Click)
         '
         'lblHelp
         '
         Me.lblHelp.AutoSize = True
         Me.lblHelp.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHelp.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblHelp.Location = New System.Drawing.Point(190, 53)
+        Me.lblHelp.Location = New System.Drawing.Point(298, 12)
         Me.lblHelp.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblHelp.Name = "lblHelp"
         Me.lblHelp.Size = New System.Drawing.Size(270, 15)
@@ -122,12 +121,23 @@ Partial Class frmPiloto
         Me.BtnCerrarForm.TabIndex = 13
         Me.BtnCerrarForm.TabStop = False
         '
+        'lblContarFilas
+        '
+        Me.lblContarFilas.AutoSize = True
+        Me.lblContarFilas.ForeColor = System.Drawing.Color.DarkRed
+        Me.lblContarFilas.Location = New System.Drawing.Point(470, 424)
+        Me.lblContarFilas.Name = "lblContarFilas"
+        Me.lblContarFilas.Size = New System.Drawing.Size(137, 13)
+        Me.lblContarFilas.TabIndex = 27
+        Me.lblContarFilas.Text = "[ ?? Regitro cargado de ??]"
+        '
         'frmPiloto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(867, 484)
+        Me.ClientSize = New System.Drawing.Size(867, 514)
+        Me.Controls.Add(Me.lblContarFilas)
         Me.Controls.Add(Me.lblHelp)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtnCerrarForm)
@@ -139,7 +149,6 @@ Partial Class frmPiloto
         Me.Name = "frmPiloto"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Lista Empleados"
-        AddHandler Me.Load, New System.EventHandler(AddressOf Me.frmListaEmpleados_Load)
         CType(Me.dgvEmpleados, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -149,13 +158,16 @@ Partial Class frmPiloto
 
 #End Region
 
-    Private dgvEmpleados As System.Windows.Forms.DataGridView
-    Private btnNuevoEmpleado As System.Windows.Forms.Button
+    Friend WithEvents dgvEmpleados As DataGridView
+    'Private dgvEmpleados As System.Windows.Forms.DataGridView
+    Friend WithEvents btnNuevoEmpleado As Button
+    'Private btnNuevoEmpleado As System.Windows.Forms.Button
     Friend WithEvents IdEmpleado As DataGridViewTextBoxColumn
     Friend WithEvents NombreCompleto As DataGridViewTextBoxColumn
     Friend WithEvents Equipo As DataGridViewTextBoxColumn
     Public WithEvents lblHelp As Label
     Private WithEvents Label1 As Label
     Friend WithEvents BtnCerrarForm As PictureBox
+    Friend WithEvents lblContarFilas As Label
 End Class
 

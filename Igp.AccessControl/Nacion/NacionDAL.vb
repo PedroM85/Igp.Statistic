@@ -117,19 +117,30 @@ Public NotInheritable Class NacionDAL
             conn.Open()
 
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_InsertNacion", conn)
+            cmd = New SqlCommand("SYS_ExisteNacionBy", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
+            cmd.Parameters.AddWithValue("@id", nacion.Descripcion)
 
-            cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
+            Dim valor As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
-            'imageParam.Value = empleado.Imagen
+            If valor = 0 Then
 
-            '
-            ' se recupera el id generado por la tabla
-            '
-            nacion.IdNacion = Convert.ToInt32(cmd.ExecuteScalar())
+
+
+                cmd = New SqlCommand("SYS_InsertNacion", conn)
+                cmd.CommandType = CommandType.StoredProcedure
+
+                cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
+
+                nacion.IdNacion = Convert.ToInt32(cmd.ExecuteScalar())
+            Else
+
+                MsgBox("El equipo que desea agregar ya se encuentra registrado: " & nacion.Descripcion)
+
+            End If
+
+
         End Using
 
         Return nacion

@@ -132,16 +132,16 @@
     <Compile Include="View\DashBoard\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Nacion\frmEditNacion.Designer.vb">
+    <Compile Include="View\Equipo\frmEditNacion.Designer.vb">
       <DependentUpon>frmEditNacion.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Nacion\frmEditNacion.vb">
+    <Compile Include="View\Equipo\frmEditNacion.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Nacion\frmNacion.Designer.vb">
+    <Compile Include="View\Equipo\frmNacion.Designer.vb">
       <DependentUpon>frmNacion.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Nacion\frmNacion.vb">
+    <Compile Include="View\Equipo\frmNacion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\Piloto\frmEditPiloto.designer.vb">
@@ -203,10 +203,10 @@
     <EmbeddedResource Include="View\DashBoard\frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Nacion\frmEditNacion.resx">
+    <EmbeddedResource Include="View\Equipo\frmEditNacion.resx">
       <DependentUpon>frmEditNacion.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Nacion\frmNacion.resx">
+    <EmbeddedResource Include="View\Equipo\frmNacion.resx">
       <DependentUpon>frmNacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Piloto\frmEditPiloto.resx">

@@ -22,6 +22,8 @@ Partial Public Class frmeditTempo
 	End Sub
 
 	Private Sub frmeditTempo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+		txtTempo.Select()
+
 		Try
 			If _idTempo.HasValue Then
 
@@ -45,7 +47,7 @@ Partial Public Class frmeditTempo
 
 
 			End If
-        Catch ex As Exception
+		Catch ex As Exception
 			MsgBox("Funcion EditNacion_load: " + ex.ToString)
 		End Try
 	End Sub
@@ -55,23 +57,31 @@ Partial Public Class frmeditTempo
 	End Sub
 
 	Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-		Dim Check As Integer
-		If ckbIsActive.Checked = True Then
-			Check = 1
+
+		If String.IsNullOrEmpty(txtTempo.Text) Then
+
+			ErrorProvider.SetError(txtTempo, "El campo esta vacio")
 		Else
-			Check = 0
+
+
+			Dim Check As Integer
+			If ckbIsActive.Checked = True Then
+				Check = 1
+			Else
+				Check = 0
+			End If
+
+			Dim Tempo As New TempoEntity() With
+			{
+		.Idtempo = _idTempo.GetValueOrDefault,
+		.Descripcion = txtTempo.Text,
+		 .isactive = Check
+		}
+
+			TempoDAL.Save(Tempo)
+
+			Me.DialogResult = DialogResult.OK
+			Me.Close()
 		End If
-
-		Dim Tempo As New TempoEntity() With
-		{
-	.Idtempo = _idTempo.GetValueOrDefault,
-	.Descripcion = txtTempo.Text,
-	 .isactive = Check
-	}
-
-		TempoDAL.Save(Tempo)
-
-		Me.DialogResult = DialogResult.OK
-		Me.Close()
 	End Sub
 End Class

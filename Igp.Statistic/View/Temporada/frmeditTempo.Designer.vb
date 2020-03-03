@@ -22,6 +22,7 @@ Partial Class frmeditTempo
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.label2 = New System.Windows.Forms.Label()
         Me.txtTempo = New System.Windows.Forms.TextBox()
         Me.btnCancelar = New System.Windows.Forms.Button()
@@ -29,6 +30,8 @@ Partial Class frmeditTempo
         Me.ckbIsActive = New System.Windows.Forms.CheckBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'label2
@@ -99,6 +102,10 @@ Partial Class frmeditTempo
         Me.GroupBox1.TabIndex = 19
         Me.GroupBox1.TabStop = False
         '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
+        '
         'frmeditTempo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -115,6 +122,7 @@ Partial Class frmeditTempo
         Me.Name = "frmeditTempo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmeditTempo"
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -127,4 +135,5 @@ Partial Class frmeditTempo
     Friend WithEvents ckbIsActive As CheckBox
     Private WithEvents Label1 As Label
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents ErrorProvider As ErrorProvider
 End Class

@@ -16,7 +16,7 @@ Partial Public Class frmEditNacion
 		InitializeComponent()
 	End Sub
 
-	Public Sub New(idEmpleado As Integer)
+	Public Sub New(idEmpleado As string)
 		Me.New()
 		_idEmpleado = idEmpleado
 	End Sub
@@ -30,10 +30,7 @@ Partial Public Class frmEditNacion
 
 				_idEmpleado = nacion.IdNacion
 				txtNacion.Text = nacion.Descripcion
-				'txtApellido.Text = empleado.Apellido
-				'dtpFechaNacimiento.Value = empleado.FechaNacimiento
 
-				'cbEstadoCivil.SelectedValue = Convert.ToInt32(empleado.Apellido)
 
 
 			End If

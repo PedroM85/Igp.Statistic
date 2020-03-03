@@ -169,7 +169,7 @@ Partial Class FrmMain
         Me.btnNacion.Name = "btnNacion"
         Me.btnNacion.Size = New System.Drawing.Size(200, 45)
         Me.btnNacion.TabIndex = 7
-        Me.btnNacion.Text = "Naciones"
+        Me.btnNacion.Text = "Equipos"
         Me.btnNacion.UseVisualStyleBackColor = True
         '
         'btnCircuito
@@ -297,7 +297,7 @@ Partial Class FrmMain
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "FrmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "None"
+        Me.Text = "IgpManager"
         Me.PanelContenedor.ResumeLayout(False)
         Me.PanelFormularios.ResumeLayout(False)
         CType(Me.LOGO, System.ComponentModel.ISupportInitialize).EndInit()

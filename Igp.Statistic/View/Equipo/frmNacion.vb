@@ -24,12 +24,14 @@ Partial Public Class frmNacion
     End Sub
 
     Private Sub frmNacion_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CargarListaNacion
+        CargarListaNacion()
+        contar_filas()
     End Sub
 
     Private Sub CargarListaNacion()
         dgvNacion.AutoGenerateColumns = False
         dgvNacion.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
+        dgvNacion.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
         dgvNacion.DataSource = NacionDAL.ObtenerTodos
 
         For Each row As DataGridViewRow In dgvNacion.Rows
@@ -40,7 +42,7 @@ Partial Public Class frmNacion
     Private Sub dgvNacion_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvNacion.CellContentDoubleClick
         Try
             'Dim IdEmpleado As Integer = Convert.ToInt32(dgvNacion.Rows(e.RowIndex).Cells("IdEmpleado").Value) IdNacion
-            Dim IdEmpleado As Integer = Convert.ToInt32(dgvNacion.Rows(e.RowIndex).Cells("id").Value)
+            Dim IdEmpleado As String = Convert.ToInt32(dgvNacion.Rows(e.RowIndex).Cells("id").Value)
             '
             ' al pasarle un id de empleado este lo cargara para su edicion
             '
@@ -65,6 +67,7 @@ Partial Public Class frmNacion
 
         If frmEdit.DialogResult = DialogResult.OK Then
             CargarListaNacion()
+            contar_filas()
         End If
 
     End Sub
@@ -78,6 +81,16 @@ Partial Public Class frmNacion
 
         frmEditar.ShowDialog()
     End Sub
+    Sub contar_filas()
 
+        Dim filas As Integer = Me.dgvNacion.RowCount
+        If filas = 0 Then
+            lblContarFilas.Text = "[ " & filas & " Regitro cargado ]"
+        ElseIf filas = 1 Then
+            lblContarFilas.Text = "[ " & filas & " Regitro cargado ]"
+        Else
+            lblContarFilas.Text = "[ " & filas & " Regitros cargados ]"
+        End If
+    End Sub
 
 End Class

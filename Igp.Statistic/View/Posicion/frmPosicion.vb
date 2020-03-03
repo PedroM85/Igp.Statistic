@@ -121,9 +121,12 @@ Partial Public Class frmPosicion
 
 
 
+
                         Dim row As String() = New String() {cboTempo.Text, cboTempo.SelectedValue, cboCircuito.Text, cboCircuito.SelectedValue, cboPiloto.Text, cboPiloto.SelectedValue, txtPuesto.Text, txtPuesto.Text, Punto}
 
                         dgvPosicion.Rows.Add(row)
+
+
                         cboPiloto.Focus()
                         contar_filas()
 
@@ -209,6 +212,8 @@ Partial Public Class frmPosicion
             Me.Close()
         Else
 
+
+            Me.Close()
         End If
 
     End Sub
@@ -239,4 +244,6 @@ Partial Public Class frmPosicion
             MessageBox.Show(ex.Message)
         End Try
     End Sub
+
+
 End Class

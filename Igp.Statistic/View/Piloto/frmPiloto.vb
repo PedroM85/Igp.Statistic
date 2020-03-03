@@ -17,11 +17,13 @@ Partial Public Class frmPiloto
 
 	Private Sub frmListaEmpleados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 		CargarListaEmpleados()
+		contar_filas()
 	End Sub
 
 	Private Sub CargarListaEmpleados()
 		dgvEmpleados.AutoGenerateColumns = False
 		dgvEmpleados.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
+		dgvEmpleados.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 		dgvEmpleados.DataSource = EmpleadosDAL.ObtenerTodos()
 
 		For Each row As DataGridViewRow In dgvEmpleados.Rows
@@ -40,17 +42,7 @@ Partial Public Class frmPiloto
 
 	End Sub
 
-	Private Sub btnNuevoEmpleado_Click(sender As Object, e As EventArgs)
-		'
-		' sino se le pasa un id ,el formulario entrara en modo alta
-		'
-		Dim frmEditar As New EditarEmpleado()
-		AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
 
-
-		frmEditar.ShowDialog()
-
-	End Sub
 
 
 	Private Sub frmEditar_FormClosing(sender As Object, e As FormClosingEventArgs)
@@ -63,12 +55,13 @@ Partial Public Class frmPiloto
 
 		If frmEdit.DialogResult = DialogResult.OK Then
 			CargarListaEmpleados()
+			contar_filas()
 		End If
 
 	End Sub
 
 
-	Private Sub dgvEmpleados_CellContentDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs)
+	Private Sub dgvEmpleados_CellContentDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvEmpleados.CellContentDoubleClick
 
 		Dim IdEmpleado As Integer = Convert.ToInt32(dgvEmpleados.Rows(e.RowIndex).Cells("IdEmpleado").Value)
 
@@ -84,6 +77,29 @@ Partial Public Class frmPiloto
 
 	Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
 		Me.Close()
+	End Sub
+
+	Sub contar_filas()
+
+		Dim filas As Integer = Me.dgvEmpleados.RowCount
+		If filas = 0 Then
+			lblContarFilas.Text = "[ " & filas & " Regitro cargado ]"
+		ElseIf filas = 1 Then
+			lblContarFilas.Text = "[ " & filas & " Regitro cargado ]"
+		Else
+			lblContarFilas.Text = "[ " & filas & " Regitros cargados ]"
+		End If
+	End Sub
+
+	Private Sub btnNuevoEmpleado_Click(sender As Object, e As EventArgs) Handles btnNuevoEmpleado.Click
+		'
+		' sino se le pasa un id ,el formulario entrara en modo alta
+		'
+		Dim frmEditar As New EditarEmpleado()
+		AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
+
+
+		frmEditar.ShowDialog()
 	End Sub
 
 

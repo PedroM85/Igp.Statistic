@@ -41,6 +41,7 @@ Partial Public Class frmCampeonato
         cboTemporada.DisplayMember = "Descripcion"
         cboTemporada.ValueMember = "Idtempo"
         cboTemporada.DataSource = TempoDAL.ObtenerbyActive()
+
     End Sub
 
     Private Sub CargaListaCircuito()
@@ -50,28 +51,22 @@ Partial Public Class frmCampeonato
     End Sub
 
     Private Sub btnSearch_Click(sender As Object, e As EventArgs) Handles btnSearch.Click
-        '_idTemporada = cboTemporada.SelectedValue
-        '_idCircuito = cboCircuito.SelectedValue
-        'Try
-        '    If String.IsNullOrEmpty(_idTemporada.ToString) = False Then
+        If String.IsNullOrEmpty(cboTemporada.Text) Then
+
+            ErrorProvider.SetError(cboTemporada, "No hay informacion de temporada Activa")
+        Else
+            If String.IsNullOrEmpty(cboCircuito.Text) Then
 
 
-        '        Dim Campeo As CampeoEntity = CampeoDAL.ObtenerByTempoCircui(_idTemporada.ToString, _idCircuito.ToString)
 
-        '        '_idTemporada  = Campeo.bytem
-        '        '_idCircuito = Campeo.bycir
-        '        'txtNacion.Text = nacion.Descripcion
-        '        'txtApellido.Text = empleado.Apellido
-        '        'dtpFechaNacimiento.Value = empleado.FechaNacimiento
+                ErrorProvider.SetError(cboCircuito, "No hay informacion de circuitos")
 
-        '        'cbEstadoCivil.SelectedValue = Convert.ToInt32(empleado.Apellido)
+            Else
 
+                CargarBusqueda()
+            End If
+        End If
 
-        '    End If
-        'Catch ex As Exception
-        '    MsgBox("Funcion EditNacion_load: " + ex.ToString)
-        'End Try
-        CargarBusqueda()
     End Sub
 
     Private Sub CargarBusqueda()

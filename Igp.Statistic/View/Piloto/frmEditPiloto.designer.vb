@@ -22,6 +22,7 @@ Partial Class EditarEmpleado
     ''' the contents of this method with the code editor.
     ''' </summary>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(EditarEmpleado))
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.btnCancelar = New System.Windows.Forms.Button()
@@ -32,8 +33,10 @@ Partial Class EditarEmpleado
         Me.label2 = New System.Windows.Forms.Label()
         Me.txtNombre = New System.Windows.Forms.TextBox()
         Me.btnEliminar = New System.Windows.Forms.Button()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.groupBox1.SuspendLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnGuardar
@@ -44,10 +47,9 @@ Partial Class EditarEmpleado
         Me.btnGuardar.Location = New System.Drawing.Point(363, 245)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
-        Me.btnGuardar.TabIndex = 3
+        Me.btnGuardar.TabIndex = 2
         Me.btnGuardar.Text = "Guardar"
         Me.btnGuardar.UseVisualStyleBackColor = True
-        AddHandler Me.btnGuardar.Click, New System.EventHandler(AddressOf Me.btnGuardar_Click)
         '
         'btnCancelar
         '
@@ -61,7 +63,6 @@ Partial Class EditarEmpleado
         Me.btnCancelar.TabIndex = 4
         Me.btnCancelar.Text = "Cancelar"
         Me.btnCancelar.UseVisualStyleBackColor = True
-        AddHandler Me.btnCancelar.Click, New System.EventHandler(AddressOf Me.btnCancelar_Click)
         '
         'groupBox1
         '
@@ -102,7 +103,7 @@ Partial Class EditarEmpleado
         Me.cbEstadoCivil.Location = New System.Drawing.Point(133, 56)
         Me.cbEstadoCivil.Name = "cbEstadoCivil"
         Me.cbEstadoCivil.Size = New System.Drawing.Size(145, 21)
-        Me.cbEstadoCivil.TabIndex = 17
+        Me.cbEstadoCivil.TabIndex = 1
         '
         'label2
         '
@@ -118,7 +119,7 @@ Partial Class EditarEmpleado
         Me.txtNombre.Location = New System.Drawing.Point(133, 30)
         Me.txtNombre.Name = "txtNombre"
         Me.txtNombre.Size = New System.Drawing.Size(225, 20)
-        Me.txtNombre.TabIndex = 11
+        Me.txtNombre.TabIndex = 0
         '
         'btnEliminar
         '
@@ -128,10 +129,13 @@ Partial Class EditarEmpleado
         Me.btnEliminar.Location = New System.Drawing.Point(450, 245)
         Me.btnEliminar.Name = "btnEliminar"
         Me.btnEliminar.Size = New System.Drawing.Size(81, 23)
-        Me.btnEliminar.TabIndex = 12
+        Me.btnEliminar.TabIndex = 3
         Me.btnEliminar.Text = "Eliminar"
         Me.btnEliminar.UseVisualStyleBackColor = True
-        AddHandler Me.btnEliminar.Click, New System.EventHandler(AddressOf Me.btnEliminar_Click)
+        '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
         '
         'EditarEmpleado
         '
@@ -144,6 +148,7 @@ Partial Class EditarEmpleado
         Me.Controls.Add(Me.btnCancelar)
         Me.Controls.Add(Me.btnGuardar)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "EditarEmpleado"
@@ -152,13 +157,14 @@ Partial Class EditarEmpleado
         Me.groupBox1.ResumeLayout(False)
         Me.groupBox1.PerformLayout()
         CType(Me.pictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
 #End Region
-    Private btnGuardar As System.Windows.Forms.Button
-    Private btnCancelar As System.Windows.Forms.Button
+    Friend WithEvents btnGuardar As Button
+    Friend WithEvents btnCancelar As Button
     Private groupBox1 As System.Windows.Forms.GroupBox
     Private label2 As System.Windows.Forms.Label
     Private txtNombre As System.Windows.Forms.TextBox
@@ -166,4 +172,5 @@ Partial Class EditarEmpleado
     Private cbEstadoCivil As System.Windows.Forms.ComboBox
     Private WithEvents pictureBox1 As PictureBox
     Private WithEvents btnEliminar As Button
+    Friend WithEvents ErrorProvider As ErrorProvider
 End Class

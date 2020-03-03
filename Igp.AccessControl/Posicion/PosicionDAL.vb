@@ -8,8 +8,6 @@ Imports System.Transactions
 Public Class PosicionDAL
     Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
 
-    Private sqlDataAdapter As SqlDataAdapter
-
 
 
     Public Shared Function Save(Posicion As PosicionEntity) As PosicionEntity
@@ -19,8 +17,11 @@ Public Class PosicionDAL
             '
 
 
+
             If Existe(Posicion.Circuito, Posicion.Piloto, Posicion.Temporada, Posicion.llegada, Posicion.exite) Then
                 'Actualizar(Posicion)
+
+                'MsgBox("El registro que desea agregar ya esta en la base de datos: " & Posicion.exite.Trim)
 
             Else
                 AgregarNuevo(Posicion)
@@ -40,7 +41,8 @@ Public Class PosicionDAL
 
 
             Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ExisteinPosicion", conn)
+            'cmd = New SqlCommand("SYS_ExisteinPosicion", conn)
+            cmd = New SqlCommand("SYS_ExistePosicion", conn)
             cmd.CommandType = CommandType.StoredProcedure
 
 
@@ -49,34 +51,58 @@ Public Class PosicionDAL
             cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
             cmd.Parameters.AddWithValue("@Posllegada", Posllegada)
 
-            Dim msgparam As SqlParameter = cmd.Parameters.Add("@resultado", SqlDbType.Int)
-
-            msgparam.Direction = ParameterDirection.Output
-            'iDrepeat = msgparam.Value
-
 
             Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
-            If IsDBNull(msgparam.Value) Then
-                MsgBox("La posicion de llegada: " & Posllegada & " para el piloto: " & exite.Trim & " , ya esta en la base de datos")
-                If resultado = 0 Then
-                    Return False
+
+            If resultado = 0 Then
+
+
+                cmd = New SqlCommand("SYS_ExistePosicion1", conn)
+                cmd.CommandType = CommandType.StoredProcedure
+
+
+                cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
+                'cmd.Parameters.AddWithValue("@idPiloto", idpiloto)
+                cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
+                cmd.Parameters.AddWithValue("@Posllegada", Posllegada)
+
+                Dim Resultado1 As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+
+                If Resultado1 = 0 Then
+
+                    cmd = New SqlCommand("SYS_ExistePosicion2", conn)
+                    cmd.CommandType = CommandType.StoredProcedure
+
+
+                    cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
+                    cmd.Parameters.AddWithValue("@idPiloto", idpiloto)
+                    cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
+                    'cmd.Parameters.AddWithValue("@Posllegada", Posllegada)
+
+                    Dim Resultado2 As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                    If Resultado2 = 0 Then
+                        Return False
+                    Else
+                        MsgBox("El registro que desea agregar ya esta en la base de datos: " & exite.Trim)
+                        Return True
+                    End If
+
+
                 Else
+                        MsgBox("La posición de llegada: " & Posllegada & ", ya esta en uso en la base de datos")
                     Return True
                 End If
+
+                'Return False
+
             Else
-                'Dim posicion As New PosicionEntity
-                'posicion.exite = msgparam.Value
 
-                MsgBox("El registro N° " & msgparam.Value & " " & exite.Trim & " en puesto " & Posllegada & ", ya existe.")
-                'MsgBox(msgparam.Value)
-                'MsgBox(posicion.exite)
+                MsgBox("El registro que desea agregar ya esta en la base de datos: " & exite.Trim)
+                Return True
 
-                If resultado = 0 Then
-                    Return False
-                Else
-                    Return True
-                End If
             End If
+
+
 
 
         End Using

@@ -98,10 +98,16 @@ Public NotInheritable Class TempoDAL
 
             Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
+            If rdr.HasRows = False Then
 
-            While rdr.Read()
-                Tempo.Add(ConvertirTempo(rdr, False))
-            End While
+                MsgBox("No hay temporada activa, vaya a la configuracion")
+
+            Else
+
+                While rdr.Read()
+                    Tempo.Add(ConvertirTempo(rdr, False))
+                End While
+            End If
 
             conn.Close()
         End Using
@@ -138,10 +144,8 @@ Public NotInheritable Class TempoDAL
             '
             If Existe(Tempo.Idtempo) Then
                 Actualizar(Tempo)
-            ElseIf (Tempo.Idtempo) Then
-                AgregarNuevo(Tempo)
             Else
-                borrar(Tempo)
+                AgregarNuevo(Tempo)
 
             End If
 

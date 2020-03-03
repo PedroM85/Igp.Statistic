@@ -176,7 +176,7 @@ Public Class FrmMain
             btnNacion.BackColor = Color.FromArgb(0, 0, 0)
         End If
         If (Application.OpenForms("frmPiloto") Is Nothing) Then
-            btnCampeonato.BackColor = Color.FromArgb(0, 0, 0)
+            btnPiloto.BackColor = Color.FromArgb(0, 0, 0)
         End If
         If (Application.OpenForms("frmConfiguracion") Is Nothing) Then
             btnConfiguracion.BackColor = Color.FromArgb(0, 0, 0)

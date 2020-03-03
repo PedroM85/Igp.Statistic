@@ -22,6 +22,7 @@ Partial Class frmNacion
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmNacion))
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -30,6 +31,7 @@ Partial Class frmNacion
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Nacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
+        Me.lblContarFilas = New System.Windows.Forms.Label()
         CType(Me.dgvNacion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -39,7 +41,7 @@ Partial Class frmNacion
         Me.lblHelp.AutoSize = True
         Me.lblHelp.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblHelp.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.lblHelp.Location = New System.Drawing.Point(188, 48)
+        Me.lblHelp.Location = New System.Drawing.Point(311, 22)
         Me.lblHelp.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.lblHelp.Name = "lblHelp"
         Me.lblHelp.Size = New System.Drawing.Size(240, 15)
@@ -54,16 +56,16 @@ Partial Class frmNacion
         Me.Label1.Location = New System.Drawing.Point(23, 4)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(92, 20)
+        Me.Label1.Size = New System.Drawing.Size(82, 20)
         Me.Label1.TabIndex = 19
-        Me.Label1.Text = "NACIONES"
+        Me.Label1.Text = "EQUIPOS"
         '
         'btnNuevoEmpleado
         '
         Me.btnNuevoEmpleado.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnNuevoEmpleado.FlatAppearance.BorderSize = 0
         Me.btnNuevoEmpleado.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnNuevoEmpleado.Location = New System.Drawing.Point(545, 66)
+        Me.btnNuevoEmpleado.Location = New System.Drawing.Point(468, 330)
         Me.btnNuevoEmpleado.Name = "btnNuevoEmpleado"
         Me.btnNuevoEmpleado.Size = New System.Drawing.Size(111, 31)
         Me.btnNuevoEmpleado.TabIndex = 17
@@ -74,14 +76,14 @@ Partial Class frmNacion
         '
         Me.dgvNacion.AllowUserToAddRows = False
         Me.dgvNacion.AllowUserToDeleteRows = False
-        Me.dgvNacion.BackgroundColor = System.Drawing.SystemColors.Control
+        Me.dgvNacion.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.dgvNacion.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvNacion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvNacion.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Nacion})
-        Me.dgvNacion.Location = New System.Drawing.Point(213, 66)
+        Me.dgvNacion.Location = New System.Drawing.Point(314, 40)
         Me.dgvNacion.Name = "dgvNacion"
         Me.dgvNacion.ReadOnly = True
-        Me.dgvNacion.Size = New System.Drawing.Size(197, 391)
+        Me.dgvNacion.Size = New System.Drawing.Size(265, 257)
         Me.dgvNacion.TabIndex = 16
         '
         'Id
@@ -96,10 +98,12 @@ Partial Class frmNacion
         'Nacion
         '
         Me.Nacion.DataPropertyName = "Descripcion"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Nacion.DefaultCellStyle = DataGridViewCellStyle1
         Me.Nacion.HeaderText = "Nombre"
         Me.Nacion.Name = "Nacion"
         Me.Nacion.ReadOnly = True
-        Me.Nacion.Width = 150
+        Me.Nacion.Width = 200
         '
         'BtnCerrarForm
         '
@@ -113,10 +117,21 @@ Partial Class frmNacion
         Me.BtnCerrarForm.TabIndex = 18
         Me.BtnCerrarForm.TabStop = False
         '
+        'lblContarFilas
+        '
+        Me.lblContarFilas.AutoSize = True
+        Me.lblContarFilas.ForeColor = System.Drawing.Color.DarkRed
+        Me.lblContarFilas.Location = New System.Drawing.Point(442, 300)
+        Me.lblContarFilas.Name = "lblContarFilas"
+        Me.lblContarFilas.Size = New System.Drawing.Size(137, 13)
+        Me.lblContarFilas.TabIndex = 26
+        Me.lblContarFilas.Text = "[ ?? Regitro cargado de ??]"
+        '
         'frmNacion
         '
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(719, 512)
+        Me.ClientSize = New System.Drawing.Size(890, 446)
+        Me.Controls.Add(Me.lblContarFilas)
         Me.Controls.Add(Me.lblHelp)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.BtnCerrarForm)
@@ -138,4 +153,5 @@ Partial Class frmNacion
     Private WithEvents dgvNacion As DataGridView
     Friend WithEvents Id As DataGridViewTextBoxColumn
     Friend WithEvents Nacion As DataGridViewTextBoxColumn
+    Friend WithEvents lblContarFilas As Label
 End Class

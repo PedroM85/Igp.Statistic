@@ -104,13 +104,14 @@ Partial Class frmPosicion
         '
         Me.dgvPosicion.AllowUserToAddRows = False
         Me.dgvPosicion.AllowUserToDeleteRows = False
+        Me.dgvPosicion.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.dgvPosicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPosicion.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temporada, Me.TemNum, Me.Circuito, Me.CirNum, Me.Nombre, Me.NomNum, Me.Puesto, Me.LleNum, Me.Puntos})
         Me.dgvPosicion.GridColor = System.Drawing.SystemColors.ActiveCaption
         Me.dgvPosicion.Location = New System.Drawing.Point(6, 58)
         Me.dgvPosicion.Name = "dgvPosicion"
         Me.dgvPosicion.ReadOnly = True
-        Me.dgvPosicion.Size = New System.Drawing.Size(551, 230)
+        Me.dgvPosicion.Size = New System.Drawing.Size(575, 230)
         Me.dgvPosicion.TabIndex = 4
         '
         'Temporada

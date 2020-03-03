@@ -87,20 +87,30 @@ Public NotInheritable Class EmpleadosDAL
 			conn.Open()
 
 			Dim cmd As SqlCommand
-			cmd = New SqlCommand("SYS_InsertPiloto", conn)
+			cmd = New SqlCommand("SYS_ExistePilotoBy", conn)
 			cmd.CommandType = CommandType.StoredProcedure
 
+			cmd.Parameters.AddWithValue("@id", empleado.Nombre)
 
-			cmd.Parameters.AddWithValue("@nPiloto", empleado.Nombre)
-			cmd.Parameters.AddWithValue("@idNacion", empleado.EstadoCivil)
+			Dim valor As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-			'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
-			'imageParam.Value = empleado.Imagen
+			If valor = 0 Then
 
-			'
-			' se recupera el id generado por la tabla
-			'
-			empleado.IdEmpleado = Convert.ToInt32(cmd.ExecuteScalar())
+				cmd = New SqlCommand("SYS_InsertPiloto", conn)
+				cmd.CommandType = CommandType.StoredProcedure
+
+
+				cmd.Parameters.AddWithValue("@nPiloto", empleado.Nombre)
+				cmd.Parameters.AddWithValue("@idNacion", empleado.EstadoCivil)
+				'
+				' se recupera el id generado por la tabla
+				'
+				empleado.IdEmpleado = Convert.ToInt32(cmd.ExecuteScalar())
+			Else
+
+				MsgBox("El Piloto que desea agregar ya se encuentra registrado: " & empleado.Nombre)
+
+			End If
 		End Using
 
 		Return empleado

@@ -22,6 +22,7 @@ Partial Class frmCampeonato
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCampeonato))
         Me.dgvData = New System.Windows.Forms.DataGridView()
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -38,20 +39,23 @@ Partial Class frmCampeonato
         Me.BtnCerrarForm = New System.Windows.Forms.PictureBox()
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.lblContarFilas = New System.Windows.Forms.Label()
+        Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'dgvData
         '
         Me.dgvData.AllowUserToAddRows = False
         Me.dgvData.AllowUserToDeleteRows = False
+        Me.dgvData.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Temporada, Me.Circuito, Me.Piloto, Me.Llegada, Me.Puntos})
         Me.dgvData.Location = New System.Drawing.Point(12, 150)
         Me.dgvData.Name = "dgvData"
         Me.dgvData.ReadOnly = True
-        Me.dgvData.Size = New System.Drawing.Size(647, 310)
+        Me.dgvData.Size = New System.Drawing.Size(661, 310)
         Me.dgvData.TabIndex = 0
         '
         'Id
@@ -176,6 +180,10 @@ Partial Class frmCampeonato
         Me.lblContarFilas.TabIndex = 25
         Me.lblContarFilas.Text = "[ ?? Regitro cargado de ??]"
         '
+        'ErrorProvider
+        '
+        Me.ErrorProvider.ContainerControl = Me
+        '
         'frmCampeonato
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -195,6 +203,7 @@ Partial Class frmCampeonato
         Me.Text = "frmCampeonato"
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -215,4 +224,5 @@ Partial Class frmCampeonato
     Friend WithEvents Llegada As DataGridViewTextBoxColumn
     Friend WithEvents Puntos As DataGridViewTextBoxColumn
     Friend WithEvents lblContarFilas As Label
+    Friend WithEvents ErrorProvider As ErrorProvider
 End Class
