@@ -47,7 +47,7 @@ Partial Class frmPiloto
         Me.dgvEmpleados.Location = New System.Drawing.Point(260, 30)
         Me.dgvEmpleados.Name = "dgvEmpleados"
         Me.dgvEmpleados.ReadOnly = True
-        Me.dgvEmpleados.Size = New System.Drawing.Size(347, 391)
+        Me.dgvEmpleados.Size = New System.Drawing.Size(358, 391)
         Me.dgvEmpleados.TabIndex = 0
         '
         'IdEmpleado

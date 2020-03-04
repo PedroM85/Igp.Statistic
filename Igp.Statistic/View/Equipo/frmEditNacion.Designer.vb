@@ -93,6 +93,7 @@ Partial Class frmEditNacion
         Me.Controls.Add(Me.btnGuardar)
         Me.Controls.Add(Me.label2)
         Me.Controls.Add(Me.txtNacion)
+        Me.KeyPreview = True
         Me.Name = "frmEditNacion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Editor de Naciones"

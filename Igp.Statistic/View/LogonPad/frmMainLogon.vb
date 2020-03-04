@@ -86,9 +86,6 @@
     Private Sub EnableButtons()
         btnEdit.Enabled = Not lstConnections.SelectedItem Is Nothing
         btnDelete.Enabled = btnEdit.Enabled
-        btnLogin.Enabled = btnEdit.Enabled
-        btnLoginPOS.Enabled = btnEdit.Enabled
-        btnLoginEcom.Enabled = btnEdit.Enabled
     End Sub
 
     Private Sub HideLogonPad()
@@ -100,7 +97,7 @@
         'oBallon.ShowBalloon(niLogonPad, "Mensaje de Logon Pad", "La aplicación continua ejecutandose." & vbCrLf & "Para utilizarla haga clic con el botón secundario y presione 'Abrir'", 0, NotifyBalloon.NotifyStyle.Info)
     End Sub
 
-    Private Sub btnLoginEcom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLoginEcom.Click
+    Private Sub btnLoginEcom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         'LaunchEcom()
     End Sub
 
@@ -129,32 +126,6 @@
 
     Private Sub btnClose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClose.Click
         HideLogonPad()
-    End Sub
-
-    Private Sub niLogonPad_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        Me.Show()
-    End Sub
-
-    Private Sub btnLogin_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnLogin.Click
-        'LaunchManager()
-    End Sub
-
-
-    Private Sub btnLoginPOS_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles btnLoginPOS.Click
-        'LaunchPOS()
-    End Sub
-
-    Private Sub MainForm_Paint(ByVal sender As Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles MyBase.Paint
-        e.Graphics.DrawRectangle(New Pen(Color.FromArgb(59, 95, 127), 4), New Rectangle(0, 0, Me.Width, Me.Height))
-    End Sub
-
-    Private Sub mnuOpen_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles mnuOpen.Click
-        Me.Show()
-    End Sub
-
-    Private Sub mnuClose_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles mnuClose.Click
-        Me.Close()
-
     End Sub
 
     Private Sub lstConnections_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles lstConnections.Click

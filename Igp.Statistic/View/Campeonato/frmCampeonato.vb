@@ -10,8 +10,6 @@ Imports Igp.AccessControl.Entidades
 Partial Public Class frmCampeonato
     Inherits Form
 
-
-
     Private _idTemporada As String = String.Empty
     Private _idCircuito As String = String.Empty
 
@@ -70,14 +68,22 @@ Partial Public Class frmCampeonato
     End Sub
 
     Private Sub CargarBusqueda()
-        dgvData.AutoGenerateColumns = False
-        dgvData.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
-        dgvData.DataSource = CampeoDAL.ObtenerByTempoCircui(_idTemporada, _idCircuito)
+        For j As Integer = 0 To dgvData.ColumnCount - 1
+            With dgvData
+                .AutoGenerateColumns = False
+                .AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
+                .Columns(j).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .Columns(j).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+                .DataSource = CampeoDAL.ObtenerByTempoCircui(_idTemporada, _idCircuito)
+            End With
 
-        For Each row As DataGridViewRow In dgvData.Rows
-            Dim Campeo As CampeoEntity = TryCast(row.DataBoundItem, CampeoEntity)
+            For Each row As DataGridViewRow In dgvData.Rows
+                Dim Campeo As CampeoEntity = TryCast(row.DataBoundItem, CampeoEntity)
+            Next
+            contar_filas()
         Next
-        contar_filas()
+
+
     End Sub
 
     Private Sub cboTemporada_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboTemporada.SelectedIndexChanged
@@ -113,4 +119,6 @@ Partial Public Class frmCampeonato
             lblContarFilas.Text = "[ " & filas & " Regitros cargados de " & AppPar.npiloto & "]"
         End If
     End Sub
+
+
 End Class

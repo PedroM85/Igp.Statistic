@@ -12,6 +12,7 @@ Public Class ReadXML
 
         If Not File.Exists(Application.StartupPath & "\IgpManager.xml") Then
             CreateXMLFile()
+
         End If
 
         Try

@@ -245,5 +245,7 @@ Partial Public Class frmPosicion
         End Try
     End Sub
 
-
+    Private Sub txtPuesto_GotFocus(sender As Object, e As EventArgs) Handles txtPuesto.GotFocus
+        txtPuesto.SelectAll()
+    End Sub
 End Class

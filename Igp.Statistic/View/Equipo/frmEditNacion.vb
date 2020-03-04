@@ -74,4 +74,15 @@ Partial Public Class frmEditNacion
 		Me.DialogResult = DialogResult.OK
 		Me.Close()
 	End Sub
+
+	Private Sub frmEditNacion_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+		Select Case e.KeyData
+			Case Keys.Escape
+				MessageBox.Show("Esta seguro que desea salir sin guardar los cambios", "IgpManager", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+				Me.Close()
+
+		End Select
+	End Sub
+
+
 End Class

@@ -23,7 +23,10 @@ Partial Public Class frmPiloto
 	Private Sub CargarListaEmpleados()
 		dgvEmpleados.AutoGenerateColumns = False
 		dgvEmpleados.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
+		dgvEmpleados.Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
 		dgvEmpleados.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+		dgvEmpleados.Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+		dgvEmpleados.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
 		dgvEmpleados.DataSource = EmpleadosDAL.ObtenerTodos()
 
 		For Each row As DataGridViewRow In dgvEmpleados.Rows

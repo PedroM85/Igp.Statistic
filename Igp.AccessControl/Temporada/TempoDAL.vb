@@ -8,52 +8,27 @@ Imports System.Data.SqlClient
 Imports System.Transactions
 
 Public NotInheritable Class TempoDAL
-    Inherits Conexion
+    'Inherits Conexion
 
-    Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
+
     Public Shared Function ObtenerTodos() As List(Of TempoEntity)
 
         Dim Tempo As New List(Of TempoEntity)()
 
-        'Try
-        '    conectar()
+        ConectarDB()
 
-        '    Dim cmd As New SqlCommand("SYS_SelectallTempo", RutaSQL)
-        '    cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_SelectallTempo", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-        '    Dim rdr As SqlDataReader = cmd.ExecuteReader()
-
-
-        '    While rdr.Read()
-        '        Tempo.Add(ConvertirTempo(rdr, False))
-        '    End While
-
-        '    desconectar()
-
-        '    Return Tempo
-        'Catch ex As Exception
-
-        'End Try
+        Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
 
-
-
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_SelectallTempo", conn)
-            cmd.CommandType = CommandType.StoredProcedure
-
-            Dim rdr As SqlDataReader = cmd.ExecuteReader()
-
-
-            While rdr.Read()
+        While rdr.Read()
                 Tempo.Add(ConvertirTempo(rdr, False))
-            End While
+        End While
 
-            conn.Close()
-        End Using
+        DesconectarDB()
 
         Return Tempo
 
@@ -64,23 +39,22 @@ Public NotInheritable Class TempoDAL
 
         Dim Tempo As TempoEntity = Nothing
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ObtenerTempobyID", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ObtenerTempobyID", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", idTempo)
+        cmd.Parameters.AddWithValue("@id", idTempo)
 
-            Dim reader As SqlDataReader = cmd.ExecuteReader()
+        Dim reader As SqlDataReader = cmd.ExecuteReader()
 
-            If reader.Read() Then
-                Tempo = ConvertirTempo(reader, True)
-            End If
+        If reader.Read() Then
+            Tempo = ConvertirTempo(reader, True)
+        End If
 
-        End Using
+        DesconectarDB()
 
         Return Tempo
 
@@ -89,16 +63,15 @@ Public NotInheritable Class TempoDAL
 
         Dim Tempo As New List(Of TempoEntity)()
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_SelectaTempoactive", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_SelectaTempoactive", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            Dim rdr As SqlDataReader = cmd.ExecuteReader()
+        Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
-            If rdr.HasRows = False Then
+        If rdr.HasRows = False Then
 
                 MsgBox("No hay temporada activa, vaya a la configuracion")
 
@@ -109,8 +82,7 @@ Public NotInheritable Class TempoDAL
                 End While
             End If
 
-            conn.Close()
-        End Using
+        DesconectarDB()
 
         Return Tempo
 
@@ -159,81 +131,81 @@ Public NotInheritable Class TempoDAL
 
 
     Public Shared Function Existe(idTempo As Integer) As Boolean
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-            Dim cmd As SqlCommand
+        ConectarDB()
+
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ExisteTempo", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd = New SqlCommand("SYS_ExisteTempo", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.AddWithValue("@id", idTempo)
 
+        Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-            cmd.Parameters.AddWithValue("@id", idTempo)
+        If resultado = 0 Then
+            Return False
+        Else
+            Return True
+        End If
 
-            Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
-
-            If resultado = 0 Then
-                Return False
-            Else
-                Return True
-            End If
-        End Using
+        DesconectarDB()
 
     End Function
 
     Private Shared Function AgregarNuevo(Tempo As TempoEntity) As TempoEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_InsertTempo", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_InsertTempo", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@Tempo", Tempo.Descripcion)
-            cmd.Parameters.AddWithValue("@isactive", Tempo.isactive)
-            '
-            ' se recupera el id generado por la tabla
-            '
-            Tempo.Idtempo = Convert.ToInt32(cmd.ExecuteScalar())
-        End Using
+        cmd.Parameters.AddWithValue("@Tempo", Tempo.Descripcion)
+        cmd.Parameters.AddWithValue("@isactive", Tempo.isactive)
+        '
+        ' se recupera el id generado por la tabla
+        '
+        Tempo.Idtempo = Convert.ToInt32(cmd.ExecuteScalar())
+
+        DesconectarDB()
 
         Return Tempo
     End Function
 
     Private Shared Function Actualizar(Tempo As TempoEntity) As TempoEntity
-        Using conn As New SqlConnection(coruta)
-
-            conn.Open()
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_UpdateTempo", conn)
-            cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@Tempo", Tempo.Descripcion)
-            cmd.Parameters.AddWithValue("@isactive", Tempo.isactive)
-            cmd.Parameters.AddWithValue("@id", Tempo.Idtempo)
+        ConectarDB()
 
-            cmd.ExecuteNonQuery()
-        End Using
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_UpdateTempo", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
+
+
+        cmd.Parameters.AddWithValue("@Tempo", Tempo.Descripcion)
+        cmd.Parameters.AddWithValue("@isactive", Tempo.isactive)
+        cmd.Parameters.AddWithValue("@id", Tempo.Idtempo)
+
+        cmd.ExecuteNonQuery()
+
+        DesconectarDB()
 
         Return Tempo
     End Function
 
     Private Shared Function borrar(Tempo As TempoEntity) As TempoEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_DeleteTempo", conn)
-            cmd.CommandType = CommandType.StoredProcedure
-
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_DeleteTempo", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", Tempo.Idtempo)
+        cmd.Parameters.AddWithValue("@id", Tempo.Idtempo)
 
-            cmd.ExecuteNonQuery()
-        End Using
+        cmd.ExecuteNonQuery()
+
+        DesconectarDB()
 
         Return Tempo
     End Function

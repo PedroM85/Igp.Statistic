@@ -7,28 +7,27 @@ Imports System.Data.SqlClient
 Imports System.Transactions
 
 Public NotInheritable Class CircuitoDAL
-    Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
+
 
     Public Shared Function ObtenerTodos() As List(Of CircuitoEntity)
 
         Dim lista As New List(Of CircuitoEntity)()
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_SelectallCircuito", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_SelectallCircuito", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            Dim rdr As SqlDataReader = cmd.ExecuteReader()
+        Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
 
-            While rdr.Read()
-                lista.Add(ConvertirCircuito(rdr, False))
-            End While
+        While rdr.Read()
+            lista.Add(ConvertirCircuito(rdr, False))
+        End While
 
-            conn.Close()
-        End Using
+        DesconectarDB()
+
 
         Return lista
 
@@ -38,23 +37,23 @@ Public NotInheritable Class CircuitoDAL
 
         Dim Circuito As CircuitoEntity = Nothing
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ObtenerCircuitobyID", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        ConectarDB()
 
 
-            cmd.Parameters.AddWithValue("@id", idCircuito)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ObtenerCircuitobyID", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            Dim reader As SqlDataReader = cmd.ExecuteReader()
 
-            If reader.Read() Then
-                Circuito = ConvertirCircuito(reader, True)
-            End If
+        cmd.Parameters.AddWithValue("@id", idCircuito)
 
-        End Using
+        Dim reader As SqlDataReader = cmd.ExecuteReader()
+
+        If reader.Read() Then
+            Circuito = ConvertirCircuito(reader, True)
+        End If
+
+        DesconectarDB()
 
         Return Circuito
 
@@ -92,66 +91,71 @@ Public NotInheritable Class CircuitoDAL
 
 
     Public Shared Function Existe(idCircuito As Integer) As Boolean
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ExisteCircuito", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ExisteCircuito", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", idCircuito)
+        cmd.Parameters.AddWithValue("@id", idCircuito)
 
-            Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+        Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-            If resultado = 0 Then
-                Return False
-            Else
-                Return True
-            End If
-        End Using
+        If resultado = 0 Then
+            Return False
+        Else
+            Return True
+        End If
+
+        DesconectarDB()
+
 
     End Function
 
     Private Shared Function AgregarNuevo(Circuito As CircuitoEntity) As CircuitoEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_InsertCircuito", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        ConectarDB()
 
 
-            cmd.Parameters.AddWithValue("@nCircuito", Circuito.Circuito)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_InsertCircuito", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
+
+
+        cmd.Parameters.AddWithValue("@nCircuito", Circuito.Circuito)
 
 
 
-            '
-            ' se recupera el id generado por la tabla
-            '
-            Circuito.Id = Convert.ToInt32(cmd.ExecuteScalar())
-        End Using
+        '
+        ' se recupera el id generado por la tabla
+        '
+        Circuito.Id = Convert.ToInt32(cmd.ExecuteScalar())
+
+        DesconectarDB()
 
         Return Circuito
     End Function
 
     Private Shared Function Actualizar(Circuito As CircuitoEntity) As CircuitoEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_UpdateCircuito", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        ConectarDB()
 
 
-            cmd.Parameters.AddWithValue("@nCircuito", Circuito.Circuito)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_UpdateCircuito", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", Circuito.Id)
+        cmd.Parameters.AddWithValue("@nCircuito", Circuito.Circuito)
 
-            cmd.ExecuteNonQuery()
-        End Using
+
+        cmd.Parameters.AddWithValue("@id", Circuito.Id)
+
+        cmd.ExecuteNonQuery()
+
+
+        DesconectarDB()
 
         Return Circuito
     End Function
@@ -176,17 +180,19 @@ Public NotInheritable Class CircuitoDAL
     End Function
 
     Private Shared Function borrar(Circuito As CircuitoEntity) As CircuitoEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_DeleteCircuito", conn)
-            cmd.CommandType = CommandType.StoredProcedure
 
-            cmd.Parameters.AddWithValue("@id", Circuito.Id)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_DeleteCircuito", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            cmd.ExecuteNonQuery()
-        End Using
+        cmd.Parameters.AddWithValue("@id", Circuito.Id)
+
+        cmd.ExecuteNonQuery()
+
+
+        DesconectarDB()
 
         Return Circuito
     End Function

@@ -5,28 +5,27 @@ Imports Igp.AccessControl.Entidades
 Imports System.Data.SqlClient
 Imports System.Transactions
 Public NotInheritable Class ConfigDAL
-    Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
+
     Dim TypeV As String = Nothing
     Public Shared Function ObtenerTodos() As List(Of ConfigEntity)
 
         Dim lista As New List(Of ConfigEntity)()
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_SelectallConfig", conn)
-            cmd.CommandType = CommandType.StoredProcedure
-
-            Dim rdr As SqlDataReader = cmd.ExecuteReader()
+        ConectarDB()
 
 
-            While rdr.Read()
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_SelectallConfig", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        Dim rdr As SqlDataReader = cmd.ExecuteReader()
+
+
+        While rdr.Read()
                 lista.Add(ConvertirConfig(rdr, False))
-            End While
+        End While
 
-            conn.Close()
-        End Using
+        DesconectarDB()
 
         Return lista
 
@@ -37,23 +36,23 @@ Public NotInheritable Class ConfigDAL
 
         Dim Config As ConfigEntity = Nothing
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ObtenerConfigbyID", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        ConectarDB()
 
 
-            cmd.Parameters.AddWithValue("@id", idConfig)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ObtenerConfigbyID", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            Dim reader As SqlDataReader = cmd.ExecuteReader()
 
-            If reader.Read() Then
-                Config = ConvertirConfig(reader, True)
-            End If
+        cmd.Parameters.AddWithValue("@id", idConfig)
 
-        End Using
+        Dim reader As SqlDataReader = cmd.ExecuteReader()
+
+        If reader.Read() Then
+            Config = ConvertirConfig(reader, True)
+        End If
+
+        DesconectarDB()
 
         Return Config
 
@@ -102,54 +101,55 @@ Public NotInheritable Class ConfigDAL
 
 
     Public Shared Function Existe(idConfig As Integer) As Boolean
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ExisteConfig", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ExisteConfig", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", idConfig)
+        cmd.Parameters.AddWithValue("@id", idConfig)
 
-            Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+        Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-            If resultado = 0 Then
-                Return False
-            Else
-                Return True
-            End If
-        End Using
+        If resultado = 0 Then
+            Return False
+        Else
+            Return True
+        End If
+
+        DesconectarDB()
 
     End Function
 
 
     Private Shared Function Actualizar(config As ConfigEntity) As ConfigEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_UpdateConfig", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        ConectarDB()
 
 
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_UpdateConfig", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            Select Case config.type
-                Case "N"
-                    cmd.Parameters.AddWithValue("@PAR_Numeric", config.Valor)
-                    cmd.Parameters.AddWithValue("@PAR_String", DBNull.Value)
-                Case "S"
-                    cmd.Parameters.AddWithValue("@PAR_Numeric", DBNull.Value)
-                    cmd.Parameters.AddWithValue("PAR_String", config.Valor)
-            End Select
-            cmd.Parameters.AddWithValue("@PAR_type", config.type)
 
-            cmd.Parameters.AddWithValue("@id", config.Id)
 
-            cmd.ExecuteNonQuery()
-        End Using
+        Select Case config.type
+            Case "N"
+                cmd.Parameters.AddWithValue("@PAR_Numeric", config.Valor)
+                cmd.Parameters.AddWithValue("@PAR_String", DBNull.Value)
+            Case "S"
+                cmd.Parameters.AddWithValue("@PAR_Numeric", DBNull.Value)
+                cmd.Parameters.AddWithValue("PAR_String", config.Valor)
+        End Select
+        cmd.Parameters.AddWithValue("@PAR_type", config.type)
+
+        cmd.Parameters.AddWithValue("@id", config.id)
+
+        cmd.ExecuteNonQuery()
+
+        DesconectarDB()
 
         Return config
     End Function

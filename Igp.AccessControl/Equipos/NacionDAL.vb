@@ -2,32 +2,34 @@
 Imports System.Linq
 Imports System.Text
 Imports Igp.AccessControl.Entidades
+Imports Igp.AccessControl.Conexion
 Imports System.Data.SqlClient
 Imports System.Transactions
 Public NotInheritable Class NacionDAL
-    Inherits 
 
-    Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
+
     Public Shared Function ObtenerTodos() As List(Of NacionEntity)
+
 
         Dim lista As New List(Of NacionEntity)()
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        'Using conn As New SqlConnection(ConectarDB())
+        ConectarDB()
+        'Conn.Open()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_SelectallNaciones", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_SelectallNaciones", conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            Dim rdr As SqlDataReader = cmd.ExecuteReader()
+        Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
 
-            While rdr.Read()
-                lista.Add(ConvertirNacion(rdr, False))
-            End While
+        While rdr.Read()
+            lista.Add(ConvertirNacion(rdr, False))
+        End While
 
-            conn.Close()
-        End Using
+        DesconectarDB()
+        ' End Using
 
         Return lista
 
@@ -37,24 +39,24 @@ Public NotInheritable Class NacionDAL
 
         Dim nacion As NacionEntity = Nothing
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        'Using conn As New SqlConnection(coruta)
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ObtenerNacionbyID", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ObtenerNacionbyID", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", idEmpleado)
+        cmd.Parameters.AddWithValue("@id", idEmpleado)
 
-            Dim reader As SqlDataReader = cmd.ExecuteReader()
+        Dim reader As SqlDataReader = cmd.ExecuteReader()
 
-            If reader.Read() Then
-                nacion = ConvertirNacion(reader, True)
-            End If
+        If reader.Read() Then
+            nacion = ConvertirNacion(reader, True)
+        End If
 
-        End Using
-
+        'End Using
+        DesconectarDB()
         Return nacion
 
     End Function
@@ -91,78 +93,77 @@ Public NotInheritable Class NacionDAL
 
 
     Public Shared Function Existe(idEmpleado As Integer) As Boolean
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+
+        ConectarDB()
 
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ExisteNacion", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ExisteNacion", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", idEmpleado)
+        cmd.Parameters.AddWithValue("@id", idEmpleado)
 
-            Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+        Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-            If resultado = 0 Then
-                Return False
-            Else
-                Return True
+        If resultado = 0 Then
+            Return False
+        Else
+            Return True
             End If
-        End Using
+
+        DesconectarDB()
 
     End Function
 
     Private Shared Function AgregarNuevo(nacion As NacionEntity) As NacionEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ExisteNacionBy", conn)
+
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ExisteNacionBy", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
+
+        cmd.Parameters.AddWithValue("@id", nacion.Descripcion)
+
+        Dim valor As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+
+        If valor = 0 Then
+
+            cmd = New SqlCommand("SYS_InsertNacion", Conn)
             cmd.CommandType = CommandType.StoredProcedure
 
-            cmd.Parameters.AddWithValue("@id", nacion.Descripcion)
+            cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
 
-            Dim valor As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+            nacion.IdNacion = Convert.ToInt32(cmd.ExecuteScalar())
+        Else
 
-            If valor = 0 Then
+            MsgBox("El equipo que desea agregar ya se encuentra registrado: " & nacion.Descripcion)
 
-
-
-                cmd = New SqlCommand("SYS_InsertNacion", conn)
-                cmd.CommandType = CommandType.StoredProcedure
-
-                cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
-
-                nacion.IdNacion = Convert.ToInt32(cmd.ExecuteScalar())
-            Else
-
-                MsgBox("El equipo que desea agregar ya se encuentra registrado: " & nacion.Descripcion)
-
-            End If
+        End If
 
 
-        End Using
+        DesconectarDB()
 
         Return nacion
     End Function
 
     Private Shared Function Actualizar(nacion As NacionEntity) As NacionEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_UpdateNacion", conn)
-            cmd.CommandType = CommandType.StoredProcedure
-
-
-            cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_UpdateNacion", conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@id", nacion.IdNacion)
+        cmd.Parameters.AddWithValue("@idNacion", nacion.Descripcion)
 
-            cmd.ExecuteNonQuery()
-        End Using
+
+        cmd.Parameters.AddWithValue("@id", nacion.IdNacion)
+        cmd.ExecuteNonQuery()
+
+        DesconectarDB()
 
         Return nacion
     End Function
@@ -179,17 +180,6 @@ Public NotInheritable Class NacionDAL
 
             End If
 
-            '
-            ' graba los estudios relacionado con el empleado, 
-            ' se eliminan las opciones existentes
-            ' y se ingresan la nueva seleccion del usuario
-            '
-            'EstudiosDAL.EliminarPorEmpleado(empleado)
-
-            'For Each estudio As EstudioEntity In empleado.Estudios
-            'EstudiosDAL.RelacionarConEmpleado(empleado, estudio)
-            'Next
-
 
             scope.Complete()
         End Using
@@ -198,28 +188,22 @@ Public NotInheritable Class NacionDAL
     End Function
 
     Private Shared Function borrar(nacion As NacionEntity) As NacionEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_DeleteNacion", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        ConectarDB()
 
 
-            'cmd.Parameters.AddWithValue("@nPiloto", empleado.Nombre)
-            'cmd.Parameters.AddWithValue("@Apellido", empleado.Apellido)
-            'cmd.Parameters.AddWithValue("@FechaNacimiento", empleado.FechaNacimiento)
-            'cmd.Parameters.AddWithValue("@idNacion", empleado.EstadoCivil)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_DeleteNacion", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@Imagen", System.Data.SqlDbType.Image)
-            'imageParam.Value = empleado.Imagen
 
-            cmd.Parameters.AddWithValue("@id", nacion.IdNacion)
+        cmd.Parameters.AddWithValue("@id", nacion.IdNacion)
 
-            cmd.ExecuteNonQuery()
-        End Using
+        cmd.ExecuteNonQuery()
+
+        DesconectarDB()
 
         Return nacion
+
     End Function
 
 End Class

@@ -23,7 +23,7 @@ Public Class ConnectionInfo
 #Region " Methods "
 
     Public Sub New(ByVal LogonInfoPath As String)
-        sFileName = LogonInfoPath & "\LogonInfo.xml"
+        sFileName = LogonInfoPath & "\IgpManager.xml"
     End Sub
     Public Sub New()
         Me.New(Windows.Forms.Application.StartupPath)
@@ -42,9 +42,15 @@ Public Class ConnectionInfo
         Dim sXPath As String
 
         Try
+
+
             oXML.Load(sFileName)
 
-            If sFindName = String.Empty Then
+
+
+
+
+                If sFindName = String.Empty Then
                 sXPath = "//ConnectionInfo[@Default='True']"
             Else
                 sXPath = String.Format("//ConnectionInfo[@Name='{0}']", sFindName)
@@ -59,13 +65,15 @@ Public Class ConnectionInfo
                         sName = .GetAttribute("Name")
                         sDatabase = System.Windows.Forms.Application.StartupPath & "\" & .GetAttribute("Database")
                         sUserId = .GetAttribute("User")
-                        sPassword = ewave.Tools.ProtectData.DecryptData(.GetAttribute("Password"), bKey, bIV)
+                        'sPassword = ewave.Tools.ProtectData.DecryptData(.GetAttribute("Password"), bKey, bIV)
+                        sPassword = .GetAttribute("Password")
                     Else
                         sName = .GetAttribute("Name")
                         sServer = .GetAttribute("Server")
                         sDatabase = .GetAttribute("Database")
                         sUserId = .GetAttribute("User")
-                        sPassword = ewave.Tools.ProtectData.DecryptData(.GetAttribute("Password"), bKey, bIV)
+                        'sPassword = ewave.Tools.ProtectData.DecryptData(.GetAttribute("Password"), bKey, bIV)
+                        sPassword = .GetAttribute("Password")
                     End If
                 End With
             End If

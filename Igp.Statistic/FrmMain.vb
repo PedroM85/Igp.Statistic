@@ -1,6 +1,6 @@
 ﻿Imports System.Runtime.InteropServices
-Imports Igp.AccessControl.Entidades
-Imports Igp.AccessControl
+
+
 
 Public Class FrmMain
 #Region "FUNCIONALIDADES DEL FORMULARIO"

@@ -50,12 +50,14 @@ Partial Class frmCampeonato
         Me.dgvData.AllowUserToAddRows = False
         Me.dgvData.AllowUserToDeleteRows = False
         Me.dgvData.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
+        Me.dgvData.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Temporada, Me.Circuito, Me.Piloto, Me.Llegada, Me.Puntos})
-        Me.dgvData.Location = New System.Drawing.Point(12, 150)
+        Me.dgvData.Location = New System.Drawing.Point(66, 43)
         Me.dgvData.Name = "dgvData"
         Me.dgvData.ReadOnly = True
-        Me.dgvData.Size = New System.Drawing.Size(661, 310)
+        Me.dgvData.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.dgvData.Size = New System.Drawing.Size(584, 425)
         Me.dgvData.TabIndex = 0
         '
         'Id
@@ -64,6 +66,7 @@ Partial Class frmCampeonato
         Me.Id.HeaderText = "ID"
         Me.Id.Name = "Id"
         Me.Id.ReadOnly = True
+        Me.Id.Width = 35
         '
         'Temporada
         '
@@ -71,6 +74,7 @@ Partial Class frmCampeonato
         Me.Temporada.HeaderText = "Temporada"
         Me.Temporada.Name = "Temporada"
         Me.Temporada.ReadOnly = True
+        Me.Temporada.Width = 110
         '
         'Circuito
         '
@@ -78,6 +82,7 @@ Partial Class frmCampeonato
         Me.Circuito.HeaderText = "Circuito"
         Me.Circuito.Name = "Circuito"
         Me.Circuito.ReadOnly = True
+        Me.Circuito.Width = 110
         '
         'Piloto
         '
@@ -85,6 +90,7 @@ Partial Class frmCampeonato
         Me.Piloto.HeaderText = "Piloto"
         Me.Piloto.Name = "Piloto"
         Me.Piloto.ReadOnly = True
+        Me.Piloto.Width = 130
         '
         'Llegada
         '
@@ -92,6 +98,7 @@ Partial Class frmCampeonato
         Me.Llegada.HeaderText = "Llegada"
         Me.Llegada.Name = "Llegada"
         Me.Llegada.ReadOnly = True
+        Me.Llegada.Width = 75
         '
         'Puntos
         '
@@ -99,11 +106,12 @@ Partial Class frmCampeonato
         Me.Puntos.HeaderText = "Puntos"
         Me.Puntos.Name = "Puntos"
         Me.Puntos.ReadOnly = True
+        Me.Puntos.Width = 75
         '
         'cboTemporada
         '
         Me.cboTemporada.FormattingEnabled = True
-        Me.cboTemporada.Location = New System.Drawing.Point(102, 50)
+        Me.cboTemporada.Location = New System.Drawing.Point(656, 81)
         Me.cboTemporada.Name = "cboTemporada"
         Me.cboTemporada.Size = New System.Drawing.Size(149, 21)
         Me.cboTemporada.TabIndex = 1
@@ -111,7 +119,7 @@ Partial Class frmCampeonato
         'cboCircuito
         '
         Me.cboCircuito.FormattingEnabled = True
-        Me.cboCircuito.Location = New System.Drawing.Point(102, 77)
+        Me.cboCircuito.Location = New System.Drawing.Point(656, 121)
         Me.cboCircuito.Name = "cboCircuito"
         Me.cboCircuito.Size = New System.Drawing.Size(149, 21)
         Me.cboCircuito.TabIndex = 2
@@ -119,7 +127,7 @@ Partial Class frmCampeonato
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(14, 53)
+        Me.Label1.Location = New System.Drawing.Point(653, 65)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(64, 13)
         Me.Label1.TabIndex = 3
@@ -128,7 +136,7 @@ Partial Class frmCampeonato
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(17, 80)
+        Me.Label2.Location = New System.Drawing.Point(653, 105)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(45, 13)
         Me.Label2.TabIndex = 4
@@ -142,9 +150,9 @@ Partial Class frmCampeonato
         Me.Label3.Location = New System.Drawing.Point(30, 9)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(101, 20)
+        Me.Label3.Size = New System.Drawing.Size(239, 20)
         Me.Label3.TabIndex = 23
-        Me.Label3.Text = "Campeonato"
+        Me.Label3.Text = "CAMPEONATO POR CIRCUITO"
         '
         'BtnCerrarForm
         '
@@ -163,7 +171,7 @@ Partial Class frmCampeonato
         Me.btnSearch.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnSearch.FlatAppearance.BorderSize = 0
         Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSearch.Location = New System.Drawing.Point(170, 104)
+        Me.btnSearch.Location = New System.Drawing.Point(724, 148)
         Me.btnSearch.Name = "btnSearch"
         Me.btnSearch.Size = New System.Drawing.Size(81, 23)
         Me.btnSearch.TabIndex = 24
@@ -174,7 +182,7 @@ Partial Class frmCampeonato
         '
         Me.lblContarFilas.AutoSize = True
         Me.lblContarFilas.ForeColor = System.Drawing.Color.DarkRed
-        Me.lblContarFilas.Location = New System.Drawing.Point(525, 463)
+        Me.lblContarFilas.Location = New System.Drawing.Point(506, 27)
         Me.lblContarFilas.Name = "lblContarFilas"
         Me.lblContarFilas.Size = New System.Drawing.Size(137, 13)
         Me.lblContarFilas.TabIndex = 25
@@ -189,7 +197,7 @@ Partial Class frmCampeonato
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(800, 485)
+        Me.ClientSize = New System.Drawing.Size(870, 485)
         Me.Controls.Add(Me.lblContarFilas)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.Label3)
@@ -217,12 +225,12 @@ Partial Class frmCampeonato
     Private WithEvents Label3 As Label
     Friend WithEvents BtnCerrarForm As PictureBox
     Private WithEvents btnSearch As Button
+    Friend WithEvents lblContarFilas As Label
+    Friend WithEvents ErrorProvider As ErrorProvider
     Friend WithEvents Id As DataGridViewTextBoxColumn
     Friend WithEvents Temporada As DataGridViewTextBoxColumn
     Friend WithEvents Circuito As DataGridViewTextBoxColumn
     Friend WithEvents Piloto As DataGridViewTextBoxColumn
     Friend WithEvents Llegada As DataGridViewTextBoxColumn
     Friend WithEvents Puntos As DataGridViewTextBoxColumn
-    Friend WithEvents lblContarFilas As Label
-    Friend WithEvents ErrorProvider As ErrorProvider
 End Class

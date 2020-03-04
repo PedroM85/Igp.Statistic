@@ -6,8 +6,6 @@ Imports System.Data.SqlClient
 Imports System.Transactions
 
 Public Class PosicionDAL
-    Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
-
 
 
     Public Shared Function Save(Posicion As PosicionEntity) As PosicionEntity
@@ -36,23 +34,21 @@ Public Class PosicionDAL
     End Function
 
     Public Shared Function Existe(idCircuito As Integer, idpiloto As Integer, idTemporada As Integer, Posllegada As Integer, exite As String) As Boolean
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
+
+        Dim cmd As SqlCommand
+        'cmd = New SqlCommand("SYS_ExisteinPosicion", conn)
+        cmd = New SqlCommand("SYS_ExistePosicion", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            Dim cmd As SqlCommand
-            'cmd = New SqlCommand("SYS_ExisteinPosicion", conn)
-            cmd = New SqlCommand("SYS_ExistePosicion", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
+        cmd.Parameters.AddWithValue("@idPiloto", idpiloto)
+        cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
+        cmd.Parameters.AddWithValue("@Posllegada", Posllegada)
 
 
-            cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
-            cmd.Parameters.AddWithValue("@idPiloto", idpiloto)
-            cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
-            cmd.Parameters.AddWithValue("@Posllegada", Posllegada)
-
-
-            Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+        Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
             If resultado = 0 Then
 
@@ -105,49 +101,51 @@ Public Class PosicionDAL
 
 
 
-        End Using
+        DesconectarDB()
 
     End Function
     Private Shared Function AgregarNuevo(Posicion As PosicionEntity) As PosicionEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("ADD_InsertPosicion", conn)
-            cmd.CommandType = CommandType.StoredProcedure
-
-
-            cmd.Parameters.AddWithValue("@idTemporada", Posicion.Temporada)
-            cmd.Parameters.AddWithValue("@idCircuito", Posicion.Circuito)
-            cmd.Parameters.AddWithValue("@idPiloto", Posicion.Piloto)
-            cmd.Parameters.AddWithValue("@idllegada", Posicion.llegada)
-            cmd.Parameters.AddWithValue("@Pllegada", Posicion.Ptsllegada)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("ADD_InsertPosicion", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
+        cmd.Parameters.AddWithValue("@idTemporada", Posicion.Temporada)
+        cmd.Parameters.AddWithValue("@idCircuito", Posicion.Circuito)
+        cmd.Parameters.AddWithValue("@idPiloto", Posicion.Piloto)
+        cmd.Parameters.AddWithValue("@idllegada", Posicion.llegada)
+        cmd.Parameters.AddWithValue("@Pllegada", Posicion.Ptsllegada)
 
-            Posicion.id = Convert.ToInt32(cmd.ExecuteScalar())
-        End Using
+
+
+        Posicion.id = Convert.ToInt32(cmd.ExecuteScalar())
+
+        DesconectarDB()
 
         Return Posicion
     End Function
 
     Private Shared Function Actualizar(Posicion As PosicionEntity) As PosicionEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("ADD_UpdatePosicion", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        ConectarDB()
 
 
-            cmd.Parameters.AddWithValue("@idTemporada", Posicion.Temporada)
-            cmd.Parameters.AddWithValue("@idCirciuito", Posicion.Circuito)
-            cmd.Parameters.AddWithValue("@idPiloto", Posicion.Piloto)
-            cmd.Parameters.AddWithValue("@idllegada", Posicion.llegada)
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("ADD_UpdatePosicion", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            cmd.Parameters.AddWithValue("@id", Posicion.Id)
-            cmd.ExecuteNonQuery()
-        End Using
+
+        cmd.Parameters.AddWithValue("@idTemporada", Posicion.Temporada)
+        cmd.Parameters.AddWithValue("@idCirciuito", Posicion.Circuito)
+        cmd.Parameters.AddWithValue("@idPiloto", Posicion.Piloto)
+        cmd.Parameters.AddWithValue("@idllegada", Posicion.llegada)
+
+        cmd.Parameters.AddWithValue("@id", Posicion.id)
+        cmd.ExecuteNonQuery()
+
+
+        DesconectarDB()
 
         Return Posicion
     End Function

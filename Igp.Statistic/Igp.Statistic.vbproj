@@ -48,11 +48,16 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.2.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -77,6 +82,12 @@
       <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Informe\frminforme.Designer.vb">
+      <DependentUpon>frminforme.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Informe\frminforme.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Module\ConnectionInfo.vb" />
@@ -193,6 +204,9 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Informe\frminforme.resx">
+      <DependentUpon>frminforme.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -257,15 +271,12 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="UpdateDB.bat" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Igp.AccessControl\Igp.AccessControl.vbproj">
       <Project>{8d4b827e-1ea7-4a19-832e-a8cbaf8a5814}</Project>
       <Name>Igp.AccessControl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Igp.Helpers\Igp.Helpers.vbproj">
-      <Project>{d8e809dd-cd37-4b85-b6c1-ea05d8974306}</Project>
-      <Name>Igp.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

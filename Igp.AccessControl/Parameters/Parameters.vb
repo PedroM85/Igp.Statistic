@@ -4,7 +4,7 @@ Public Class Parameters
 
     Private oConn As IDbConnection
 
-    Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
+
     Public Sub New()
         MyBase.New
         refresh()
@@ -12,8 +12,7 @@ Public Class Parameters
 
 
     Public Sub refresh()
-        Dim conn As New SqlConnection(coruta)
-        conn.Open()
+        ConectarDB()
 
         Dim oCmd As IDbCommand = conn.CreateCommand
         'Dim cmd As SqlCommand
@@ -49,6 +48,7 @@ Public Class Parameters
             MsgBox("Error Cargando la configuracion :" + ex.Message)
         End Try
 
+        DesconectarDB()
 
     End Sub
 

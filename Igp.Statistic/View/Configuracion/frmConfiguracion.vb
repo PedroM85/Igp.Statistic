@@ -37,6 +37,7 @@ Partial Public Class frmConfiguracion
 
     End Sub
     Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
+        MessageBox.Show("Debe reiniciar la app para tomar los cambios realizados", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Me.Close()
     End Sub
 

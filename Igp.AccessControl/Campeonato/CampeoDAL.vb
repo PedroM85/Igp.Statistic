@@ -2,11 +2,10 @@
 Imports System.Linq
 Imports System.Text
 Imports Igp.AccessControl.Entidades
-
 Imports System.Data.SqlClient
 Imports System.Transactions
 Public NotInheritable Class CampeoDAL
-    Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
+
 
     'Public Shared Function ObtenerByTempoCircui(ByVal idTemporada As String, ByVal idCircuito As String) As CampeoEntity
     Public Shared Function ObtenerByTempoCircui(ByVal idTemporada As String, ByVal idCircuito As String)
@@ -17,30 +16,29 @@ Public NotInheritable Class CampeoDAL
 
 
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
-
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("REP_CampeobyTempoCircui", conn)
-            cmd.CommandType = CommandType.StoredProcedure
-
-            'cmd.Parameters.AddWithValue("@idTemporada", Campeo.bytem)
-            cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
-            cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
-            'cmd.Parameters.AddWithValue("@idCircuito", Campeo.bycir)
-
-            Dim reader As SqlDataReader = cmd.ExecuteReader()
+        ConectarDB()
 
 
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("REP_CampeobyTempoCircui", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            While reader.Read()
-                'Campeo = (ConvertirCampeo(reader, True))
-                Campeo1.Add(ConvertirCampeo(reader))
+
+        cmd.Parameters.AddWithValue("@idTemporada", idTemporada)
+        cmd.Parameters.AddWithValue("@idCircuito", idCircuito)
+        'cmd.Parameters.AddWithValue("@idCircuito", Campeo.bycir)
+
+        Dim reader As SqlDataReader = cmd.ExecuteReader()
+
+
+
+        While reader.Read()
+            'Campeo = (ConvertirCampeo(reader, True))
+            Campeo1.Add(ConvertirCampeo(reader))
             End While
 
 
-            conn.Close()
-        End Using
+        DesconectarDB()
 
         Return Campeo1
 

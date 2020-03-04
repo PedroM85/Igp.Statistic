@@ -47,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -78,7 +79,6 @@
     <Compile Include="Conexion\Conexion.vb" />
     <Compile Include="Configuracion\ConfigDAL.vb" />
     <Compile Include="Configuracion\Entidades\ConfigEntity.vb" />
-    <Compile Include="Connection\ConnectionInfo.vb" />
     <Compile Include="Connection\ReadXML.vb" />
     <Compile Include="Equipos\Entidades\NacionEntity.vb" />
     <Compile Include="Parameters\ParameterEntity.vb" />

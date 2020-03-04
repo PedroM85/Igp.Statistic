@@ -6,26 +6,25 @@ Imports Igp.AccessControl.Entidades
 Imports System.Data
 Imports System.Transactions
 Public NotInheritable Class PilotosDAL
-    Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
+
     Public Shared Function ObtenerTodos() As List(Of PilotoEntity)
 
         Dim lista As New List(Of PilotoEntity)()
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_SelectallPilotos", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_SelectallPilotos", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            Dim rdr As SqlDataReader = cmd.ExecuteReader()
+        Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
-            While rdr.Read()
+        While rdr.Read()
                 lista.Add(ConvertirPiloto(rdr, False))
-            End While
+        End While
 
-            conn.Close()
-        End Using
+        DesconectarDB()
+
         Return lista
 
     End Function
@@ -34,27 +33,22 @@ Public NotInheritable Class PilotosDAL
 
         Dim Piloto As PilotoEntity = Nothing
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ObtenerPilotobyID", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ObtenerPilotobyID", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.AddWithValue("@id", idEmpleado)
 
-            cmd.Parameters.AddWithValue("@id", idEmpleado)
+        Dim rdr As SqlDataReader = cmd.ExecuteReader()
 
-            Dim rdr As SqlDataReader = cmd.ExecuteReader()
+        While rdr.Read()
+            Piloto = (ConvertirPiloto(rdr, True))
+        End While
 
-            While rdr.Read()
-                Piloto = (ConvertirPiloto(rdr, True))
-            End While
+        DesconectarDB()
 
-            conn.Close()
-
-
-
-        End Using
 
         Return Piloto
 
@@ -111,80 +105,79 @@ Public NotInheritable Class PilotosDAL
     End Function
 
     Public Shared Function Existe(id As Integer) As Boolean
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
+
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ExistePiloto", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_ExistePiloto", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        cmd.Parameters.AddWithValue("@id", id)
 
+        Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
 
-            cmd.Parameters.AddWithValue("@id", id)
+        If resultado = 0 Then
+            Return False
+        Else
+            Return True
+        End If
 
-            Dim resultado As Integer = Convert.ToInt32(cmd.ExecuteScalar())
-
-            If resultado = 0 Then
-                Return False
-            Else
-                Return True
-            End If
-        End Using
+        DesconectarDB()
 
     End Function
 
     Private Shared Function Actualizar(Piloto As PilotoEntity) As PilotoEntity
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_UpdatePiloto", conn)
-            cmd.CommandType = CommandType.StoredProcedure
-
-
-
-            cmd.Parameters.AddWithValue("@id", Piloto.id)
-            cmd.Parameters.AddWithValue("@nPiloto", Piloto.nombre)
-
-            'cmd.Parameters.AddWithValue("@naPiloto", Piloto.nacion)
-
-            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@bPiloto", System.Data.SqlDbType.Image)
-            'imageParam.Value = Piloto.imagen
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_UpdatePiloto", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
 
 
-            cmd.ExecuteNonQuery()
-        End Using
+        cmd.Parameters.AddWithValue("@id", Piloto.id)
+        cmd.Parameters.AddWithValue("@nPiloto", Piloto.nombre)
+
+        'cmd.Parameters.AddWithValue("@naPiloto", Piloto.nacion)
+
+        'Dim imageParam As SqlParameter = cmd.Parameters.Add("@bPiloto", System.Data.SqlDbType.Image)
+        'imageParam.Value = Piloto.imagen
+
+
+
+        cmd.ExecuteNonQuery()
+
+        DesconectarDB()
 
         Return Piloto
     End Function
 
     Private Shared Function AgregarNuevo(Piloto As PilotoEntity) As PilotoEntity
 
-        Using conn As New SqlConnection(coruta)
-            conn.Open()
+        ConectarDB()
 
-            Dim cmd As SqlCommand
-            cmd = New SqlCommand("SYS_InsertPiloto", conn)
-            cmd.CommandType = CommandType.StoredProcedure
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_InsertPiloto", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
 
-            'Dim query As String = "INSERT INTO Empleados (Nombre, Apellido, FechaNacimiento, EstadoCivil, Imagen) " &
-            '                        "VALUES (@Nombre, @Apellido, @FechaNacimiento, @EstadoCivil, @Imagen); " &
-            '                        "SELECT SCOPE_IDENTITY()"
-
-
-            cmd.Parameters.AddWithValue("@nPiloto", Piloto.nombre)
+        'Dim query As String = "INSERT INTO Empleados (Nombre, Apellido, FechaNacimiento, EstadoCivil, Imagen) " &
+        '                        "VALUES (@Nombre, @Apellido, @FechaNacimiento, @EstadoCivil, @Imagen); " &
+        '                        "SELECT SCOPE_IDENTITY()"
 
 
-            'Dim imageParam As SqlParameter = cmd.Parameters.Add("@bPiloto", System.Data.SqlDbType.Image)
-            'imageParam.Value = Piloto.imagen
+        cmd.Parameters.AddWithValue("@nPiloto", Piloto.nombre)
 
-            '
-            ' se recupera el id generado por la tabla
-            '
-            Piloto.id = Convert.ToInt32(cmd.ExecuteScalar())
-        End Using
+
+        'Dim imageParam As SqlParameter = cmd.Parameters.Add("@bPiloto", System.Data.SqlDbType.Image)
+        'imageParam.Value = Piloto.imagen
+
+        '
+        ' se recupera el id generado por la tabla
+        '
+        Piloto.id = Convert.ToInt32(cmd.ExecuteScalar())
+
+
 
         Return Piloto
     End Function

@@ -117,37 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnLogin.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAMpJREFUOE9jGDxg
-        8Z5T/3vX7PsP5TIcu3rvv2vF1P+zth6Fi+EFE9cf/F+zYAtcsXZq+38YhgqRBsgy4PydJ3DFIHZq/4r/
-        qw+eRzEAWQ0K0E3rANtmltOL00aYizDUgEyFSYIwVBgFgMIIWQ2GS0CmgiRAIQ8VQgGgWEE2ACpMGth/
-        4fZ/kEugXPwAZiO+MMELYIEKwgENs+GGrNh/9j/IcCgXN4CFCQiDohMqDI4JkOFQLn4Q0brgf/oEhGYQ
-        2HziCmYMDCBgYAAAuyycDzxUpRsAAAAASUVORK5CYII=
-</value>
-  </data>
   <metadata name="cmLogonPad.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="btnLoginEcom.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAANtJREFUOE9jIAZ4
-        1M3+X7lg238olzTgXDXzv05WLxgfunKXdEPi+lbADYAKkQ7m7jqF3/YZ247/33H2Jnk2JE9cBXfiqZuP
-        UAwB2Txp42H8Bvs1zYcbgOxMo7x+uDgIQ4Wxg6DWhf9rF+2AK9p+5gaKZhAm6BJksPHEVQwD+tYfghvQ
-        tWb/f5DXoVzsAN0AqDADyJswMZDLocLYQdvKvSheAwFQQMMMAKURqDBpYP2xKyhewgAgZ4KiEMolHcCc
-        GNG5hHRDjl9/APejffl08lwBCjhQFoZy8QAGBgAqdbSigmg/8QAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <data name="btnLoginPOS.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAJ5JREFUOE9joDnY
-        f+HWfygTP9BObf8PwhfvPoFrgIl1rtxD2BCY4r3nb4IVgwyCiZXO2kDYAJBTNx+/jKJw6b4zxNlONwDy
-        im5ax/8pGw8R5ypYGIDYBy7ehocJTIwgoNgAdADzwsR1B8gzAC8AOXHLiSsoJs/YcuR/1qSVpPkXW0IK
-        appL2BCYYmxJuXDGOuJcgQ3sOnOdfM2EAQMDAFlvjKTHGS4FAAAAAElFTkSuQmCC
-</value>
-  </data>
 </root>

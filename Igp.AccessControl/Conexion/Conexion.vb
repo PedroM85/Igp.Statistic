@@ -1,24 +1,38 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Configuration
-Public Class Conexion
 
-    Public RutaSQL As New SqlConnection("Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa")
+Public Module Conexion
 
-    Public Sub conectar()
+    Public oConn As New ConnectionInfo
+    Public Conn As New SqlConnection
+
+
+    Public Sub ConectarDB()
+
+        Conn.Close()
+
         Try
-            RutaSQL.Open()
+            oConn.GetConnectionInfo()
+            Conn.ConnectionString = "Server = '" & oConn.Server & "';  " _
+                                         & "Database = '" & oConn.Database & "'; " _
+                                         & "user id = '" & oConn.UserId & "'; " _
+                                         & "password = '" & oConn.Password & "'"
+
+            Conn.Open()
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("The system failed to establish a connection", MsgBoxStyle.Information, "Database Settings " + ex.Message)
         End Try
 
+
     End Sub
-    Public Sub desconectar()
+    Public Sub DesconectarDB()
         Try
-            If RutaSQL.State = ConnectionState.Open Then
-                RutaSQL.Close()
+            If Conn.State = ConnectionState.Open Then
+                Conn.Close()
+                Conn.Dispose()
             End If
         Catch ex As Exception
-            MsgBox(ex.Message)
+            MsgBox("The system failed to closing a connection", MsgBoxStyle.Information, "Database Settings " + ex.Message)
         End Try
     End Sub
-End Class
+End Module
