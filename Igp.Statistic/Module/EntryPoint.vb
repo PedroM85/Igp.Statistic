@@ -12,6 +12,9 @@ Module entrepoint
 
 
     Public Sub Main()
+
+
+
         oAppPAR = New Parameters
         AppPar.npiloto = oAppPAR.GetValue("NPILOTO")
 

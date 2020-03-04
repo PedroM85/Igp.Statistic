@@ -5,6 +5,7 @@ Imports Igp.AccessControl.Entidades
 Imports System.Data.SqlClient
 Imports System.Transactions
 Public NotInheritable Class NacionDAL
+    Inherits 
 
     Const coruta As String = "Data Source=.\SQLEXPRESS;Initial Catalog=IgpManager;User ID=sa;Password=sa"
     Public Shared Function ObtenerTodos() As List(Of NacionEntity)

@@ -295,6 +295,7 @@ Partial Class FrmMain
         Me.ClientSize = New System.Drawing.Size(1024, 551)
         Me.Controls.Add(Me.PanelContenedor)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.KeyPreview = True
         Me.Name = "FrmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "IgpManager"
