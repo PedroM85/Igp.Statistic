@@ -40,6 +40,7 @@ Partial Class frmCampeonato
         Me.btnSearch = New System.Windows.Forms.Button()
         Me.lblContarFilas = New System.Windows.Forms.Label()
         Me.ErrorProvider = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrorProvider, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,12 +193,25 @@ Partial Class frmCampeonato
         '
         Me.ErrorProvider.ContainerControl = Me
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(724, 188)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(81, 23)
+        Me.Button1.TabIndex = 26
+        Me.Button1.Text = "Buscar"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmCampeonato
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(870, 485)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblContarFilas)
         Me.Controls.Add(Me.btnSearch)
         Me.Controls.Add(Me.Label3)
@@ -233,4 +247,5 @@ Partial Class frmCampeonato
     Friend WithEvents Piloto As DataGridViewTextBoxColumn
     Friend WithEvents Llegada As DataGridViewTextBoxColumn
     Friend WithEvents Puntos As DataGridViewTextBoxColumn
+    Private WithEvents Button1 As Button
 End Class

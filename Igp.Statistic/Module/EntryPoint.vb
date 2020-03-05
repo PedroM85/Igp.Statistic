@@ -6,19 +6,21 @@ Imports Igp.AccessControl.Entidades
 
 Module entrepoint
     Public oConn As New AccessControl.ConnectionInfo
-    Public oApp As New SysModule
+    Public oApp As POSFramework
+
 
     Public oAppPAR As Parameters
+
     Public AppPar As New ParameterEntity
 
 
 
     Public Sub Main()
-
+        oApp = New WindowsFramework
 
         'oConn = New AccessControl.ConnectionInfo
         If oConn.GetConnectionInfo() Then
-            If oApp.in Then
+            If oApp.InitConnection(SysModule.IgpManager) Then
 
                 oAppPAR = New Parameters
                 AppPar.npiloto = oAppPAR.GetValue("NPILOTO")
@@ -41,6 +43,9 @@ Module entrepoint
                 'End If
                 '=================================================
             Else
+                MessageBox.Show("Se produjeron errores al inicializar la aplicación." & vbLf & "Compruebe la información de conexión o contáctese con el administrador del sistema.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Else
                 'gWrkDialog.Close()
                 'oApp.LogFile.LogEvent("No hay información de conexión a la aplicación")
                 'POSMessageBox.Show("No se encontró la información de conexión de la aplicación.", "e-wave", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -52,7 +57,7 @@ Module entrepoint
 
 
 
-        ' ThisIsTheEndMyFriend()
+        ThisIsTheEndMyFriend()
     End Sub
 
 

@@ -20,6 +20,7 @@ Public Class frmDashboard
 
     Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
         Me.Close()
+
     End Sub
 
     Private Sub CambioValores(sender As System.Object, e As System.EventArgs) Handles TxtMontodeCredito.TextChanged, TxtCancelado.TextChanged

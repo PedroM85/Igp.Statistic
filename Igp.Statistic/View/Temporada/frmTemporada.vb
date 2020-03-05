@@ -85,4 +85,12 @@ Partial Public Class frmTemporada
     Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
         Me.Close()
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+
+
+
+        frminforme.ShowDialog()
+
+    End Sub
 End Class

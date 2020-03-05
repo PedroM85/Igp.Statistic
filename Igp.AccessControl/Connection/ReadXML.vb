@@ -166,7 +166,7 @@ Public Class ConnectionInfo
     Public ReadOnly Property OLEDBConnectionString(Optional ByVal AppName As String = Nothing, Optional ByVal AlternativeDB As String = Nothing) As String
         Get
             If AppName Is Nothing Then
-                AppName = "Ewave"
+                AppName = "IgpManager"
             End If
             If AlternativeDB Is Nothing Then
                 AlternativeDB = sDatabase
@@ -178,7 +178,7 @@ Public Class ConnectionInfo
     Public ReadOnly Property SQLConnectionString(Optional ByVal AppName As String = Nothing, Optional ByVal AlternativeDB As String = Nothing) As String
         Get
             If AppName Is Nothing Then
-                AppName = "Ewave"
+                AppName = "IgpManager"
             End If
             If AlternativeDB Is Nothing Then
                 AlternativeDB = sDatabase

@@ -47,6 +47,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -79,8 +80,10 @@
     <Compile Include="Conexion\Conexion.vb" />
     <Compile Include="Configuracion\ConfigDAL.vb" />
     <Compile Include="Configuracion\Entidades\ConfigEntity.vb" />
+    <Compile Include="Connection\FrameworkBase.vb" />
+    <Compile Include="Connection\IFrameworkBase.vb" />
     <Compile Include="Connection\ReadXML.vb" />
-    <Compile Include="Connection\ValidateConnetion.vb" />
+    <Compile Include="Connection\POSFramework.vb" />
     <Compile Include="Equipos\Entidades\NacionEntity.vb" />
     <Compile Include="Parameters\ParameterEntity.vb" />
     <Compile Include="Parameters\Parameters.vb" />
@@ -104,6 +107,14 @@
     <Compile Include="Pilotos\PilotosDAL.vb" />
     <Compile Include="Posicion\Entidades\PosicionEntity.vb" />
     <Compile Include="Posicion\PosicionDAL.vb" />
+    <Compile Include="Temporada\DataSet1.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Temporada\DataSet1.vb">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Temporada\Entity\TempoEntity.vb" />
     <Compile Include="Temporada\TempoDAL.vb" />
   </ItemGroup>
@@ -124,6 +135,17 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Temporada\DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Temporada\DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Temporada\DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

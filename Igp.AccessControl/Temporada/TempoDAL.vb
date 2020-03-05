@@ -59,6 +59,35 @@ Public NotInheritable Class TempoDAL
         Return Tempo
 
     End Function
+    Public Shared Function ObtenerById1(ByVal idTempo As Integer)
+
+        Dim Tempo As TempoEntity = Nothing
+
+        ConectarDB()
+
+        Dim cmd As SqlCommand
+        cmd = New SqlCommand("SYS_ObtenerTempobyID", Conn)
+        cmd.CommandType = CommandType.StoredProcedure
+
+
+        cmd.Parameters.AddWithValue("@id", idTempo)
+
+
+
+        Dim reader As SqlDataAdapter = New SqlDataAdapter(cmd.ExecuteReader)
+
+        'Dim reader As SqlDataReader = cmd.ExecuteReader()
+
+        If reader.Read() Then
+            Tempo = ConvertirTempo(reader, True)
+        End If
+
+        DesconectarDB()
+
+        Return Tempo
+
+    End Function
+
     Public Shared Function ObtenerbyActive() As List(Of TempoEntity)
 
         Dim Tempo As New List(Of TempoEntity)()
