@@ -6,6 +6,8 @@ Imports Igp.AccessControl.Entidades
 
 Module entrepoint
     Public oConn As New AccessControl.ConnectionInfo
+    Public oApp As New SysModule
+
     Public oAppPAR As Parameters
     Public AppPar As New ParameterEntity
 
@@ -16,31 +18,33 @@ Module entrepoint
 
         'oConn = New AccessControl.ConnectionInfo
         If oConn.GetConnectionInfo() Then
-            oAppPAR = New Parameters
-            AppPar.npiloto = oAppPAR.GetValue("NPILOTO")
+            If oApp.in Then
 
-            Application.EnableVisualStyles()
-            Application.SetCompatibleTextRenderingDefault(False)
+                oAppPAR = New Parameters
+                AppPar.npiloto = oAppPAR.GetValue("NPILOTO")
+
+                Application.EnableVisualStyles()
+                Application.SetCompatibleTextRenderingDefault(False)
 
 
-            '=================================================
-            'Esto es para el sistema de login
+                '=================================================
+                'Esto es para el sistema de login
 
-            'Dim login As frmLogin = New frmLogin
-            'login.ShowDialog()
+                'Dim login As frmLogin = New frmLogin
+                'login.ShowDialog()
 
-            'Sistema de Login
-            'If (login.DialogResult = DialogResult.OK) Then
+                'Sistema de Login
+                'If (login.DialogResult = DialogResult.OK) Then
 
-            Application.Run(New FrmMain)
+                Application.Run(New FrmMain)
 
-            'End If
-            '=================================================
-        Else
-            'gWrkDialog.Close()
-            'oApp.LogFile.LogEvent("No hay información de conexión a la aplicación")
-            'POSMessageBox.Show("No se encontró la información de conexión de la aplicación.", "e-wave", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Application.Run(New frmMainLogon)
+                'End If
+                '=================================================
+            Else
+                'gWrkDialog.Close()
+                'oApp.LogFile.LogEvent("No hay información de conexión a la aplicación")
+                'POSMessageBox.Show("No se encontró la información de conexión de la aplicación.", "e-wave", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Application.Run(New frmMainLogon)
 
             'MessageBox.Show("No se encontró la información de conexión de la aplicación.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
 

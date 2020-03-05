@@ -6,7 +6,6 @@ Imports System.Linq
 Imports System.Text
 Imports System.Windows.Forms
 Imports Igp.AccessControl
-Imports Igp.Helpers
 Imports Igp.AccessControl.Entidades
 Partial Public Class frmTemporada
     Inherits Form

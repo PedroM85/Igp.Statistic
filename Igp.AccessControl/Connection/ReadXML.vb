@@ -47,10 +47,7 @@ Public Class ConnectionInfo
             oXML.Load(sFileName)
 
 
-
-
-
-                If sFindName = String.Empty Then
+            If sFindName = String.Empty Then
                 sXPath = "//ConnectionInfo[@Default='True']"
             Else
                 sXPath = String.Format("//ConnectionInfo[@Name='{0}']", sFindName)

@@ -330,8 +330,6 @@
     <Content Include="IgpManager\Tables\dbo.SYS_Temporada.sql" />
     <Content Include="Scripts\IpgManager_0203_0111.sql" />
     <Content Include="Scripts\IpgManager_0303_1846.sql" />
-    <Content Include="Scripts\IpgManager_2602_1732.sql" />
-    <Content Include="Scripts\IpgManager_2802_1826.sql" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

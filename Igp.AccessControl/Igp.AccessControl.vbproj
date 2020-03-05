@@ -80,6 +80,7 @@
     <Compile Include="Configuracion\ConfigDAL.vb" />
     <Compile Include="Configuracion\Entidades\ConfigEntity.vb" />
     <Compile Include="Connection\ReadXML.vb" />
+    <Compile Include="Connection\ValidateConnetion.vb" />
     <Compile Include="Equipos\Entidades\NacionEntity.vb" />
     <Compile Include="Parameters\ParameterEntity.vb" />
     <Compile Include="Parameters\Parameters.vb" />

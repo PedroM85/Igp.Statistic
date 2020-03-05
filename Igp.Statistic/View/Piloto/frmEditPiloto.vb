@@ -7,7 +7,6 @@ Imports System.Text
 Imports System.Windows.Forms
 Imports Igp.AccessControl
 Imports Igp.AccessControl.Entidades
-Imports Igp.Helpers
 
 Public Partial Class EditarEmpleado
     Inherits Form

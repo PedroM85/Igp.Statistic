@@ -19,8 +19,18 @@ Public Module Conexion
                                          & "password = '" & oConn.Password & "'"
 
             Conn.Open()
+
+
         Catch ex As Exception
-            MsgBox("The system failed to establish a connection", MsgBoxStyle.Information, "Database Settings " + ex.Message)
+            Select Case ex.Message
+                Case "Login failed for user 'sa'."
+                    Throw New Exception("Database connection failed")
+
+                Case Else
+                    MsgBox("The system failed to establish a connection," + vbLf + "Database Settings " + ex.Message, MsgBoxStyle.Information, "IgpManager")
+
+            End Select
+
         End Try
 
 
