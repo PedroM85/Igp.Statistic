@@ -1,4 +1,5 @@
 ﻿Imports System.Collections.Generic
+Imports System.Data.OleDb
 Imports System.Linq
 Imports System.Text
 Imports Igp.AccessControl.Entidades
@@ -10,6 +11,10 @@ Imports System.Transactions
 Public NotInheritable Class TempoDAL
     'Inherits Conexion
 
+    Private cnPubs As SqlConnection
+    Private daPubs As SqlDataAdapter
+    Private cmdSelPubInfo As SqlCommand
+    Private dsPubs As DataSet
 
     Public Shared Function ObtenerTodos() As List(Of TempoEntity)
 
@@ -91,6 +96,41 @@ Public NotInheritable Class TempoDAL
         Return Tempo
 
 
+    End Function
+
+    Public Shared Function ObtenerbyActive1() As DataSet
+        ConectarDB()
+
+        '       cnPubs = New SqlConnection(Conn)
+
+        'select command
+        'cmdSelPubInfo = New SqlCommand()
+
+        Dim cmd As SqlCommand
+
+        cmd = New SqlCommand("SYS_SelectaTempoactive", Conn)
+        'cmdSelPubInfo.Connection = cnPubs
+        'cmdSelPubInfo.CommandType = CommandType.StoredProcedure
+        cmd.CommandType = CommandType.StoredProcedure
+        'cmdSelPubInfo.CommandText = "SYS_SelectaTempoactive"
+
+        ' DataApapter
+        'daPubs = New SqlDataAdapter()
+
+        Dim rdr As SqlDataAdapter = New SqlDataAdapter
+
+        rdr.SelectCommand = cmd
+        'daPubs.SelectCommand = cmdSelPubInfo
+
+        'Dataset
+        Dim dsPubs = New DataSet()
+
+        Return dsPubs
+    End Function
+    Public Function GetPubInfo() As DataSet
+
+        daPubs.Fill(dsPubs)
+        Return dsPubs
     End Function
 
     Private Shared Function ConvertirTempo(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As TempoEntity

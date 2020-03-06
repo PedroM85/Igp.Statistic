@@ -201,9 +201,9 @@ Partial Class frmPosicion
         '
         Me.cboTempo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboTempo.FormattingEnabled = True
-        Me.cboTempo.Location = New System.Drawing.Point(76, 32)
+        Me.cboTempo.Location = New System.Drawing.Point(76, 9)
         Me.cboTempo.Name = "cboTempo"
-        Me.cboTempo.Size = New System.Drawing.Size(121, 21)
+        Me.cboTempo.Size = New System.Drawing.Size(481, 21)
         Me.cboTempo.TabIndex = 0
         '
         'btnGuardar

@@ -7,7 +7,7 @@ Imports System.Text
 Imports System.Windows.Forms
 Imports Igp.AccessControl
 Imports Igp.AccessControl.Entidades
-Partial Public Class frmPosicion
+Public Class frmPosicion
     Inherits Form
     '    Dim npiloto As Integer = oAppPAR.GetValue("NPILOTO")
 
@@ -15,8 +15,10 @@ Partial Public Class frmPosicion
     Private _idCircuito As Nullable(Of Integer) = Nothing
     Private _id As Nullable(Of Integer) = Nothing
 
-    Public Sub New()
+    Private objpublishers As TempoDAL
 
+    Public Sub New()
+        MyBase.New()
         ' This call is required by the designer.
         InitializeComponent()
 
@@ -48,9 +50,16 @@ Partial Public Class frmPosicion
     End Sub
 
     Private Sub CargaListaTempo()
+        objpublishers = New TempoDAL
+        Dim dsPubInfo As DataSet
+
+
         cboTempo.DisplayMember = "Descripcion"
         cboTempo.ValueMember = "Idtempo"
-        cboTempo.DataSource = TempoDAL.ObtenerbyActive()
+        'cboTempo.DataSource = TempoDAL.ObtenerbyActive1()
+
+        dsPubInfo = objpublishers.GetPubInfo
+        cboTempo.DataSource = dsPubInfo.Tables(0)
     End Sub
 
     Private Sub CargaListaPiloto()
@@ -69,7 +78,7 @@ Partial Public Class frmPosicion
         Dim Punto As Integer
 
         Select Case e.KeyData
-                Case Keys.Enter
+            Case Keys.Enter
                 Try
                     Dim dgvDatos As DataGridViewRow = Me.dgvPosicion.CurrentRow
 
@@ -138,7 +147,7 @@ Partial Public Class frmPosicion
                 Catch ex As Exception
 
                 End Try
-            End Select
+        End Select
 
 
     End Sub
@@ -199,7 +208,7 @@ Partial Public Class frmPosicion
                 posicion.Ptsllegada = Convert.ToInt32(dgvPosicion.Rows(j).Cells(8).Value)
 
                 PosicionDAL.Save(posicion)
-                contar_filas
+                contar_filas()
             Next
 
 
