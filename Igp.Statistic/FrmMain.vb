@@ -2,6 +2,7 @@
 
 
 
+
 Public Class FrmMain
 #Region "FUNCIONALIDADES DEL FORMULARIO"
     'RESIZE DEL FORMULARIO- CAMBIAR TAMAÑO
@@ -192,10 +193,13 @@ Public Class FrmMain
     End Sub
 
 
+
     Private Sub FrmMain_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
         If e.KeyCode = Keys.F12 Then
             frmMainLogon.Show()
         End If
     End Sub
+
+
 End Class

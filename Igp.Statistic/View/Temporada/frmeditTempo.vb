@@ -48,7 +48,14 @@ Partial Public Class frmeditTempo
 
 			End If
 		Catch ex As Exception
+			MsgBox("Este error debe ir en log")
 			MsgBox("Funcion EditNacion_load: " + ex.ToString)
+
+		Finally
+			'DesconectarDB()
+			'MessageBox.Show("Hemos tenido problemas con la consulta ", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
 		End Try
 	End Sub
 

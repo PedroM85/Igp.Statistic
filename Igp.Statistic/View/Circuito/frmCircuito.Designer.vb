@@ -30,6 +30,7 @@ Partial Class frmCircuito
         Me.dgvCircuitos = New System.Windows.Forms.DataGridView()
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Nacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvCircuitos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -113,12 +114,25 @@ Partial Class frmCircuito
         Me.Nacion.ReadOnly = True
         Me.Nacion.Width = 150
         '
+        'Button1
+        '
+        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button1.Location = New System.Drawing.Point(537, 110)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(111, 31)
+        Me.Button1.TabIndex = 25
+        Me.Button1.Text = "Nuevo"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'frmCircuito
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.lblHelp)
         Me.Controls.Add(Me.btnNuevoEmpleado)
         Me.Controls.Add(Me.dgvCircuitos)
@@ -140,4 +154,5 @@ Partial Class frmCircuito
     Private WithEvents dgvCircuitos As DataGridView
     Friend WithEvents Id As DataGridViewTextBoxColumn
     Friend WithEvents Nacion As DataGridViewTextBoxColumn
+    Private WithEvents Button1 As Button
 End Class

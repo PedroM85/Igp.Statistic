@@ -90,7 +90,7 @@ Partial Public Class frmTemporada
 
 
 
-        frminforme.ShowDialog()
+
 
     End Sub
 End Class

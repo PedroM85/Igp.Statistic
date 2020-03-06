@@ -107,14 +107,6 @@
     <Compile Include="Pilotos\PilotosDAL.vb" />
     <Compile Include="Posicion\Entidades\PosicionEntity.vb" />
     <Compile Include="Posicion\PosicionDAL.vb" />
-    <Compile Include="Temporada\DataSet1.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Temporada\DataSet1.vb">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Temporada\Entity\TempoEntity.vb" />
     <Compile Include="Temporada\TempoDAL.vb" />
   </ItemGroup>
@@ -135,17 +127,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Temporada\DataSet1.xsc">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="Temporada\DataSet1.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSet1.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Temporada\DataSet1.xss">
-      <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
