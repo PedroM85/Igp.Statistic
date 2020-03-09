@@ -88,8 +88,9 @@ Partial Public Class frmTemporada
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
 
-
-
+        Dim _reporte As ReporteTemporada = TemporadaReporte.ObtenerReporteTemporada()
+        Dim frm As New frmReporteTemporada(_reporte)
+        frm.Show()
 
 
     End Sub

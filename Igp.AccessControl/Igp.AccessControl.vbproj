@@ -107,8 +107,17 @@
     <Compile Include="Pilotos\PilotosDAL.vb" />
     <Compile Include="Posicion\Entidades\PosicionEntity.vb" />
     <Compile Include="Posicion\PosicionDAL.vb" />
+    <Compile Include="Temporada\dsTemporada.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTemporada.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Temporada\dsTemporada.vb">
+      <DependentUpon>dsTemporada.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Temporada\Entity\TempoEntity.vb" />
     <Compile Include="Temporada\TempoDAL.vb" />
+    <Compile Include="Temporada\TempoDs.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -127,6 +136,17 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Temporada\dsTemporada.xsc">
+      <DependentUpon>dsTemporada.xsd</DependentUpon>
+    </None>
+    <None Include="Temporada\dsTemporada.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTemporada.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Temporada\dsTemporada.xss">
+      <DependentUpon>dsTemporada.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

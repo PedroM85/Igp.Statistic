@@ -75,6 +75,6 @@ Partial Public Class frmCircuito
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        frmReportCircuito.Show()
+
     End Sub
 End Class

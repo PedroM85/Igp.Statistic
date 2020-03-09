@@ -7,8 +7,8 @@ Public Module Conexion
     Public Conn As New SqlConnection
 
 
-    Public Sub ConectarDB()
-
+    Public Function ConectarDB() As Boolean
+        Dim retval As Boolean
         Conn.Close()
 
         Try
@@ -20,21 +20,25 @@ Public Module Conexion
 
             Conn.Open()
 
+            Return True
+        Catch exsql As SqlException
 
-        Catch ex As Exception
-            Select Case ex.Message
-                Case "Login failed for user 'sa'."
-                    Throw New Exception("Database connection failed")
-
+            Select Case exsql.Number
+                Case 40
+                    Throw New Exception("Database connection failed 40")
+                Case 2
+                    Throw New Exception("Database connection failed 20")
                 Case Else
-                    MsgBox("The system failed to establish a connection," + vbLf + "Database Settings " + ex.Message, MsgBoxStyle.Information, "IgpManager")
-
+                    MsgBox("The system failed to establish a connection ," + vbLf + "Database Settings ", MsgBoxStyle.Information, "IgpManager")
+                    ' Return False
             End Select
+
+            Return False
 
         End Try
 
-
-    End Sub
+        Return retval
+    End Function
     Public Sub DesconectarDB()
         Try
             If Conn.State = ConnectionState.Open Then

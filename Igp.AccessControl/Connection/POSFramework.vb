@@ -24,9 +24,9 @@ Public MustInherit Class POSFramework
             If smod = SysModule.IgpManager Then
                 ConectarDB()
                 DesconectarDB()
-                '    mConn = New SqlClient.SqlConnection(mConnInfo.SQLConnectionString)
-                'Else
-                '    mConn = New OleDb.OleDbConnection(mConnInfo.OLEDBConnectionString)
+                ' mConn = New SqlClient.SqlConnection(mConnInfo.SQLConnectionString)
+            Else
+                'mConn = New OleDb.OleDbConnection(mConnInfo.OLEDBConnectionString)
             End If
 
             'mConn.Open()

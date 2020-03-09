@@ -73,7 +73,7 @@ Public Class Parameters
         If oConn.State = ConnectionState.Open Then
             Dim oCmd As IDbCommand = oConn.CreateCommand
             Dim oRd As IDataReader
-            Dim oPrm As IDataParameter
+            'Dim oPrm As IDataParameter
 
             oCmd.CommandType = CommandType.StoredProcedure
             oCmd.CommandText = "PAR_GetParameter"

@@ -15,7 +15,11 @@ Public Class frmPosicion
     Private _idCircuito As Nullable(Of Integer) = Nothing
     Private _id As Nullable(Of Integer) = Nothing
 
-    Private objpublishers As TempoDAL
+    Private objpublishers As TempoDs
+    Private Punto As Integer
+    Private dsPubInfo As DataSet
+
+
 
     Public Sub New()
         MyBase.New()
@@ -23,6 +27,9 @@ Public Class frmPosicion
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
+        objpublishers = New TempoDs
+        dsPubInfo = objpublishers.GetPubInfo
+
 
     End Sub
 
@@ -50,16 +57,11 @@ Public Class frmPosicion
     End Sub
 
     Private Sub CargaListaTempo()
-        objpublishers = New TempoDAL
-        Dim dsPubInfo As DataSet
 
-
-        cboTempo.DisplayMember = "Descripcion"
-        cboTempo.ValueMember = "Idtempo"
-        'cboTempo.DataSource = TempoDAL.ObtenerbyActive1()
-
-        dsPubInfo = objpublishers.GetPubInfo
         cboTempo.DataSource = dsPubInfo.Tables(0)
+        cboTempo.DisplayMember = "temporada"
+        cboTempo.ValueMember = "isactive"
+
     End Sub
 
     Private Sub CargaListaPiloto()
@@ -75,7 +77,6 @@ Public Class frmPosicion
     End Sub
 
     Private Sub TextBox1_KeyDown(sender As Object, e As KeyEventArgs) Handles txtPuesto.KeyDown
-        Dim Punto As Integer
 
         Select Case e.KeyData
             Case Keys.Enter
@@ -101,37 +102,12 @@ Public Class frmPosicion
                             Return
                         End If
 
+                        Calculo_posicion(txtPuesto.Text)
 
 
-                        Select Case txtPuesto.Text
-                            Case "1"
-                                Punto = Convert.ToInt32(25)
-                            Case "2"
-                                Punto = Convert.ToInt32(18)
-                            Case "3"
-                                Punto = Convert.ToInt32(15)
-                            Case "4"
-                                Punto = Convert.ToInt32(12)
-                            Case "5"
-                                Punto = Convert.ToInt32(10)
-                            Case "6"
-                                Punto = Convert.ToInt32(8)
-                            Case "7"
-                                Punto = Convert.ToInt32(6)
-                            Case "8"
-                                Punto = Convert.ToInt32(4)
-                            Case "9"
-                                Punto = Convert.ToInt32(2)
-                            Case "10"
-                                Punto = Convert.ToInt32(1)
-                            Case > "11"
-                                Punto = Convert.ToInt32(0)
-                        End Select
-
-
-
-
-                        Dim row As String() = New String() {cboTempo.Text, cboTempo.SelectedValue, cboCircuito.Text, cboCircuito.SelectedValue, cboPiloto.Text, cboPiloto.SelectedValue, txtPuesto.Text, txtPuesto.Text, Punto}
+                        Dim row As String() = New String() {cboTempo.Text, cboTempo.SelectedValue, cboCircuito.Text,
+                            cboCircuito.SelectedValue, cboPiloto.Text, cboPiloto.SelectedValue, txtPuesto.Text,
+                            txtPuesto.Text, Punto}
 
                         dgvPosicion.Rows.Add(row)
 
@@ -151,6 +127,7 @@ Public Class frmPosicion
 
 
     End Sub
+
 
     Private Sub txtPuesto_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPuesto.KeyPress
 
@@ -256,5 +233,41 @@ Public Class frmPosicion
 
     Private Sub txtPuesto_GotFocus(sender As Object, e As EventArgs) Handles txtPuesto.GotFocus
         txtPuesto.SelectAll()
+    End Sub
+
+    Public Sub Calculo_posicion(ByVal puesto As Integer)
+
+        Select Case puesto
+            Case "1"
+                Punto = Convert.ToInt32(25)
+            Case "2"
+                Punto = Convert.ToInt32(18)
+            Case "3"
+                Punto = Convert.ToInt32(15)
+            Case "4"
+                Punto = Convert.ToInt32(12)
+            Case "5"
+                Punto = Convert.ToInt32(10)
+            Case "6"
+                Punto = Convert.ToInt32(8)
+            Case "7"
+                Punto = Convert.ToInt32(6)
+            Case "8"
+                Punto = Convert.ToInt32(4)
+            Case "9"
+                Punto = Convert.ToInt32(2)
+            Case "10"
+                Punto = Convert.ToInt32(1)
+            Case > "11"
+                Punto = Convert.ToInt32(0)
+        End Select
+    End Sub
+
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        'Para buscar en el dataggrid
+
+        'Dim fieldName As String = String.Concat(dgvPosicion.Columns(1))
+        'dgvPosicion.Sort(fieldName)
+        'dgvPosicion
     End Sub
 End Class

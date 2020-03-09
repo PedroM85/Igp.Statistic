@@ -24,7 +24,7 @@ Public NotInheritable Class EmpleadosDAL
 			Dim reader As SqlDataReader = cmd.ExecuteReader()
 
 			While reader.Read()
-				lista.Add(ConvertirEmpleado(reader, False))
+				lista.Add(ConvertirEmpleado(reader))
 			End While
 
 		End Using
@@ -50,7 +50,7 @@ Public NotInheritable Class EmpleadosDAL
 			Dim reader As SqlDataReader = cmd.ExecuteReader()
 
 			If reader.Read() Then
-				empleado = ConvertirEmpleado(reader, True)
+				empleado = ConvertirEmpleado(reader)
 			End If
 
 		End Using
@@ -59,7 +59,7 @@ Public NotInheritable Class EmpleadosDAL
 
 	End Function
 
-	Private Shared Function ConvertirEmpleado(ByVal reader As IDataReader, ByVal cargarRelaciones As Boolean) As EmpleadoEntity
+	Private Shared Function ConvertirEmpleado(ByVal reader As IDataReader) As EmpleadoEntity
 
 		Dim empleado As New EmpleadoEntity()
 

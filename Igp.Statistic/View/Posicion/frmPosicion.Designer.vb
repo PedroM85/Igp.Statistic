@@ -45,6 +45,7 @@ Partial Class frmPosicion
         Me.btnGuardar = New System.Windows.Forms.Button()
         Me.cmsMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.tsmEliminar = New System.Windows.Forms.ToolStripMenuItem()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.dgvPosicion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,6 +78,7 @@ Partial Class frmPosicion
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.txtSearch)
         Me.GroupBox1.Controls.Add(Me.lblContarFilas)
         Me.GroupBox1.Controls.Add(Me.dgvPosicion)
         Me.GroupBox1.Controls.Add(Me.txtPuesto)
@@ -85,7 +87,7 @@ Partial Class frmPosicion
         Me.GroupBox1.Controls.Add(Me.cboTempo)
         Me.GroupBox1.Location = New System.Drawing.Point(26, 54)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(587, 331)
+        Me.GroupBox1.Size = New System.Drawing.Size(587, 354)
         Me.GroupBox1.TabIndex = 22
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
@@ -94,7 +96,7 @@ Partial Class frmPosicion
         '
         Me.lblContarFilas.AutoSize = True
         Me.lblContarFilas.ForeColor = System.Drawing.Color.DarkRed
-        Me.lblContarFilas.Location = New System.Drawing.Point(420, 291)
+        Me.lblContarFilas.Location = New System.Drawing.Point(420, 329)
         Me.lblContarFilas.Name = "lblContarFilas"
         Me.lblContarFilas.Size = New System.Drawing.Size(137, 13)
         Me.lblContarFilas.TabIndex = 5
@@ -108,7 +110,7 @@ Partial Class frmPosicion
         Me.dgvPosicion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvPosicion.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Temporada, Me.TemNum, Me.Circuito, Me.CirNum, Me.Nombre, Me.NomNum, Me.Puesto, Me.LleNum, Me.Puntos})
         Me.dgvPosicion.GridColor = System.Drawing.SystemColors.ActiveCaption
-        Me.dgvPosicion.Location = New System.Drawing.Point(6, 58)
+        Me.dgvPosicion.Location = New System.Drawing.Point(6, 96)
         Me.dgvPosicion.Name = "dgvPosicion"
         Me.dgvPosicion.ReadOnly = True
         Me.dgvPosicion.Size = New System.Drawing.Size(575, 230)
@@ -174,7 +176,7 @@ Partial Class frmPosicion
         '
         'txtPuesto
         '
-        Me.txtPuesto.Location = New System.Drawing.Point(457, 32)
+        Me.txtPuesto.Location = New System.Drawing.Point(457, 70)
         Me.txtPuesto.Name = "txtPuesto"
         Me.txtPuesto.Size = New System.Drawing.Size(100, 20)
         Me.txtPuesto.TabIndex = 3
@@ -183,7 +185,7 @@ Partial Class frmPosicion
         '
         Me.cboPiloto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboPiloto.FormattingEnabled = True
-        Me.cboPiloto.Location = New System.Drawing.Point(330, 32)
+        Me.cboPiloto.Location = New System.Drawing.Point(330, 70)
         Me.cboPiloto.Name = "cboPiloto"
         Me.cboPiloto.Size = New System.Drawing.Size(121, 21)
         Me.cboPiloto.TabIndex = 2
@@ -192,7 +194,7 @@ Partial Class frmPosicion
         '
         Me.cboCircuito.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboCircuito.FormattingEnabled = True
-        Me.cboCircuito.Location = New System.Drawing.Point(203, 32)
+        Me.cboCircuito.Location = New System.Drawing.Point(203, 70)
         Me.cboCircuito.Name = "cboCircuito"
         Me.cboCircuito.Size = New System.Drawing.Size(121, 21)
         Me.cboCircuito.TabIndex = 1
@@ -201,9 +203,9 @@ Partial Class frmPosicion
         '
         Me.cboTempo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboTempo.FormattingEnabled = True
-        Me.cboTempo.Location = New System.Drawing.Point(76, 9)
+        Me.cboTempo.Location = New System.Drawing.Point(76, 69)
         Me.cboTempo.Name = "cboTempo"
-        Me.cboTempo.Size = New System.Drawing.Size(481, 21)
+        Me.cboTempo.Size = New System.Drawing.Size(121, 21)
         Me.cboTempo.TabIndex = 0
         '
         'btnGuardar
@@ -211,7 +213,7 @@ Partial Class frmPosicion
         Me.btnGuardar.BackColor = System.Drawing.Color.FromArgb(CType(CType(122, Byte), Integer), CType(CType(181, Byte), Integer), CType(CType(66, Byte), Integer))
         Me.btnGuardar.FlatAppearance.BorderSize = 0
         Me.btnGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnGuardar.Location = New System.Drawing.Point(502, 400)
+        Me.btnGuardar.Location = New System.Drawing.Point(502, 414)
         Me.btnGuardar.Name = "btnGuardar"
         Me.btnGuardar.Size = New System.Drawing.Size(81, 23)
         Me.btnGuardar.TabIndex = 23
@@ -229,6 +231,13 @@ Partial Class frmPosicion
         Me.tsmEliminar.Name = "tsmEliminar"
         Me.tsmEliminar.Size = New System.Drawing.Size(117, 22)
         Me.tsmEliminar.Text = "Eliminar"
+        '
+        'txtSearch
+        '
+        Me.txtSearch.Location = New System.Drawing.Point(330, 33)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(227, 20)
+        Me.txtSearch.TabIndex = 6
         '
         'frmPosicion
         '
@@ -274,4 +283,5 @@ Partial Class frmPosicion
     Friend WithEvents cmsMenu As ContextMenuStrip
     Friend WithEvents tsmEliminar As ToolStripMenuItem
     Friend WithEvents lblContarFilas As Label
+    Friend WithEvents txtSearch As TextBox
 End Class

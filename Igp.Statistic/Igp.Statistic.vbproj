@@ -48,11 +48,25 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -88,18 +102,6 @@
     <Compile Include="FrmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Reporte\Circuitos\CrystalReport1.vb">
-      <DependentUpon>CrystalReport1.rpt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <SubType>Component</SubType>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Reporte\Circuitos\frmReportCircuito.Designer.vb">
-      <DependentUpon>frmReportCircuito.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reporte\Circuitos\frmReportCircuito.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Module\ConnectionInfo.vb" />
     <Compile Include="Module\EntryPoint.vb" />
     <Compile Include="Module\Metodo.vb" />
@@ -120,6 +122,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Reporte\Temporada\frmReporteTemporada.Designer.vb">
+      <DependentUpon>frmReporteTemporada.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reporte\Temporada\frmReporteTemporada.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reporte\Temporada\ReporteTemporada.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteTemporada.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reporte\Temporada\TemporadaReporte.vb" />
     <Compile Include="View\Campeonato\frmCampeonato.Designer.vb">
       <DependentUpon>frmCampeonato.vb</DependentUpon>
     </Compile>
@@ -215,18 +230,18 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reporte\Circuitos\CrystalReport1.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport1.vb</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reporte\Circuitos\frmReportCircuito.resx">
-      <DependentUpon>frmReportCircuito.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Temporada\frmReporteTemporada.resx">
+      <DependentUpon>frmReporteTemporada.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reporte\Temporada\ReporteTemporada.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteTemporada.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Campeonato\frmCampeonato.resx">
       <DependentUpon>frmCampeonato.vb</DependentUpon>
@@ -280,12 +295,41 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\Igp.AccessControl.CampeoDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.CircuitoDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Conexion.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.ConfigDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.ConnectionInfo.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.EmpleadosDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.CampeoEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.CircuitoEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.ConfigEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.EmpleadoEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.EstadoCivilEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.EstudioEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.NacionEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.ParameterEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.PilotoEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.PosicionEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Entidades.TempoEntity.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.EstadoCivilDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.EstudiosDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.FrameworkBase.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.IFrameworkBase.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.NacionDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.Parameters.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.PilotosDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.POSFramework.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.PosicionDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.TempoDAL.datasource" />
+    <None Include="My Project\DataSources\Igp.AccessControl.TempoDs.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="UpdateDB.bat" />
   </ItemGroup>
   <ItemGroup>
@@ -348,20 +392,20 @@
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Informe\" />
+    <Folder Include="Reporte\Circuitos\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
