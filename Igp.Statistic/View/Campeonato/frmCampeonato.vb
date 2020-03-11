@@ -32,7 +32,7 @@ Partial Public Class frmCampeonato
     Private Sub frmCampeonato_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         CargaListaCircuito()
         CargaListaTempo()
-        contar_filas()
+        'contar_filas()
     End Sub
 
     Private Sub CargaListaTempo()
@@ -80,7 +80,7 @@ Partial Public Class frmCampeonato
             For Each row As DataGridViewRow In dgvData.Rows
                 Dim Campeo As CampeoEntity = TryCast(row.DataBoundItem, CampeoEntity)
             Next
-            contar_filas()
+            'contar_filas()
         Next
 
 
@@ -108,17 +108,17 @@ Partial Public Class frmCampeonato
     Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
         Me.Close()
     End Sub
-    Sub contar_filas()
+    'Sub contar_filas()
 
-        Dim filas As Integer = Me.dgvData.RowCount
-        If filas = 0 Then
-            lblContarFilas.Text = "[ " & filas & " Regitro cargado de " & AppPar.npiloto & "]"
-        ElseIf filas = 1 Then
-            lblContarFilas.Text = "[ " & filas & " Regitro cargado  de " & AppPar.npiloto & "]"
-        Else
-            lblContarFilas.Text = "[ " & filas & " Regitros cargados de " & AppPar.npiloto & "]"
-        End If
-    End Sub
+    '    Dim filas As Integer = Me.dgvData.RowCount
+    '    If filas = 0 Then
+    '        lblContarFilas.Text = "[ " & filas & " Regitro cargado de " & AppPar.npiloto & "]"
+    '    ElseIf filas = 1 Then
+    '        lblContarFilas.Text = "[ " & filas & " Regitro cargado  de " & AppPar.npiloto & "]"
+    '    Else
+    '        lblContarFilas.Text = "[ " & filas & " Regitros cargados de " & AppPar.npiloto & "]"
+    '    End If
+    'End Sub
 
 
 End Class

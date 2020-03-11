@@ -86,9 +86,9 @@ Public Class frmPosicion
                     If String.IsNullOrEmpty(txtPuesto.Text) Then
                         MessageBox.Show("No ingreso puesto de llegada")
                         Me.txtPuesto.SelectAll()
-                    ElseIf txtPuesto.Text > AppPar.npiloto Then
-                        MessageBox.Show("El puesto ingresado supera la grilla!")
-                        Me.txtPuesto.SelectAll()
+                        'ElseIf txtPuesto.Text > AppPar.npiloto Then
+                        '    MessageBox.Show("El puesto ingresado supera la grilla!")
+                        '    Me.txtPuesto.SelectAll()
                     ElseIf txtPuesto.Text = 0 Then
                         MessageBox.Show("No puede haber puesto 0")
                         Me.txtPuesto.SelectAll()
@@ -205,14 +205,14 @@ Public Class frmPosicion
     End Sub
     Sub contar_filas()
 
-        Dim filas As Integer = Me.dgvPosicion.RowCount
-        If filas = 0 Then
-            lblContarFilas.Text = "[ " & filas & " Regitro cargado de " & AppPar.npiloto & "]"
-        ElseIf filas = 1 Then
-            lblContarFilas.Text = "[ " & filas & " Regitro cargado  de " & AppPar.npiloto & "]"
-        Else
-            lblContarFilas.Text = "[ " & filas & " Regitros cargados de " & AppPar.npiloto & "]"
-        End If
+        'Dim filas As Integer = Me.dgvPosicion.RowCount
+        'If filas = 0 Then
+        '    lblContarFilas.Text = "[ " & filas & " Regitro cargado de " & AppPar.npiloto & "]"
+        'ElseIf filas = 1 Then
+        '    lblContarFilas.Text = "[ " & filas & " Regitro cargado  de " & AppPar.npiloto & "]"
+        'Else
+        '    lblContarFilas.Text = "[ " & filas & " Regitros cargados de " & AppPar.npiloto & "]"
+        'End If
     End Sub
 
     Private Sub dgvPosicion_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvPosicion.KeyDown

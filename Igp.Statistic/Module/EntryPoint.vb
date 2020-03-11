@@ -1,29 +1,31 @@
-﻿Imports System.Collections.Generic
-Imports System.Linq
-Imports System.Windows.Forms
-Imports Igp.AccessControl
-Imports Igp.AccessControl.Entidades
+﻿'Imports System.Collections.Generic
+'Imports System.Linq
+'Imports System.Windows.Forms
+'Imports Igp.AccessControl
+'Imports Igp.AccessControl.Entidades
 
 Module entrepoint
-    Public oConn As New AccessControl.ConnectionInfo
-    Public oApp As POSFramework
+    'Public oConn As New AccessControl.ConnectionInfo
+    'Public oApp As POSFramework
 
 
-    Public oAppPAR As Parameters
+    'Public oAppPAR As Parameters
 
-    Public AppPar As New ParameterEntity
+    'Public AppPar As New ParameterEntity
 
 
 
     Public Sub Main()
-        oApp = New WindowsFramework
+
+        oApp = New MgrFramework
+        oApp.TypeModule = AccessControl.CommunicationManager.ModuleEnum.Manager
 
         'oConn = New AccessControl.ConnectionInfo
-        If oConn.GetConnectionInfo() Then
-            If oApp.InitConnection(SysModule.IgpManager) Then
+        If oApp.GetConnectionInfo() Then
+            If oApp.InitConnection() Then
 
-                oAppPAR = New Parameters
-                AppPar.npiloto = oAppPAR.GetValue("NPILOTO")
+                '        oAppPAR = New Parameters
+                '        AppPar.npiloto = oAppPAR.GetValue("NPILOTO")
 
                 Application.EnableVisualStyles()
                 Application.SetCompatibleTextRenderingDefault(False)
@@ -44,14 +46,14 @@ Module entrepoint
                 '=================================================
             Else
                 MessageBox.Show("Se produjeron errores al inicializar la aplicación." & vbLf & "Compruebe la información de conexión o contáctese con el administrador del sistema.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
+        End If
         Else
-                'gWrkDialog.Close()
-                'oApp.LogFile.LogEvent("No hay información de conexión a la aplicación")
-                'POSMessageBox.Show("No se encontró la información de conexión de la aplicación.", "e-wave", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Application.Run(New frmMainLogon)
+        'gWrkDialog.Close()
+        'oApp.LogFile.LogEvent("No hay información de conexión a la aplicación")
+        'POSMessageBox.Show("No se encontró la información de conexión de la aplicación.", "e-wave", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Application.Run(New frmMainLogon)
 
-            'MessageBox.Show("No se encontró la información de conexión de la aplicación.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'MessageBox.Show("No se encontró la información de conexión de la aplicación.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End If
 

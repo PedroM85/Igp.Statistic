@@ -96,6 +96,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\MgrFramework.vb" />
     <Compile Include="FrmMain.Designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>
@@ -104,6 +105,7 @@
     </Compile>
     <Compile Include="Module\ConnectionInfo.vb" />
     <Compile Include="Module\EntryPoint.vb" />
+    <Compile Include="Module\Global.vb" />
     <Compile Include="Module\Metodo.vb" />
     <Compile Include="Module\ReadXML.vb" />
     <Compile Include="Module\WindowsFramework.vb" />
@@ -290,7 +292,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DB\IgpManager.bak" />
+    <None Include="Recursos\DB\IgpManager.bak" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -337,58 +339,62 @@
       <Project>{8d4b827e-1ea7-4a19-832e-a8cbaf8a5814}</Project>
       <Name>Igp.AccessControl</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Igp.Common\Igp.Common.vbproj">
+      <Project>{a32013a9-ac40-4999-953f-359bd3ac285d}</Project>
+      <Name>Igp.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Button3.Image.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="IgpManager\RedGateDatabaseInfo.xml" />
-    <Content Include="IgpManager\Stored Procedures\dbo.ADD_InsertPosicion.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.CON_GetParameters.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.CON_Verisactive.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.REP_CampeonatobyTemp.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_CorrelativoP.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_DeleteCircuito.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_DeleteNacion.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_DeletePiloto.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_DeleteTempo.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ExisteCircuito.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ExisteConfig.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ExisteinPosicion.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ExisteNacion.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ExistePiloto.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ExisteTempo.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_InsertCircuito.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_InsertNacion.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_InsertPiloto.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_InsertTempo.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ObtenerCircuitobyID.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ObtenerConfigbyID.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ObtenerNacionbyID.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ObtenerNaciones.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ObtenerPilotobyID.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_ObtenerTempobyID.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_SelectallCircuito.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_SelectallConfig.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_SelectallNaciones.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_SelectallPilotos.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_SelectallTempo.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_SelectaTempoactive.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_UpdateCircuito.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_UpdateConfig.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_UpdateNacion.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_UpdatePiloto.sql" />
-    <Content Include="IgpManager\Stored Procedures\dbo.SYS_UpdateTempo.sql" />
-    <Content Include="IgpManager\Tables\dbo.SYS_Circuito.sql" />
-    <Content Include="IgpManager\Tables\dbo.SYS_Configuracion.sql" />
-    <Content Include="IgpManager\Tables\dbo.SYS_Nacion.sql" />
-    <Content Include="IgpManager\Tables\dbo.SYS_Piloto.sql" />
-    <Content Include="IgpManager\Tables\dbo.SYS_PilotoNacion.sql" />
-    <Content Include="IgpManager\Tables\dbo.SYS_Posicion.sql" />
-    <Content Include="IgpManager\Tables\dbo.SYS_Punto.sql" />
-    <Content Include="IgpManager\Tables\dbo.SYS_Temporada.sql" />
-    <Content Include="Scripts\IpgManager_0203_0111.sql" />
-    <Content Include="Scripts\IpgManager_0303_1846.sql" />
+    <Content Include="Recursos\IgpManager\RedGateDatabaseInfo.xml" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.ADD_InsertPosicion.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.CON_GetParameters.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.CON_Verisactive.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.REP_CampeonatobyTemp.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_CorrelativoP.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_DeleteCircuito.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_DeleteNacion.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_DeletePiloto.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_DeleteTempo.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ExisteCircuito.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ExisteConfig.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ExisteinPosicion.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ExisteNacion.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ExistePiloto.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ExisteTempo.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_InsertCircuito.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_InsertNacion.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_InsertPiloto.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_InsertTempo.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ObtenerCircuitobyID.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ObtenerConfigbyID.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ObtenerNacionbyID.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ObtenerNaciones.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ObtenerPilotobyID.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_ObtenerTempobyID.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_SelectallCircuito.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_SelectallConfig.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_SelectallNaciones.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_SelectallPilotos.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_SelectallTempo.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_SelectaTempoactive.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_UpdateCircuito.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_UpdateConfig.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_UpdateNacion.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_UpdatePiloto.sql" />
+    <Content Include="Recursos\IgpManager\Stored Procedures\dbo.SYS_UpdateTempo.sql" />
+    <Content Include="Recursos\IgpManager\Tables\dbo.SYS_Circuito.sql" />
+    <Content Include="Recursos\IgpManager\Tables\dbo.SYS_Configuracion.sql" />
+    <Content Include="Recursos\IgpManager\Tables\dbo.SYS_Nacion.sql" />
+    <Content Include="Recursos\IgpManager\Tables\dbo.SYS_Piloto.sql" />
+    <Content Include="Recursos\IgpManager\Tables\dbo.SYS_PilotoNacion.sql" />
+    <Content Include="Recursos\IgpManager\Tables\dbo.SYS_Posicion.sql" />
+    <Content Include="Recursos\IgpManager\Tables\dbo.SYS_Punto.sql" />
+    <Content Include="Recursos\IgpManager\Tables\dbo.SYS_Temporada.sql" />
+    <Content Include="Recursos\Scripts\IpgManager_0203_0111.sql" />
+    <Content Include="Recursos\Scripts\IpgManager_0303_1846.sql" />
     <Content Include="SqlServerTypes\Loader.cs" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
