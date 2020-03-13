@@ -335,9 +335,9 @@
     <None Include="UpdateDB.bat" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Igp.AccessControl\Igp.AccessControl.vbproj">
+    <ProjectReference Include="..\Igp.AccessControl\Igp.AccessController.vbproj">
       <Project>{8d4b827e-1ea7-4a19-832e-a8cbaf8a5814}</Project>
-      <Name>Igp.AccessControl</Name>
+      <Name>Igp.AccessController</Name>
     </ProjectReference>
     <ProjectReference Include="..\Igp.Common\Igp.Common.vbproj">
       <Project>{a32013a9-ac40-4999-953f-359bd3ac285d}</Project>

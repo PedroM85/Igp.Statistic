@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A32013A9-AC40-4999-953F-359BD3AC285D}</ProjectGuid>
+    <ProjectGuid>{8D4B827E-1EA7-4A19-832E-A8CBAF8A5814}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Igp.Common</RootNamespace>
-    <AssemblyName>Igp.Common</AssemblyName>
+    <RootNamespace>Igp.AccessController</RootNamespace>
+    <AssemblyName>Igp.AccessController</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -19,7 +19,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Igp.Common.xml</DocumentationFile>
+    <DocumentationFile>Igp.AccessController.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +28,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Igp.Common.xml</DocumentationFile>
+    <DocumentationFile>Igp.AccessController.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -46,6 +46,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,9 +68,35 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\EnvironmentObjects.vb" />
-    <Compile Include="Classes\EWFramework.vb" />
-    <Compile Include="Classes\GlobalCaptions.vb" />
+    <Compile Include="Classes\CommunicationManager.vb" />
+    <Compile Include="Classes\DataAccess\DAHelper.vb" />
+    <Compile Include="Classes\DataAccess\DALObjects.vb" />
+    <Compile Include="Consultas\Campeonato\CampeoDAL.vb" />
+    <Compile Include="Consultas\Campeonato\Entidades\CampeoEntity.vb" />
+    <Compile Include="Consultas\Circuitos\CircuitoDAL.vb" />
+    <Compile Include="Consultas\Basic\EmpleadosDAL.vb" />
+    <Compile Include="Consultas\Circuitos\Entidades\CircuitoEntity.vb" />
+    <Compile Include="Consultas\Basic\Entidades\EmpleadoEntity.vb" />
+    <Compile Include="Consultas\Basic\Entidades\EstadoCivilEntity.vb" />
+    <Compile Include="Consultas\Basic\Entidades\EstudioEntity.vb" />
+    <Compile Include="Consultas\Basic\EstudiosDAL.vb" />
+    <Compile Include="Classes\SecurityManager.vb" />
+    <Compile Include="Conexion\Conexion.vb" />
+    <Compile Include="Consultas\Configuracion\ConfigDAL.vb" />
+    <Compile Include="Consultas\Configuracion\Entidades\ConfigEntity.vb" />
+    <Compile Include="Connection\FrameworkBase.vb" />
+    <Compile Include="Connection\IFrameworkBase.vb" />
+    <Compile Include="Connection\ReadXML.vb" />
+    <Compile Include="Connection\POSFramework.vb" />
+    <Compile Include="Consultas\Equipos\Entidades\NacionEntity.vb" />
+    <Compile Include="Consultas\Temporada\dsTemporada.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTemporada.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Parameters\ParameterEntity.vb" />
+    <Compile Include="Parameters\Parameters.vb" />
+    <Compile Include="Consultas\Pilotos\Entidades\PilotoEntity.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -82,6 +112,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Consultas\Equipos\NacionDAL.vb" />
+    <Compile Include="Consultas\Pilotos\PilotosDAL.vb" />
+    <Compile Include="Consultas\Posicion\Entidades\PosicionEntity.vb" />
+    <Compile Include="Consultas\Posicion\PosicionDAL.vb" />
+    <Compile Include="Consultas\Temporada\dsTemporada.vb">
+      <DependentUpon>dsTemporada.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Consultas\Temporada\Entity\TempoEntity.vb" />
+    <Compile Include="Consultas\Temporada\TempoDAL.vb" />
+    <Compile Include="Consultas\Temporada\TempoDs.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -92,6 +132,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -101,12 +142,20 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
+    <None Include="Consultas\Temporada\dsTemporada.xsc">
+      <DependentUpon>dsTemporada.xsd</DependentUpon>
+    </None>
+    <None Include="Consultas\Temporada\dsTemporada.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTemporada.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Consultas\Temporada\dsTemporada.xss">
+      <DependentUpon>dsTemporada.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Igp.AccessControl\Igp.AccessController.vbproj">
-      <Project>{8d4b827e-1ea7-4a19-832e-a8cbaf8a5814}</Project>
-      <Name>Igp.AccessController</Name>
-    </ProjectReference>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
