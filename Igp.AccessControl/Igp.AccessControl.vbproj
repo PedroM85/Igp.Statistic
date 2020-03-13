@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Classes\CommunicationManager.vb" />
     <Compile Include="Classes\DataAccess\DAHelper.vb" />
+    <Compile Include="Classes\DataAccess\DALObjects.vb" />
     <Compile Include="Consultas\Campeonato\CampeoDAL.vb" />
     <Compile Include="Consultas\Campeonato\Entidades\CampeoEntity.vb" />
     <Compile Include="Consultas\Circuitos\CircuitoDAL.vb" />
@@ -78,7 +79,6 @@
     <Compile Include="Consultas\Basic\Entidades\EmpleadoEntity.vb" />
     <Compile Include="Consultas\Basic\Entidades\EstadoCivilEntity.vb" />
     <Compile Include="Consultas\Basic\Entidades\EstudioEntity.vb" />
-    <Compile Include="Consultas\Basic\EstadoCivilDAL.vb" />
     <Compile Include="Consultas\Basic\EstudiosDAL.vb" />
     <Compile Include="Classes\SecurityManager.vb" />
     <Compile Include="Conexion\Conexion.vb" />

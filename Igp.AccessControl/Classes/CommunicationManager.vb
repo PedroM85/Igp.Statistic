@@ -19,10 +19,10 @@ Public Class CommunicationManager
         Corporate
     End Enum
 
-    Private oSocket As New Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)
-    Private oListeningPoint As IPEndPoint
-    Private oRecvEndPoint As IPEndPoint
-    Private oInBuf(RECV_BUFFER_SIZE) As Byte
+    'Private oSocket As New Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp)
+    'Private oListeningPoint As IPEndPoint
+    'Private oRecvEndPoint As IPEndPoint
+    'Private oInBuf(RECV_BUFFER_SIZE) As Byte
 
     Public Event InstantMessageArrived(ByVal sMessage As String)
     Public Event Refresh()
@@ -40,19 +40,19 @@ Public Class CommunicationManager
             Case ModuleEnum.Manager : nPort = MANAGER_LISTEN_PORT
             Case ModuleEnum.EcomPOS : nPort = ECOM_POS_LISTEN_PORT
         End Select
-        oListeningPoint = New IPEndPoint(IPAddress.Any, nPort)
+        'oListeningPoint = New IPEndPoint(IPAddress.Any, nPort)
     End Sub
 
-    Public Sub Start()
-        oRecvEndPoint = New IPEndPoint(IPAddress.Any, 0)
+    'Public Sub Start()
+    '    oRecvEndPoint = New IPEndPoint(IPAddress.Any, 0)
 
-        oSocket.Bind(oListeningPoint)
-        oSocket.BeginReceiveFrom(oInBuf, 0, RECV_BUFFER_SIZE, SocketFlags.None, CType(oRecvEndPoint, System.Net.EndPoint), New AsyncCallback(AddressOf AsyncRead), Nothing)
-    End Sub
+    '    oSocket.Bind(oListeningPoint)
+    '    oSocket.BeginReceiveFrom(oInBuf, 0, RECV_BUFFER_SIZE, SocketFlags.None, CType(oRecvEndPoint, System.Net.EndPoint), New AsyncCallback(AddressOf AsyncRead), Nothing)
+    'End Sub
 
-    Public Sub [Stop]()
-        oSocket.Close()
-    End Sub
+    'Public Sub [Stop]()
+    '    oSocket.Close()
+    'End Sub
 
     Public Sub SendInstantMessage(ByVal eModule As ModuleEnum, ByVal sIP As String, ByVal sMessage As String)
         If sMessage.Length > 200 Then
@@ -80,39 +80,39 @@ Public Class CommunicationManager
 
         Dim bOutBuf() As Byte = System.Text.Encoding.ASCII.GetBytes(sData)
         Dim oEndPoint As New IPEndPoint(System.Net.IPAddress.Parse(sIP), nPort)
-        oSocket.SendTo(bOutBuf, oEndPoint)
+        'oSocket.SendTo(bOutBuf, oEndPoint)
     End Sub
 
-    Private Sub AsyncRead(ByVal ar As IAsyncResult)
-        Dim oSenderEndPoint As New IPEndPoint(IPAddress.Any, 0)
-        Dim nRead As Integer
-        Try
-            oRecvEndPoint = New IPEndPoint(IPAddress.Any, 0)
-            nRead = oSocket.EndReceiveFrom(ar, CType(oSenderEndPoint, System.Net.EndPoint))
-            oSocket.BeginReceiveFrom(oInBuf, 0, RECV_BUFFER_SIZE, SocketFlags.None, CType(oRecvEndPoint, System.Net.EndPoint), New AsyncCallback(AddressOf AsyncRead), Nothing)
+    'Private Sub AsyncRead(ByVal ar As IAsyncResult)
+    '    Dim oSenderEndPoint As New IPEndPoint(IPAddress.Any, 0)
+    '    Dim nRead As Integer
+    '    Try
+    '        oRecvEndPoint = New IPEndPoint(IPAddress.Any, 0)
+    '        nRead = oSocket.EndReceiveFrom(ar, CType(oSenderEndPoint, System.Net.EndPoint))
+    '        oSocket.BeginReceiveFrom(oInBuf, 0, RECV_BUFFER_SIZE, SocketFlags.None, CType(oRecvEndPoint, System.Net.EndPoint), New AsyncCallback(AddressOf AsyncRead), Nothing)
 
-            If nRead > 0 Then
-                Dim sData As String = System.Text.Encoding.ASCII.GetString(oInBuf, 0, nRead)
+    '        If nRead > 0 Then
+    '            Dim sData As String = System.Text.Encoding.ASCII.GetString(oInBuf, 0, nRead)
 
-                If sData.Length >= 4 Then
-                    Dim oMsg() As String = sData.Split(Convert.ToChar("|"))
+    '            If sData.Length >= 4 Then
+    '                Dim oMsg() As String = sData.Split(Convert.ToChar("|"))
 
-                    Select Case oMsg(0)
-                        Case "MSG"
-                            RaiseEvent InstantMessageArrived(oMsg(1))
-                        Case "SHD"
-                            RaiseEvent ShutdownRequest()
-                        Case "REF"
-                            RaiseEvent Refresh()
-                    End Select
-                End If
-            Else
-                ' "Error!!!"
-            End If
-        Catch oEx As Exception
+    '                Select Case oMsg(0)
+    '                    Case "MSG"
+    '                        RaiseEvent InstantMessageArrived(oMsg(1))
+    '                    Case "SHD"
+    '                        RaiseEvent ShutdownRequest()
+    '                    Case "REF"
+    '                        RaiseEvent Refresh()
+    '                End Select
+    '            End If
+    '        Else
+    '            ' "Error!!!"
+    '        End If
+    '    Catch oEx As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
 
 #End Region
 

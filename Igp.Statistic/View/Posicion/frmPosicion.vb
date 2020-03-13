@@ -86,9 +86,9 @@ Public Class frmPosicion
                     If String.IsNullOrEmpty(txtPuesto.Text) Then
                         MessageBox.Show("No ingreso puesto de llegada")
                         Me.txtPuesto.SelectAll()
-                        'ElseIf txtPuesto.Text > AppPar.npiloto Then
-                        '    MessageBox.Show("El puesto ingresado supera la grilla!")
-                        '    Me.txtPuesto.SelectAll()
+                        'ElseIf txtPuesto.Text > npiloto Then
+                        '   MessageBox.Show("El puesto ingresado supera la grilla!")
+                        '   Me.txtPuesto.SelectAll()
                     ElseIf txtPuesto.Text = 0 Then
                         MessageBox.Show("No puede haber puesto 0")
                         Me.txtPuesto.SelectAll()

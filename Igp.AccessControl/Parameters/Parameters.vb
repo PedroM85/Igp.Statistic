@@ -1,4 +1,4 @@
-﻿Imports ewave.DataAccessFactory
+﻿'Imports ewave.DataAccessFactory
 
 
 <CLSCompliant(True)>
@@ -38,28 +38,28 @@ Public Class Parameters
             oRd = oCmd.ExecuteReader()
             Try
                 Do While oRd.Read
-                    sId = oRd.GetString(oRd.GetOrdinal("PAR_Id")).Trim
+                    sId = oRd.GetString(oRd.GetOrdinal("PAR_Idv")).Trim
                     Select Case oRd.GetString(oRd.GetOrdinal("PAR_Type"))
                         Case "N"
-                            If oRd.IsDBNull(oRd.GetOrdinal("PAR_NumericValue")) Then
+                            If oRd.IsDBNull(oRd.GetOrdinal("PAR_Numeric")) Then
                                 oValue = Nothing
                             Else
-                                oValue = oRd.GetDecimal(oRd.GetOrdinal("PAR_NumericValue"))
+                                oValue = oRd.GetDecimal(oRd.GetOrdinal("PAR_Numeric"))
                             End If
 
                         Case "S"
 
-                            If oRd.IsDBNull(oRd.GetOrdinal("PAR_StringValue")) Then
+                            If oRd.IsDBNull(oRd.GetOrdinal("PAR_String")) Then
                                 oValue = Nothing
                             Else
-                                oValue = oRd.GetString(oRd.GetOrdinal("PAR_StringValue"))
+                                oValue = oRd.GetString(oRd.GetOrdinal("PAR_String"))
                             End If
 
                         Case "D"
-                            If oRd.IsDBNull(oRd.GetOrdinal("PAR_DateTimeValue")) Then
+                            If oRd.IsDBNull(oRd.GetOrdinal("PAR_DateTime")) Then
                                 oValue = Nothing
                             Else
-                                oValue = oRd.GetDateTime(oRd.GetOrdinal("PAR_DateTimeValue"))
+                                oValue = oRd.GetDateTime(oRd.GetOrdinal("PAR_DateTime"))
                             End If
 
                     End Select
@@ -149,6 +149,7 @@ Public Class Parameters
         Catch ex As InvalidCastException
             Throw New ArgumentException(String.Format("Parameter '{0}' couldn't be parsed as decimal.", sParameterId))
         End Try
+        Return val
     End Function
 
     Public Function GetInteger(ByVal sParameterId As String) As Integer

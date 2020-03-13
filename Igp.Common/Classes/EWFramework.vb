@@ -88,7 +88,7 @@ Public Class EWFramework
     'Protected mTranslatedResources As ewave.GlobalResourcesEngine.ResourceLoader
     'Protected mAudit As AccessController.AuditLogWriter
     'Protected mLockMgr As AccessController.LockManager
-    Protected mParams As Igp.AccessControl.Parameters
+    Protected mParams As AccessControl.Parameters
     Protected WithEvents mCommMgr As AccessControl.CommunicationManager
     Protected mTerminalId As String
     Protected mConnectionName As String
@@ -96,11 +96,12 @@ Public Class EWFramework
     'Protected mUser As ewave.AccessController.User
     Protected mLastAction As Date
     Protected mSiteId As String
+    Protected mPiloto As Integer
     Protected mTypeModule As AccessControl.CommunicationManager.ModuleEnum
     Protected mNewSession As Boolean
     Protected mAuthorizatorTerminalParameters As String
 
-    Dim mUserSites As New List(Of Site)
+    ' Dim mUserSites As New List(Of Site)
 
 
 #End Region
@@ -149,7 +150,10 @@ Public Class EWFramework
 
     Public Function InitConnection() As Boolean
         Try
+
             mConn = New OleDb.OleDbConnection(GetConnectionString)
+
+
             mConn.Open()
 
             Dim oSecMgr As New AccessControl.SecurityManager(mConn)
@@ -178,6 +182,7 @@ Public Class EWFramework
 
             mParams = New AccessControl.Parameters(mConn)
             mSiteId = mParams.GetValue("SITEID").TrimEnd().ToUpper()
+            mPiloto = mParams.GetValue("nPiloto").ToString
             'mLockMgr = New AccessControl.LockManager(mConn)
             'mAudit = New AccessControl.AuditLogWriter(mConn, mSiteId)
             'LoadLanguage()
@@ -208,10 +213,10 @@ Public Class EWFramework
 
     '    dr.Close()
     'End Sub
-    Public Sub InitCommunicationManager()
-        mCommMgr = New AccessControl.CommunicationManager(AccessControl.CommunicationManager.ModuleEnum.Manager)
-        mCommMgr.Start()
-    End Sub
+    'Public Sub InitCommunicationManager()
+    '    mCommMgr = New AccessControl.CommunicationManager(AccessControl.CommunicationManager.ModuleEnum.Manager)
+    '    mCommMgr.Start()
+    'End Sub
 
     Public Sub GetPrinterParameters(ByRef sPrinter As String, ByRef sConnection As String, ByRef sParameters As String, ByRef sWindowsPrinter As String)
         Dim oCmd As OleDb.OleDbCommand = mConn.CreateCommand
@@ -346,7 +351,7 @@ Public Class EWFramework
     'End Sub
 
     Public Sub ExitFW()
-        If Not mCommMgr Is Nothing Then mCommMgr.Stop()
+        'If Not mCommMgr Is Nothing Then mCommMgr.Stop()
         If Not mConn Is Nothing Then
             mConn.Close()
             mConn.Dispose()
@@ -741,23 +746,23 @@ Public Class EWFramework
         End Set
     End Property
 
-    Public ReadOnly Property UserSites() As List(Of Site)
-        Get
-            Return mUserSites
-        End Get
-    End Property
+    'Public ReadOnly Property UserSites() As List(Of Site)
+    '    Get
+    '        Return mUserSites
+    '    End Get
+    'End Property
 
-    Public ReadOnly Property SelectedSite() As Site
-        Get
-            Dim selSiteId As String = mSiteId.TrimEnd().ToUpper()
-            For Each s As Site In mUserSites
-                If s.Id = selSiteId Then
-                    Return s
-                End If
-            Next
-            Return Nothing
-        End Get
-    End Property
+    'Public ReadOnly Property SelectedSite() As Site
+    '    Get
+    '        Dim selSiteId As String = mSiteId.TrimEnd().ToUpper()
+    '        For Each s As Site In mUserSites
+    '            If s.Id = selSiteId Then
+    '                Return s
+    '            End If
+    '        Next
+    '        Return Nothing
+    '    End Get
+    'End Property
 
 
 

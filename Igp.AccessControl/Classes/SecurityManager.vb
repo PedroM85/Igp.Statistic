@@ -1,4 +1,4 @@
-﻿Imports ewave.DataAccessFactory
+﻿'Imports ewave.DataAccessFactory
 
 <CLSCompliant(True)>
 Public Class SecurityManager

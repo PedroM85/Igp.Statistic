@@ -5,57 +5,66 @@
 'Imports Igp.AccessControl.Entidades
 
 Module entrepoint
-    'Public oConn As New AccessControl.ConnectionInfo
+    Public oApp As WindowsFramework
     'Public oApp As POSFramework
 
 
     'Public oAppPAR As Parameters
 
-    'Public AppPar As New ParameterEntity
 
 
 
     Public Sub Main()
 
-        oApp = New MgrFramework
-        oApp.TypeModule = AccessControl.CommunicationManager.ModuleEnum.Manager
+        oApp = New WindowsFramework
+
+        'Importante, setear tipo de db
+        AccessControl.DALObjects.ProviderType = AccessControl.DALObjects.DataProviderType.OleDb
+
+
+
 
         'oConn = New AccessControl.ConnectionInfo
         If oApp.GetConnectionInfo() Then
-            If oApp.InitConnection() Then
-
-                '        oAppPAR = New Parameters
-                '        AppPar.npiloto = oAppPAR.GetValue("NPILOTO")
-
-                Application.EnableVisualStyles()
-                Application.SetCompatibleTextRenderingDefault(False)
+                If oApp.InitConnection() Then
+                    If oApp.Init() Then
 
 
-                '=================================================
-                'Esto es para el sistema de login
 
-                'Dim login As frmLogin = New frmLogin
-                'login.ShowDialog()
 
-                'Sistema de Login
-                'If (login.DialogResult = DialogResult.OK) Then
+                        '        oAppPAR = New Parameters
+                        '        AppPar.npiloto = oAppPAR.GetValue("NPILOTO")
 
-                Application.Run(New FrmMain)
+                        Application.EnableVisualStyles()
+                        Application.SetCompatibleTextRenderingDefault(False)
 
-                'End If
-                '=================================================
+
+                        '=================================================
+                        'Esto es para el sistema de login
+
+                        'Dim login As frmLogin = New frmLogin
+                        'login.ShowDialog()
+
+                        'Sistema de Login
+                        'If (login.DialogResult = DialogResult.OK) Then
+
+                        Application.Run(New FrmMain)
+
+                    End If
+                    '=================================================
+                Else
+                    MessageBox.Show("Se produjeron errores al inicializar la aplicación." & vbLf & "Compruebe la información de conexión o contáctese con el administrador del sistema.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             Else
-                MessageBox.Show("Se produjeron errores al inicializar la aplicación." & vbLf & "Compruebe la información de conexión o contáctese con el administrador del sistema.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-        Else
-        'gWrkDialog.Close()
-        'oApp.LogFile.LogEvent("No hay información de conexión a la aplicación")
-        'POSMessageBox.Show("No se encontró la información de conexión de la aplicación.", "e-wave", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Application.Run(New frmMainLogon)
+                'gWrkDialog.Close()
+                'oApp.LogFile.LogEvent("No hay información de conexión a la aplicación")
+                'POSMessageBox.Show("No se encontró la información de conexión de la aplicación.", "e-wave", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Application.Run(New frmMainLogon)
 
-        'MessageBox.Show("No se encontró la información de conexión de la aplicación.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                'MessageBox.Show("No se encontró la información de conexión de la aplicación.", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-        End If
+            End If
+
 
 
 
