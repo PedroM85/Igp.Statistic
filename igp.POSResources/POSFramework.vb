@@ -8,15 +8,14 @@ Imports System.IO
 'Imports ewave.MemberClientUtilities
 'Imports ewave.CardReader
 Imports System.Collections.Specialized
-Imports ewave.POSResources.CommonClasses
-Imports ewave.POSResources.CommonManagers
+Imports igp.POSResources.CommonClasses
+Imports igp.POSResources.CommonManagers
 
 'OJALDRE QUE ESTOS NUMEROS TIENEN QUE COINCIDIR CON LA TABLA SYS_MODULE
 Public Enum SysModule As Integer
     none
     IgpManager = 1
-    'mgr_gral = 1
-    'mgr_cons = 2
+
     'ebocPOS = 3
     'ecom = 4
     'ATM = 5
@@ -52,7 +51,7 @@ Public MustInherit Class POSFramework
     Protected mCloseASAP As Boolean = False
     Protected mNewSession As Boolean
 
-    'Protected mAudit As AuditLogWriter
+    Protected mAudit As AuditLogWriter
     Protected mParams As Parameters
 
     'Printers
@@ -62,10 +61,10 @@ Public MustInherit Class POSFramework
     Protected mHaveFiscalPrinter As Boolean = False
 
 
-    Protected mLogFile As ewave.EventLog.LogFile
-    Protected mUser As ewave.AccessController.User
+    Protected mLogFile As igp.EventLog.LogFile
+    Protected mUser As igp.AccessController.User
 
-    Protected mCreditCardAuthorizator As AuthorizatorBase
+    'Protected mCreditCardAuthorizator As AuthorizatorBase
     Protected mSysModuleValue As SysModule
 
     Protected mLastAction As Date = Now
@@ -77,13 +76,13 @@ Public MustInherit Class POSFramework
 
 
     'Membership
-    Protected mMbrClient As ewave.MemberInterfaces.IMemberManagement
-    Protected mMbrPointCli As ewave.MemberInterfaces.IPointManagement
-    Protected mMbrWalletCli As ewave.MemberInterfaces.IWalletManagement
-    Protected mMbrWalletCli_2 As ewave.MemberInterfaces.IWalletManagement_2
-    Protected mMbrUserCli As ewave.MemberInterfaces.IUserManagement
+    ' Protected mMbrClient As ewave.MemberInterfaces.IMemberManagement
+    'Protected mMbrPointCli As ewave.MemberInterfaces.IPointManagement
+    'Protected mMbrWalletCli As ewave.MemberInterfaces.IWalletManagement
+    'Protected mMbrWalletCli_2 As ewave.MemberInterfaces.IWalletManagement_2
+    'Protected mMbrUserCli As ewave.MemberInterfaces.IUserManagement
 
-    Protected mGlobalResources As ewave.GlobalResourcesEngine.ResourceLoader
+    Protected mGlobalResources As igp.GlobalResourcesEngine.ResourceLoader
 
     'Propiedades de la terminal
     Protected mTicketPrinterCode As String = String.Empty
@@ -97,11 +96,11 @@ Public MustInherit Class POSFramework
     Protected mCardReaderType As String = "NUL"
     Protected mCardReaderParameters As String = String.Empty
     Protected mAuthorizatorTerminalParameters As String = String.Empty
-    Private mCardReader As ewave.CardReader.CardReaderBase
+    'Private mCardReader As ewave.CardReader.CardReaderBase
 
     Protected mMembershipCardReaderType As String = "NUL"
     Protected mMembershipCardReaderParameters As String = String.Empty
-    Private mMembershipCardReader As ewave.CardReader.CardReaderBase
+    'Private mMembershipCardReader As ewave.CardReader.CardReaderBase
 
 
     Protected mCustDisplayCode As String = String.Empty
@@ -121,14 +120,14 @@ Public MustInherit Class POSFramework
 
 #Region " Methods "
 
-    Public Sub New(ByVal sysModule As ewave.POSResources.SysModule, ByVal terminalSiteId As String)
+    Public Sub New(ByVal sysModule As POSResources.SysModule, ByVal terminalSiteId As String)
         Me.New(sysModule)
         mTerminalSiteId = terminalSiteId
     End Sub
 
     Public Sub New(ByVal sysModule As SysModule)
         mSysModuleValue = sysModule
-        mGlobalResources = New ewave.GlobalResourcesEngine.ResourceLoader
+        mGlobalResources = New igp.GlobalResourcesEngine.ResourceLoader
 
     End Sub
 
@@ -139,91 +138,91 @@ Public MustInherit Class POSFramework
     End Sub
 
 
-    Public Overridable Function InitPrinters() As Boolean Implements IPOSFramework.InitPrinters
-        If mParams.GetString("TRAINMODE") = "S" Then
-            mPrinter = New ewave.TicketPrinter.NullPrinterController
-            mFiscalPrinter = New ewave.FiscalPrinter.NullFiscalPrinterController
-            Return True
-        Else
+    'Public Overridable Function InitPrinters() As Boolean Implements IPOSFramework.InitPrinters
+    '    If mParams.GetString("TRAINMODE") = "S" Then
+    '        mPrinter = New ewave.TicketPrinter.NullPrinterController
+    '        mFiscalPrinter = New ewave.FiscalPrinter.NullFiscalPrinterController
+    '        Return True
+    '    Else
 
-            '**** IMPRESORA DE ENTRADAS *****
-            If mSysModuleValue <> SysModule.ecom Then
-                mPrinter = ewave.TicketPrinter.PrinterControllerFactory.GetPrinterController(mTicketPrinterCode)
+    '        '**** IMPRESORA DE ENTRADAS *****
+    '        If mSysModuleValue <> SysModule.ecom Then
+    '            mPrinter = ewave.TicketPrinter.PrinterControllerFactory.GetPrinterController(mTicketPrinterCode)
 
-                Select Case mTicketPrinterConnection
-                    Case "S"
-                        mPrinter.ConnectionType = ewave.TicketPrinter.PrinterController.PrinterConnectionType.Serial
-                    Case "P"
-                        mPrinter.ConnectionType = ewave.TicketPrinter.PrinterController.PrinterConnectionType.Parallel
-                    Case "U"
-                        mPrinter.ConnectionType = ewave.TicketPrinter.PrinterController.PrinterConnectionType.USB
-                    Case Else
-                End Select
+    '            Select Case mTicketPrinterConnection
+    '                Case "S"
+    '                    mPrinter.ConnectionType = ewave.TicketPrinter.PrinterController.PrinterConnectionType.Serial
+    '                Case "P"
+    '                    mPrinter.ConnectionType = ewave.TicketPrinter.PrinterController.PrinterConnectionType.Parallel
+    '                Case "U"
+    '                    mPrinter.ConnectionType = ewave.TicketPrinter.PrinterController.PrinterConnectionType.USB
+    '                Case Else
+    '            End Select
 
-                mPrinter.ConnectionParameters = mTicketPrinterParameters
+    '            mPrinter.ConnectionParameters = mTicketPrinterParameters
 
-                If mWindowsPrinter.Length > 0 Then
-                    Dim PS As New Drawing.Printing.PrinterSettings
-                    PS.PrinterName = mWindowsPrinter
-                    mPrinter.DefaultPrinterSetting = PS
-                End If
+    '            If mWindowsPrinter.Length > 0 Then
+    '                Dim PS As New Drawing.Printing.PrinterSettings
+    '                PS.PrinterName = mWindowsPrinter
+    '                mPrinter.DefaultPrinterSetting = PS
+    '            End If
 
-            End If
-
-
+    '        End If
 
 
-            '*** IMPRESORA FISCAL ***
-            mFiscalPrinter = ewave.FiscalPrinter.PrinterControllerFactory.GetPrinterController(mFiscalPrinterCode)
-
-            Select Case mFiscalPrinterConnection
-                Case "S"
-                    mFiscalPrinter.ConnectionType = ewave.FiscalPrinter.FiscalPrinterController.PrinterConnectionType.Serial
-                Case "P"
-                    mFiscalPrinter.ConnectionType = ewave.FiscalPrinter.FiscalPrinterController.PrinterConnectionType.Parallel
-                Case "U"
-                    mFiscalPrinter.ConnectionType = ewave.FiscalPrinter.FiscalPrinterController.PrinterConnectionType.USB
-                Case "W"
-                    mFiscalPrinter.ConnectionType = ewave.FiscalPrinter.FiscalPrinterController.PrinterConnectionType.URI
-                Case Else
-            End Select
-
-            mFiscalPrinter.ConnectionParameters = mFiscalPrinterParameters
 
 
-            'PARAMETROS DE IMPR FISCAL
-            If Not TypeOf (mFiscalPrinter) Is ewave.FiscalPrinter.NullFiscalPrinterController Then
-                mHaveFiscalPrinter = True
+    '        '*** IMPRESORA FISCAL ***
+    '        mFiscalPrinter = ewave.FiscalPrinter.PrinterControllerFactory.GetPrinterController(mFiscalPrinterCode)
 
-                mFiscalPrinter.PrintItemFormat = DirectCast(System.Enum.Parse(GetType(ewave.FiscalPrinter.FiscalPrinterController.PrintItemFormatType), mParams.GetString("FPITFORMAT"), True), ewave.FiscalPrinter.FiscalPrinterController.PrintItemFormatType)
+    '        Select Case mFiscalPrinterConnection
+    '            Case "S"
+    '                mFiscalPrinter.ConnectionType = ewave.FiscalPrinter.FiscalPrinterController.PrinterConnectionType.Serial
+    '            Case "P"
+    '                mFiscalPrinter.ConnectionType = ewave.FiscalPrinter.FiscalPrinterController.PrinterConnectionType.Parallel
+    '            Case "U"
+    '                mFiscalPrinter.ConnectionType = ewave.FiscalPrinter.FiscalPrinterController.PrinterConnectionType.USB
+    '            Case "W"
+    '                mFiscalPrinter.ConnectionType = ewave.FiscalPrinter.FiscalPrinterController.PrinterConnectionType.URI
+    '            Case Else
+    '        End Select
 
-                mFiscalPrinter.DefaultBarCodeType = DirectCast(System.Enum.Parse(GetType(ewave.FiscalPrinter.FiscalPrinterController.BarCodeType), mParams.GetString("FPBARCODE"), True), ewave.FiscalPrinter.FiscalPrinterController.BarCodeType)
-                mFiscalPrinter.DefaultFont = DirectCast(System.Enum.Parse(GetType(ewave.FiscalPrinter.FiscalPrinterController.FontType), mParams.GetString("FPFONT"), True), ewave.FiscalPrinter.FiscalPrinterController.FontType)
+    '        mFiscalPrinter.ConnectionParameters = mFiscalPrinterParameters
 
-                If Not mParams.GetString("FPHEADER") Is Nothing Then
-                    mFiscalPrinter.Header = mParams.GetString("FPHEADER").Split(",")
-                End If
 
-                If Not mParams.GetString("FPGREETING") Is Nothing Then
-                    mFiscalPrinter.Greeting = mParams.GetString("FPGREETING").Split(",")
-                End If
+    '        'PARAMETROS DE IMPR FISCAL
+    '        If Not TypeOf (mFiscalPrinter) Is ewave.FiscalPrinter.NullFiscalPrinterController Then
+    '            mHaveFiscalPrinter = True
 
-                mFiscalPrinter.Terminal = mTerminalId
-            Else
-                'sin impresora fiscal
-                mHaveFiscalPrinter = False
-            End If
+    '            mFiscalPrinter.PrintItemFormat = DirectCast(System.Enum.Parse(GetType(ewave.FiscalPrinter.FiscalPrinterController.PrintItemFormatType), mParams.GetString("FPITFORMAT"), True), ewave.FiscalPrinter.FiscalPrinterController.PrintItemFormatType)
 
-            'Usar impresora fiscal para tickets
-            If mTicketPrinterCode = "FISC" AndAlso Not TypeOf (mFiscalPrinter) Is ewave.FiscalPrinter.NullFiscalPrinterController Then
-                mPrintCinemaTicketWithFP = True
-            Else
-                mPrintCinemaTicketWithFP = False
-            End If
-        End If
+    '            mFiscalPrinter.DefaultBarCodeType = DirectCast(System.Enum.Parse(GetType(ewave.FiscalPrinter.FiscalPrinterController.BarCodeType), mParams.GetString("FPBARCODE"), True), ewave.FiscalPrinter.FiscalPrinterController.BarCodeType)
+    '            mFiscalPrinter.DefaultFont = DirectCast(System.Enum.Parse(GetType(ewave.FiscalPrinter.FiscalPrinterController.FontType), mParams.GetString("FPFONT"), True), ewave.FiscalPrinter.FiscalPrinterController.FontType)
 
-        Return True
-    End Function
+    '            If Not mParams.GetString("FPHEADER") Is Nothing Then
+    '                mFiscalPrinter.Header = mParams.GetString("FPHEADER").Split(",")
+    '            End If
+
+    '            If Not mParams.GetString("FPGREETING") Is Nothing Then
+    '                mFiscalPrinter.Greeting = mParams.GetString("FPGREETING").Split(",")
+    '            End If
+
+    '            mFiscalPrinter.Terminal = mTerminalId
+    '        Else
+    '            'sin impresora fiscal
+    '            mHaveFiscalPrinter = False
+    '        End If
+
+    '        'Usar impresora fiscal para tickets
+    '        If mTicketPrinterCode = "FISC" AndAlso Not TypeOf (mFiscalPrinter) Is ewave.FiscalPrinter.NullFiscalPrinterController Then
+    '            mPrintCinemaTicketWithFP = True
+    '        Else
+    '            mPrintCinemaTicketWithFP = False
+    '        End If
+    '    End If
+
+    '    Return True
+    'End Function
 
     Private Class AuthConnData
         Public AuthClassName As String
@@ -251,7 +250,7 @@ Public MustInherit Class POSFramework
             End If
         End If
 
-        mLogFile.LogEvent("Initializing Credit Card Authorizator with parameters " + ccauthcfg)
+        'mLogFile.LogEvent("Initializing Credit Card Authorizator with parameters " + ccauthcfg)
 
         Dim pars As String() = ccauthcfg.Split("|"c)
         If ccauthcfg IsNot Nothing Then
@@ -287,105 +286,105 @@ Public MustInherit Class POSFramework
     End Function
 
 
-    Public Sub InitializeCreditCardAuthorizator(ByVal AuthorizatorAltConnectionString As String) Implements IPOSFramework.InitializeCreditCardAuthorizator
+    'Public Sub InitializeCreditCardAuthorizator(ByVal AuthorizatorAltConnectionString As String) Implements IPOSFramework.InitializeCreditCardAuthorizator
 
-        Try
-            mLogFile.LogEvent("Initializing Credit Card Authorizator")
+    '    Try
+    '        mLogFile.LogEvent("Initializing Credit Card Authorizator")
 
-            Dim mauthdata As AuthConnData = ProcessAuthConnString(AuthorizatorAltConnectionString,
-                                                                  mAuthorizatorTerminalParameters,
-                                                                  mParams.GetString("CCAUTH"))
-
-
-            mCreditCardAuthorizator = AuthorizatorBuilder.BuildAuthorizator(mauthdata.AuthDll, mauthdata.AuthClassName)
-            If mauthdata.Arguments IsNot Nothing Then
-                mCreditCardAuthorizator.Parameters = mauthdata.Arguments
-            End If
+    '        Dim mauthdata As AuthConnData = ProcessAuthConnString(AuthorizatorAltConnectionString,
+    '                                                              mAuthorizatorTerminalParameters,
+    '                                                              mParams.GetString("CCAUTH"))
 
 
-            mCreditCardAuthorizator.Initialize(Parameters.GetString("SITEID").TrimEnd)
-            mLogFile.LogEvent(String.Format("Credit Card Authorizator '{0}' initialized ok. Type: {1}",
-                                            mCreditCardAuthorizator.AuthorizatorName,
-                                            mCreditCardAuthorizator.GetType.ToString()))
-
-        Catch ex As Exception
-            mLogFile.LogExcepton(ex)
-        End Try
-
-    End Sub
-
-    Public Sub InitializeMemberShipClient() Implements IPOSFramework.InitializeMemberShipClient
-
-        Dim mbrCfg As String = Parameters.GetString("MBRCONFIG")
-
-        If Not mbrCfg Is Nothing AndAlso mbrCfg.TrimEnd.Length > 0 Then
-
-            Try
-
-                Dim pars As String() = mbrCfg.Split("|"c)
-
-                mMbrClient = MemberClientFactory.GetIMemberManagement(pars(0))
-                If mMbrClient Is Nothing Then
-                    Throw New Exception("No se pudo inicializar el sistema de membership con id " + pars(0))
-                Else
-                    If mMbrClient.HasPointManagement Then mMbrPointCli = MemberClientFactory.GetIPointManagement(pars(0))
-                    If mMbrClient.HasWalletManagement Then mMbrWalletCli = MemberClientFactory.GetIWalletManagement(pars(0))
-
-                    If mMbrClient.HasWalletManagement And (pars(0) = "Fielopolis") Then mMbrWalletCli_2 = MemberClientFactory.GetIWalletManagement_2(pars(0))
-                    If mMbrClient.HasUserManagement Then mMbrUserCli = MemberClientFactory.GetIUserManagement(pars(0))
+    '        mCreditCardAuthorizator = AuthorizatorBuilder.BuildAuthorizator(mauthdata.AuthDll, mauthdata.AuthClassName)
+    '        If mauthdata.Arguments IsNot Nothing Then
+    '            mCreditCardAuthorizator.Parameters = mauthdata.Arguments
+    '        End If
 
 
-                    'parametros
-                    If pars.GetUpperBound(0) > 0 Then
-                        Dim Key As String
-                        Dim Value As String
-                        For i As Int32 = 1 To pars.GetUpperBound(0)
-                            Key = Mid(pars(i), 1, InStr(pars(i), "=") - 1)
-                            Value = Mid(pars(i), InStr(pars(i), "=") + 1)
-                            If Key <> "" Then
-                                If mMbrClient.Common.Parameters.ContainsKey(Key) Then
-                                    mMbrClient.Common.Parameters(Key) = Value
-                                End If
-                            End If
-                        Next
-                    End If
+    '        mCreditCardAuthorizator.Initialize(Parameters.GetString("SITEID").TrimEnd)
+    '        mLogFile.LogEvent(String.Format("Credit Card Authorizator '{0}' initialized ok. Type: {1}",
+    '                                        mCreditCardAuthorizator.AuthorizatorName,
+    '                                        mCreditCardAuthorizator.GetType.ToString()))
 
-                    'Parametros comunes
-                    mMbrClient.Common.SiteId = mTerminalSiteId
-                    mMbrClient.Common.TerminalId = mTerminalId
-                    mMbrClient.Common.OleDBConnectionString = mConnInfo.OLEDBConnectionString
-                    mMbrClient.Common.ModuleId = Convert.ToInt32(mSysModuleValue)
-                    'si se llama desde otras aplicaciones el mUser no está seteado
-                    If mUser IsNot Nothing Then mMbrClient.Common.UserId = mUser.Id
+    '    Catch ex As Exception
+    '        mLogFile.LogExcepton(ex)
+    '    End Try
 
-                    mMbrClient.Initialize()
+    'End Sub
 
-                    If mMbrClient.HasPointManagement Then mMbrPointCli.Initialize(mMbrClient)
-                    If mMbrClient.HasWalletManagement Then
-                        If Not mMbrWalletCli_2 Is Nothing Then
-                            mMbrWalletCli_2.Initialize(mMbrClient)
-                        End If
-                        mMbrWalletCli.Initialize(mMbrClient)
-                    End If
-                    If mMbrClient.HasUserManagement Then mMbrUserCli.Initialize(mMbrClient)
+    'Public Sub InitializeMemberShipClient() Implements IPOSFramework.InitializeMemberShipClient
 
-                    'Card reader
-                    InitMembershipCardReader()
+    '    Dim mbrCfg As String = Parameters.GetString("MBRCONFIG")
+
+    '    If Not mbrCfg Is Nothing AndAlso mbrCfg.TrimEnd.Length > 0 Then
+
+    '        Try
+
+    '            Dim pars As String() = mbrCfg.Split("|"c)
+
+    '            mMbrClient = MemberClientFactory.GetIMemberManagement(pars(0))
+    '            If mMbrClient Is Nothing Then
+    '                Throw New Exception("No se pudo inicializar el sistema de membership con id " + pars(0))
+    '            Else
+    '                If mMbrClient.HasPointManagement Then mMbrPointCli = MemberClientFactory.GetIPointManagement(pars(0))
+    '                If mMbrClient.HasWalletManagement Then mMbrWalletCli = MemberClientFactory.GetIWalletManagement(pars(0))
+
+    '                If mMbrClient.HasWalletManagement And (pars(0) = "Fielopolis") Then mMbrWalletCli_2 = MemberClientFactory.GetIWalletManagement_2(pars(0))
+    '                If mMbrClient.HasUserManagement Then mMbrUserCli = MemberClientFactory.GetIUserManagement(pars(0))
 
 
-                    mLogFile.LogEvent(String.Format("** MemberShip Client '{0}' initialized OK - Version: {1} **", pars(0), mMbrClient.GetVersion()))
-                End If
+    '                'parametros
+    '                If pars.GetUpperBound(0) > 0 Then
+    '                    Dim Key As String
+    '                    Dim Value As String
+    '                    For i As Int32 = 1 To pars.GetUpperBound(0)
+    '                        Key = Mid(pars(i), 1, InStr(pars(i), "=") - 1)
+    '                        Value = Mid(pars(i), InStr(pars(i), "=") + 1)
+    '                        If Key <> "" Then
+    '                            If mMbrClient.Common.Parameters.ContainsKey(Key) Then
+    '                                mMbrClient.Common.Parameters(Key) = Value
+    '                            End If
+    '                        End If
+    '                    Next
+    '                End If
 
-            Catch ex As Exception
-                mLogFile.LogEvent(String.Format("** ERROR: Couldn't initialize Membership client: {0} **", ex.ToString))
-                Throw ex
-            End Try
+    '                'Parametros comunes
+    '                mMbrClient.Common.SiteId = mTerminalSiteId
+    '                mMbrClient.Common.TerminalId = mTerminalId
+    '                mMbrClient.Common.OleDBConnectionString = mConnInfo.OLEDBConnectionString
+    '                mMbrClient.Common.ModuleId = Convert.ToInt32(mSysModuleValue)
+    '                'si se llama desde otras aplicaciones el mUser no está seteado
+    '                If mUser IsNot Nothing Then mMbrClient.Common.UserId = mUser.Id
 
-        Else
-            mLogFile.LogEvent(String.Format("** WARNING: No membership client was configured. **"))
-            mMbrClient = Nothing
-        End If
-    End Sub
+    '                mMbrClient.Initialize()
+
+    '                If mMbrClient.HasPointManagement Then mMbrPointCli.Initialize(mMbrClient)
+    '                If mMbrClient.HasWalletManagement Then
+    '                    If Not mMbrWalletCli_2 Is Nothing Then
+    '                        mMbrWalletCli_2.Initialize(mMbrClient)
+    '                    End If
+    '                    mMbrWalletCli.Initialize(mMbrClient)
+    '                End If
+    '                If mMbrClient.HasUserManagement Then mMbrUserCli.Initialize(mMbrClient)
+
+    '                'Card reader
+    '                InitMembershipCardReader()
+
+
+    '                mLogFile.LogEvent(String.Format("** MemberShip Client '{0}' initialized OK - Version: {1} **", pars(0), mMbrClient.GetVersion()))
+    '            End If
+
+    '        Catch ex As Exception
+    '            mLogFile.LogEvent(String.Format("** ERROR: Couldn't initialize Membership client: {0} **", ex.ToString))
+    '            Throw ex
+    '        End Try
+
+    '    Else
+    '        mLogFile.LogEvent(String.Format("** WARNING: No membership client was configured. **"))
+    '        mMbrClient = Nothing
+    '    End If
+    'End Sub
 
     Public Sub SetupLocalizationInfo() Implements IPOSFramework.SetupLocalizationInfo
         Dim culture As New System.Globalization.CultureInfo("")
@@ -454,8 +453,8 @@ Public MustInherit Class POSFramework
 
         Try
             Dim regKey As RegistryKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\ewave", True)
-            aux = ewave.Tools.ProtectData.DecryptData(regKey.GetValue("InstallDate", String.Empty).ToString(), key, iv)
-            days = Int32.Parse(ewave.Tools.ProtectData.DecryptData(regKey.GetValue("TrialDays", "0").ToString(), key, iv))
+            aux = Tools.ProtectData.DecryptData(regKey.GetValue("InstallDate", String.Empty).ToString(), key, iv)
+            days = Int32.Parse(Tools.ProtectData.DecryptData(regKey.GetValue("TrialDays", "0").ToString(), key, iv))
             regKey.Close()
 
             Dim arr() As String = aux.Split("-"c)
@@ -483,13 +482,13 @@ Public MustInherit Class POSFramework
     End Sub
 
     Public Overridable Function CheckIfTerminalRegistered() As Boolean Implements IPOSFramework.CheckIfTerminalRegistered
-        mTerminalId = ewave.TerminalConfig.DataLayer.GetTerminalInRegistry()
+        mTerminalId = TerminalConfig.DataLayer.GetTerminalInRegistry()
 
         Return mTerminalId <> ""
     End Function
 
     Public Sub StartLog(ByVal LogFilePath As String) Implements IPOSFramework.StartLog
-        mLogFile = New ewave.EventLog.LogFile(LogFilePath, mSysModuleValue.ToString())
+        mLogFile = New igp.EventLog.LogFile(LogFilePath, mSysModuleValue.ToString())
         mLogFile.BeginLog()
     End Sub
 
@@ -500,150 +499,150 @@ Public MustInherit Class POSFramework
 
 
     Public Sub GetTerminalProperties() Implements IPOSFramework.GetTerminalProperties
-        Dim cmd As IDbCommand = mConn.CreateCommand
+        'Dim cmd As IDbCommand = mConn.CreateCommand
 
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "TRM_GetTerminal"
-        Dim par As IDataParameter = cmd.CreateParameter
-        par.ParameterName = "TerminalId"
-        par.DbType = DbType.StringFixedLength
-        par.Value = mTerminalId
-        cmd.Parameters.Add(par)
-        'cmd.Parameters.Add("TerminalId", OleDb.OleDbType.Char, 5).Value = mFwk.TerminalId
-        'cmd.Parameters.Add("SiteId", OleDb.OleDbType.Char, 10).Value = EnvironmentObjects.Fwk.SiteId
+        'cmd.CommandType = CommandType.StoredProcedure
+        'cmd.CommandText = "TRM_GetTerminal"
+        'Dim par As IDataParameter = cmd.CreateParameter
+        'par.ParameterName = "TerminalId"
+        'par.DbType = DbType.StringFixedLength
+        'par.Value = mTerminalId
+        'cmd.Parameters.Add(par)
+        ''cmd.Parameters.Add("TerminalId", OleDb.OleDbType.Char, 5).Value = mFwk.TerminalId
+        ''cmd.Parameters.Add("SiteId", OleDb.OleDbType.Char, 10).Value = EnvironmentObjects.Fwk.SiteId
 
-        Dim dr As IDataReader = Nothing
+        'Dim dr As IDataReader = Nothing
 
-        Try
-            dr = cmd.ExecuteReader
+        'Try
+        '    dr = cmd.ExecuteReader
 
-            If dr.Read() Then
-                'impresoras
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_Printer")) Then
-                    mTicketPrinterCode = CStr(dr("TRM_Printer")).TrimEnd
-                End If
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_PrinterConnectionType")) Then
-                    mTicketPrinterConnection = CStr(dr("TRM_PrinterConnectionType"))
-                End If
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_PrinterConnectionParameters")) Then
-                    mTicketPrinterParameters = CStr(dr("TRM_PrinterConnectionParameters")).TrimEnd
-                End If
+        '    If dr.Read() Then
+        '        'impresoras
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_Printer")) Then
+        '            mTicketPrinterCode = CStr(dr("TRM_Printer")).TrimEnd
+        '        End If
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_PrinterConnectionType")) Then
+        '            mTicketPrinterConnection = CStr(dr("TRM_PrinterConnectionType"))
+        '        End If
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_PrinterConnectionParameters")) Then
+        '            mTicketPrinterParameters = CStr(dr("TRM_PrinterConnectionParameters")).TrimEnd
+        '        End If
 
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_FiscalPrinter")) Then
-                    mFiscalPrinterCode = CStr(dr("TRM_FiscalPrinter")).TrimEnd
-                End If
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_FiscalPrinterConnectionType")) Then
-                    mFiscalPrinterConnection = CStr(dr("TRM_FiscalPrinterConnectionType"))
-                End If
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_FiscalPrinterConnectionParameters")) Then
-                    mFiscalPrinterParameters = CStr(dr("TRM_FiscalPrinterConnectionParameters")).TrimEnd
-                End If
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_FiscalPrinter")) Then
+        '            mFiscalPrinterCode = CStr(dr("TRM_FiscalPrinter")).TrimEnd
+        '        End If
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_FiscalPrinterConnectionType")) Then
+        '            mFiscalPrinterConnection = CStr(dr("TRM_FiscalPrinterConnectionType"))
+        '        End If
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_FiscalPrinterConnectionParameters")) Then
+        '            mFiscalPrinterParameters = CStr(dr("TRM_FiscalPrinterConnectionParameters")).TrimEnd
+        '        End If
 
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_WinDriverPrinterName")) Then
-                    mWindowsPrinter = CStr(dr("TRM_WinDriverPrinterName")).TrimEnd
-                End If
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_WinDriverPrinterName")) Then
+        '            mWindowsPrinter = CStr(dr("TRM_WinDriverPrinterName")).TrimEnd
+        '        End If
 
-                'lectores de tarjetas
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_CCR_Id")) Then
-                    mCardReaderType = CStr(dr("CCR_Type")).TrimEnd
-                    If Not dr.IsDBNull(dr.GetOrdinal("TRM_CCR_Pars")) Then
-                        mCardReaderParameters = CStr(dr("TRM_CCR_Pars")).TrimEnd
-                    End If
-                End If
+        '        'lectores de tarjetas
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_CCR_Id")) Then
+        '            mCardReaderType = CStr(dr("CCR_Type")).TrimEnd
+        '            If Not dr.IsDBNull(dr.GetOrdinal("TRM_CCR_Pars")) Then
+        '                mCardReaderParameters = CStr(dr("TRM_CCR_Pars")).TrimEnd
+        '            End If
+        '        End If
 
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_MBR_CCR_Id")) Then
-                    mMembershipCardReaderType = CStr(dr("MBR_CCR_Type")).TrimEnd
-                    If Not dr.IsDBNull(dr.GetOrdinal("TRM_MBR_CCR_Pars")) Then
-                        mMembershipCardReaderParameters = CStr(dr("TRM_MBR_CCR_Pars")).TrimEnd
-                    End If
-                End If
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_MBR_CCR_Id")) Then
+        '            mMembershipCardReaderType = CStr(dr("MBR_CCR_Type")).TrimEnd
+        '            If Not dr.IsDBNull(dr.GetOrdinal("TRM_MBR_CCR_Pars")) Then
+        '                mMembershipCardReaderParameters = CStr(dr("TRM_MBR_CCR_Pars")).TrimEnd
+        '            End If
+        '        End If
 
-                'Parámetros extra del autorizador
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_AUT_Pars")) Then
-                    mAuthorizatorTerminalParameters = CStr(dr("TRM_AUT_Pars")).TrimEnd
-                End If
+        '        'Parámetros extra del autorizador
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_AUT_Pars")) Then
+        '            mAuthorizatorTerminalParameters = CStr(dr("TRM_AUT_Pars")).TrimEnd
+        '        End If
 
-                'Customer Display
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_CustDisplay")) Then
-                    mCustDisplayCode = CStr(dr("TRM_CustDisplay")).TrimEnd
-                End If
+        '        'Customer Display
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_CustDisplay")) Then
+        '            mCustDisplayCode = CStr(dr("TRM_CustDisplay")).TrimEnd
+        '        End If
 
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_CustDisplayParameters")) Then
-                    mCustDisplayPar = CStr(dr("TRM_CustDisplayParameters")).TrimEnd
-                End If
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_CustDisplayParameters")) Then
+        '            mCustDisplayPar = CStr(dr("TRM_CustDisplayParameters")).TrimEnd
+        '        End If
 
-                'POSCode
-                If Not dr.IsDBNull(dr.GetOrdinal("TRM_POSCode")) Then
-                    mPOSCode = CStr(dr("TRM_POSCode")).TrimEnd
-                End If
+        '        'POSCode
+        '        If Not dr.IsDBNull(dr.GetOrdinal("TRM_POSCode")) Then
+        '            mPOSCode = CStr(dr("TRM_POSCode")).TrimEnd
+        '        End If
 
-                mTerminalSiteId = dr.GetString(dr.GetOrdinal("TRM_SIT_Id")).TrimEnd()
-                mWorkingSiteId = mTerminalSiteId
+        '        mTerminalSiteId = dr.GetString(dr.GetOrdinal("TRM_SIT_Id")).TrimEnd()
+        '        mWorkingSiteId = mTerminalSiteId
 
-            End If
+        '    End If
 
 
-        Catch ex As Exception
-            Throw ex
-        Finally
-            If dr IsNot Nothing Then dr.Close()
-        End Try
+        'Catch ex As Exception
+        '    Throw ex
+        'Finally
+        '    If dr IsNot Nothing Then dr.Close()
+        'End Try
 
     End Sub
 
-    Public Sub InitCardReader() Implements IPOSFramework.InitCardReader
+    'Public Sub InitCardReader() Implements IPOSFramework.InitCardReader
 
-        mCardReader = ewave.CardReader.CardReaderBuilder.GetCardReader(mCardReaderType)
+    '    mCardReader = ewave.CardReader.CardReaderBuilder.GetCardReader(mCardReaderType)
 
 
-        If mCardReaderParameters IsNot Nothing Then
-            If mCardReaderParameters.StartsWith("+|") Then
-                'Por ahora no hay que hacer ningún merge, así que se descarta
-                mCardReaderParameters = mCardReaderParameters.Substring(1)
-            End If
-        End If
+    '    If mCardReaderParameters IsNot Nothing Then
+    '        If mCardReaderParameters.StartsWith("+|") Then
+    '            'Por ahora no hay que hacer ningún merge, así que se descarta
+    '            mCardReaderParameters = mCardReaderParameters.Substring(1)
+    '        End If
+    '    End If
 
-        If mCardReaderParameters.Length > 0 Then
-            Dim par As String() = mCardReaderParameters.Split(" "c)
-            Dim parVal As String()
-            Dim HashT As New Hashtable
-            For Each st As String In par
-                parVal = st.Split("="c)
-                If parVal.GetLength(0) = 2 Then
-                    HashT.Add(parVal(0), parVal(1))
-                ElseIf parVal.GetLength(0) = 3 Then
-                    'quiere decir que el valor es '='
-                    HashT.Add(parVal(0), "=")
-                End If
-            Next
-            '2 min de timeout
-            mCardReader.Initialize(HashT, 120)
+    '    If mCardReaderParameters.Length > 0 Then
+    '        Dim par As String() = mCardReaderParameters.Split(" "c)
+    '        Dim parVal As String()
+    '        Dim HashT As New Hashtable
+    '        For Each st As String In par
+    '            parVal = st.Split("="c)
+    '            If parVal.GetLength(0) = 2 Then
+    '                HashT.Add(parVal(0), parVal(1))
+    '            ElseIf parVal.GetLength(0) = 3 Then
+    '                'quiere decir que el valor es '='
+    '                HashT.Add(parVal(0), "=")
+    '            End If
+    '        Next
+    '        '2 min de timeout
+    '        mCardReader.Initialize(HashT, 120)
 
-        End If
-    End Sub
+    '    End If
+    'End Sub
 
-    Public Sub InitMembershipCardReader() Implements IPOSFramework.InitMembershipCardReader
+    'Public Sub InitMembershipCardReader() Implements IPOSFramework.InitMembershipCardReader
 
-        mMembershipCardReader = ewave.CardReader.CardReaderBuilder.GetCardReader(mMembershipCardReaderType)
+    '    mMembershipCardReader = ewave.CardReader.CardReaderBuilder.GetCardReader(mMembershipCardReaderType)
 
-        If mMembershipCardReaderParameters.Length > 0 Then
-            Dim par As String() = mMembershipCardReaderParameters.Split(" "c)
-            Dim parVal As String()
-            Dim HashT As New Hashtable
-            For Each st As String In par
-                parVal = st.Split("="c)
-                If parVal.GetLength(0) = 2 Then
-                    HashT.Add(parVal(0), parVal(1))
-                ElseIf parVal.GetLength(0) = 3 Then
-                    'quiere decir que el valor es '='
-                    HashT.Add(parVal(0), "=")
-                End If
-            Next
-            '2 min de timeout
-            mMembershipCardReader.Initialize(HashT, 120)
+    '    If mMembershipCardReaderParameters.Length > 0 Then
+    '        Dim par As String() = mMembershipCardReaderParameters.Split(" "c)
+    '        Dim parVal As String()
+    '        Dim HashT As New Hashtable
+    '        For Each st As String In par
+    '            parVal = st.Split("="c)
+    '            If parVal.GetLength(0) = 2 Then
+    '                HashT.Add(parVal(0), parVal(1))
+    '            ElseIf parVal.GetLength(0) = 3 Then
+    '                'quiere decir que el valor es '='
+    '                HashT.Add(parVal(0), "=")
+    '            End If
+    '        Next
+    '        '2 min de timeout
+    '        mMembershipCardReader.Initialize(HashT, 120)
 
-        End If
-    End Sub
+    '    End If
+    'End Sub
 
     Public Function GetTransactionNumber() As Integer Implements IPOSFramework.GetTransactionNumber
 
@@ -708,9 +707,9 @@ Public MustInherit Class POSFramework
                 End Select
             Else
                 'argumentos simples
-                If Arg = "/Sync" Then
-                    OfflineManager.SyncOnly = True
-                End If
+                'If Arg = "/Sync" Then
+                '    OfflineManager.SyncOnly = True
+                'End If
             End If
         Next
     End Sub
@@ -759,17 +758,17 @@ Public MustInherit Class POSFramework
         Dim retVal As Boolean
         Dim offCinfo As ConnectionInfo = Nothing
 
-        If useOffline AndAlso OfflineManager.IsTransferDataInstalled Then
-            offCinfo = New ConnectionInfo()
-            If offCinfo.GetConnectionInfo("Offline") Then
-                OfflineManager.ConnString = offCinfo.SQLConnectionString
-            Else
-                Throw New SystemException("No se encontró la información de la conexión offline en el archivo de conexión")
-            End If
-        End If
+        'If useOffline AndAlso OfflineManager.IsTransferDataInstalled Then
+        '    offCinfo = New ConnectionInfo()
+        '    If offCinfo.GetConnectionInfo("Offline") Then
+        '        OfflineManager.ConnString = offCinfo.SQLConnectionString
+        '    Else
+        '        Throw New SystemException("No se encontró la información de la conexión offline en el archivo de conexión")
+        '    End If
+        'End If
 
         Try
-            If smod = POSResources.SysModule.ecom Then
+            If smod = POSResources.SysModule.IgpManager Then
                 mConn = New SqlClient.SqlConnection(mConnInfo.SQLConnectionString)
             Else
                 mConn = New OleDb.OleDbConnection(mConnInfo.OLEDBConnectionString)
@@ -784,16 +783,16 @@ Public MustInherit Class POSFramework
             mConnected = True
             retVal = True
         Catch ex As Exception
-            If useOffline AndAlso OfflineManager.IsTransferDataInstalled Then
-                mConn = New OleDb.OleDbConnection(offCinfo.OLEDBConnectionString)
-                mConn.Open()
-                mConnected = False
-                'reemplazo el conninfo
-                mConnInfo = offCinfo
-                retVal = True
-            Else
-                retVal = False
-            End If
+            'If useOffline AndAlso OfflineManager.IsTransferDataInstalled Then
+            '    mConn = New OleDb.OleDbConnection(offCinfo.OLEDBConnectionString)
+            '    mConn.Open()
+            '    mConnected = False
+            '    'reemplazo el conninfo
+            '    mConnInfo = offCinfo
+            '    retVal = True
+            'Else
+            '    retVal = False
+            'End If
         End Try
 
 
@@ -859,11 +858,11 @@ Public MustInherit Class POSFramework
         End Get
     End Property
 
-    Public Property User() As ewave.AccessController.User Implements IPOSFramework.User
+    Public Property User() As AccessController.User Implements IPOSFramework.User
         Get
             Return mUser
         End Get
-        Set(ByVal Value As ewave.AccessController.User)
+        Set(ByVal Value As AccessController.User)
             mUser = Value
         End Set
     End Property
@@ -922,77 +921,77 @@ Public MustInherit Class POSFramework
         End Get
     End Property
 
-    Public ReadOnly Property Printer() As PrinterController Implements IPOSFramework.Printer
-        Get
-            Return mPrinter
-        End Get
-    End Property
+    'Public ReadOnly Property Printer() As PrinterController Implements IPOSFramework.Printer
+    '    Get
+    '        Return mPrinter
+    '    End Get
+    'End Property
 
-    Public ReadOnly Property FiscalPrinter() As FiscalPrinterController Implements IPOSFramework.FiscalPrinter
-        Get
-            Return mFiscalPrinter
-        End Get
-    End Property
+    'Public ReadOnly Property FiscalPrinter() As FiscalPrinterController Implements IPOSFramework.FiscalPrinter
+    '    Get
+    '        Return mFiscalPrinter
+    '    End Get
+    'End Property
 
-    Public Property LogFile() As ewave.EventLog.LogFile Implements IPOSFramework.LogFile
+    Public Property LogFile() As EventLog.LogFile Implements IPOSFramework.LogFile
         Get
             Return mLogFile
         End Get
-        Set(ByVal Value As ewave.EventLog.LogFile)
+        Set(ByVal Value As EventLog.LogFile)
             mLogFile = Value
         End Set
     End Property
 
-    Public ReadOnly Property CreditCardAuthorizator() As AuthorizatorBase Implements IPOSFramework.CreditCardAuthorizator
-        Get
-            Return mCreditCardAuthorizator
-        End Get
-    End Property
+    'Public ReadOnly Property CreditCardAuthorizator() As AuthorizatorBase Implements IPOSFramework.CreditCardAuthorizator
+    '    Get
+    '        Return mCreditCardAuthorizator
+    '    End Get
+    'End Property
 
-    Public Property MemberShipClient() As ewave.MemberInterfaces.IMemberManagement Implements IPOSFramework.MemberShipClient
-        Get
-            Return mMbrClient
-        End Get
-        Set(ByVal value As ewave.MemberInterfaces.IMemberManagement)
-            mMbrClient = value
-        End Set
-    End Property
+    'Public Property MemberShipClient() As ewave.MemberInterfaces.IMemberManagement Implements IPOSFramework.MemberShipClient
+    '    Get
+    '        Return mMbrClient
+    '    End Get
+    '    Set(ByVal value As ewave.MemberInterfaces.IMemberManagement)
+    '        mMbrClient = value
+    '    End Set
+    'End Property
 
-    Public Property MemberShipPointClient() As ewave.MemberInterfaces.IPointManagement Implements IPOSFramework.MemberShipPointClient
-        Get
-            Return mMbrPointCli
-        End Get
-        Set(ByVal value As ewave.MemberInterfaces.IPointManagement)
-            mMbrPointCli = value
-        End Set
-    End Property
+    'Public Property MemberShipPointClient() As ewave.MemberInterfaces.IPointManagement Implements IPOSFramework.MemberShipPointClient
+    '    Get
+    '        Return mMbrPointCli
+    '    End Get
+    '    Set(ByVal value As ewave.MemberInterfaces.IPointManagement)
+    '        mMbrPointCli = value
+    '    End Set
+    'End Property
 
-    Public Property MemberShipWalletClient_2() As ewave.MemberInterfaces.IWalletManagement_2 Implements IPOSFramework.MemberShipWalletClient_2
-        Get
-            Return mMbrWalletCli_2
-        End Get
-        Set(ByVal value As ewave.MemberInterfaces.IWalletManagement_2)
-            mMbrWalletCli_2 = value
-        End Set
-    End Property
+    'Public Property MemberShipWalletClient_2() As ewave.MemberInterfaces.IWalletManagement_2 Implements IPOSFramework.MemberShipWalletClient_2
+    '    Get
+    '        Return mMbrWalletCli_2
+    '    End Get
+    '    Set(ByVal value As ewave.MemberInterfaces.IWalletManagement_2)
+    '        mMbrWalletCli_2 = value
+    '    End Set
+    'End Property
 
-    Public Property MemberShipWalletClient() As ewave.MemberInterfaces.IWalletManagement Implements IPOSFramework.MemberShipWalletClient
-        Get
-            Return mMbrWalletCli
-        End Get
-        Set(ByVal value As ewave.MemberInterfaces.IWalletManagement)
-            mMbrWalletCli = value
-        End Set
-    End Property
+    'Public Property MemberShipWalletClient() As ewave.MemberInterfaces.IWalletManagement Implements IPOSFramework.MemberShipWalletClient
+    '    Get
+    '        Return mMbrWalletCli
+    '    End Get
+    '    Set(ByVal value As ewave.MemberInterfaces.IWalletManagement)
+    '        mMbrWalletCli = value
+    '    End Set
+    'End Property
 
-    Public Property MemberShipUserClient() As ewave.MemberInterfaces.IUserManagement Implements IPOSFramework.MemberShipUserClient
-        Get
-            Return mMbrUserCli
-        End Get
-        Set(ByVal value As ewave.MemberInterfaces.IUserManagement)
-            mMbrUserCli = value
-        End Set
-    End Property
+    'Public Property MemberShipUserClient() As ewave.MemberInterfaces.IUserManagement Implements IPOSFramework.MemberShipUserClient
+    '    Get
+    '        Return mMbrUserCli
+    '    End Get
+    '    Set(ByVal value As ewave.MemberInterfaces.IUserManagement)
+    '        mMbrUserCli = value
+    '    End Set
+    'End Property
 
     Public Property LastAction() As Date Implements IPOSFramework.LastAction
         Get
@@ -1035,7 +1034,7 @@ Public MustInherit Class POSFramework
         End Get
     End Property
 
-    Public ReadOnly Property GlobalResources() As ewave.GlobalResourcesEngine.ResourceLoader Implements IPOSFramework.GlobalResources
+    Public ReadOnly Property GlobalResources() As igp.GlobalResourcesEngine.ResourceLoader Implements IPOSFramework.GlobalResources
         Get
             Return mGlobalResources
         End Get
@@ -1047,29 +1046,29 @@ Public MustInherit Class POSFramework
         End Get
     End Property
 
-    Public ReadOnly Property HaveFiscalPrinter() As Boolean Implements IPOSFramework.HaveFiscalPrinter
-        Get
-            Return mHaveFiscalPrinter
-        End Get
-    End Property
+    'Public ReadOnly Property HaveFiscalPrinter() As Boolean Implements IPOSFramework.HaveFiscalPrinter
+    '    Get
+    '        Return mHaveFiscalPrinter
+    '    End Get
+    'End Property
 
-    Public ReadOnly Property PrintCinemaTicketWithFiscalPrinter() As Boolean Implements IPOSFramework.PrintCinemaTicketWithFiscalPrinter
-        Get
-            Return mPrintCinemaTicketWithFP
-        End Get
-    End Property
+    'Public ReadOnly Property PrintCinemaTicketWithFiscalPrinter() As Boolean Implements IPOSFramework.PrintCinemaTicketWithFiscalPrinter
+    '    Get
+    '        Return mPrintCinemaTicketWithFP
+    '    End Get
+    'End Property
 
-    Public ReadOnly Property CardReader() As CardReaderBase Implements IPOSFramework.CardReader
-        Get
-            Return mCardReader
-        End Get
-    End Property
+    'Public ReadOnly Property CardReader() As CardReaderBase Implements IPOSFramework.CardReader
+    '    Get
+    '        Return mCardReader
+    '    End Get
+    'End Property
 
-    Public ReadOnly Property MembershipCardReader() As CardReaderBase Implements IPOSFramework.MembershipCardReader
-        Get
-            Return mMembershipCardReader
-        End Get
-    End Property
+    'Public ReadOnly Property MembershipCardReader() As CardReaderBase Implements IPOSFramework.MembershipCardReader
+    '    Get
+    '        Return mMembershipCardReader
+    '    End Get
+    'End Property
 
     Public ReadOnly Property ConnInfo() As ConnectionInfo Implements IPOSFramework.ConnInfo
         Get

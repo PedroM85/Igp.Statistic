@@ -1,108 +1,108 @@
-Imports System.Collections.Generic
-Imports System.ComponentModel
-Imports System.Data
-Imports System.Drawing
-Imports System.Linq
-Imports System.Text
-Imports System.Windows.Forms
-Imports Igp.AccessControl
-Imports Igp.AccessControl.Entidades
+'Imports System.Collections.Generic
+'Imports System.ComponentModel
+'Imports System.Data
+'Imports System.Drawing
+'Imports System.Linq
+'Imports System.Text
+'Imports System.Windows.Forms
+'Imports Igp.AccessControl
+'Imports Igp.AccessControl.Entidades
 
-Partial Public Class frmPiloto
-	Inherits Form
-	Public Sub New()
-		InitializeComponent()
-	End Sub
+'Partial Public Class frmPiloto
+'	Inherits Form
+'	Public Sub New()
+'		InitializeComponent()
+'	End Sub
 
-	Private Sub frmListaEmpleados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		CargarListaEmpleados()
-		contar_filas()
-	End Sub
+'	Private Sub frmListaEmpleados_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+'		CargarListaEmpleados()
+'		contar_filas()
+'	End Sub
 
-	Private Sub CargarListaEmpleados()
-		dgvEmpleados.AutoGenerateColumns = False
-		dgvEmpleados.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
-		dgvEmpleados.Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
-		dgvEmpleados.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-		dgvEmpleados.Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
-		dgvEmpleados.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-		dgvEmpleados.DataSource = EmpleadosDAL.ObtenerTodos()
+'	Private Sub CargarListaEmpleados()
+'		dgvEmpleados.AutoGenerateColumns = False
+'		dgvEmpleados.AlternatingRowsDefaultCellStyle.BackColor = Color.AliceBlue
+'		dgvEmpleados.Columns(1).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+'		dgvEmpleados.Columns(1).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+'		dgvEmpleados.Columns(2).HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+'		dgvEmpleados.Columns(2).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+'		dgvEmpleados.DataSource = EmpleadosDAL.ObtenerTodos()
 
-		For Each row As DataGridViewRow In dgvEmpleados.Rows
-			'se asigna el alto de la fila para poder ver la imagen correctamente
-			'row.Height = 120
+'		For Each row As DataGridViewRow In dgvEmpleados.Rows
+'			'se asigna el alto de la fila para poder ver la imagen correctamente
+'			'row.Height = 120
 
-			'se recupera la entidad que es asignada como dato
-			Dim empleado As EmpleadoEntity = TryCast(row.DataBoundItem, EmpleadoEntity)
+'			'se recupera la entidad que es asignada como dato
+'			Dim empleado As EmpleadoEntity = TryCast(row.DataBoundItem, EmpleadoEntity)
 
-			'If empleado.Imagen Is Nothing Then
-			'	row.Cells("Imagen").Value = ImageHelper.ObtenerImagenNoDisponible()
-			'Else
-			'	row.Cells("Imagen").Value = ImageHelper.ByteArrayToImage(empleado.Imagen)
-			'End If
-		Next
+'			'If empleado.Imagen Is Nothing Then
+'			'	row.Cells("Imagen").Value = ImageHelper.ObtenerImagenNoDisponible()
+'			'Else
+'			'	row.Cells("Imagen").Value = ImageHelper.ByteArrayToImage(empleado.Imagen)
+'			'End If
+'		Next
 
-	End Sub
-
-
+'	End Sub
 
 
-	Private Sub frmEditar_FormClosing(sender As Object, e As FormClosingEventArgs)
-		'
-		' al cerrarse el form de edicion se ingresa a este evento 
-		' para actualizar la informacion del listado
-		'
-
-		Dim frmEdit As EditarEmpleado = TryCast(sender, EditarEmpleado)
-
-		If frmEdit.DialogResult = DialogResult.OK Then
-			CargarListaEmpleados()
-			contar_filas()
-		End If
-
-	End Sub
 
 
-	Private Sub dgvEmpleados_CellContentDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvEmpleados.CellContentDoubleClick
+'	Private Sub frmEditar_FormClosing(sender As Object, e As FormClosingEventArgs)
+'		'
+'		' al cerrarse el form de edicion se ingresa a este evento 
+'		' para actualizar la informacion del listado
+'		'
 
-		Dim IdEmpleado As Integer = Convert.ToInt32(dgvEmpleados.Rows(e.RowIndex).Cells("IdEmpleado").Value)
+'		Dim frmEdit As EditarEmpleado = TryCast(sender, EditarEmpleado)
 
-		'
-		' al pasarle un id de empleado este lo cargara para su edicion
-		'
-		Dim frmEditar As New EditarEmpleado(IdEmpleado)
-		AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
+'		If frmEdit.DialogResult = DialogResult.OK Then
+'			CargarListaEmpleados()
+'			contar_filas()
+'		End If
 
-		frmEditar.ShowDialog()
-
-	End Sub
-
-	Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
-		Me.Close()
-	End Sub
-
-	Sub contar_filas()
-
-		Dim filas As Integer = Me.dgvEmpleados.RowCount
-		If filas = 0 Then
-			lblContarFilas.Text = "[ " & filas & " Regitro cargado ]"
-		ElseIf filas = 1 Then
-			lblContarFilas.Text = "[ " & filas & " Regitro cargado ]"
-		Else
-			lblContarFilas.Text = "[ " & filas & " Regitros cargados ]"
-		End If
-	End Sub
-
-	Private Sub btnNuevoEmpleado_Click(sender As Object, e As EventArgs) Handles btnNuevoEmpleado.Click
-		'
-		' sino se le pasa un id ,el formulario entrara en modo alta
-		'
-		Dim frmEditar As New EditarEmpleado()
-		AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
+'	End Sub
 
 
-		frmEditar.ShowDialog()
-	End Sub
+'	Private Sub dgvEmpleados_CellContentDoubleClick(ByVal sender As Object, ByVal e As DataGridViewCellEventArgs) Handles dgvEmpleados.CellContentDoubleClick
+
+'		Dim IdEmpleado As Integer = Convert.ToInt32(dgvEmpleados.Rows(e.RowIndex).Cells("IdEmpleado").Value)
+
+'		'
+'		' al pasarle un id de empleado este lo cargara para su edicion
+'		'
+'		Dim frmEditar As New EditarEmpleado(IdEmpleado)
+'		AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
+
+'		frmEditar.ShowDialog()
+
+'	End Sub
+
+'	Private Sub BtnCerrarForm_Click(sender As Object, e As EventArgs) Handles BtnCerrarForm.Click
+'		Me.Close()
+'	End Sub
+
+'	Sub contar_filas()
+
+'		Dim filas As Integer = Me.dgvEmpleados.RowCount
+'		If filas = 0 Then
+'			lblContarFilas.Text = "[ " & filas & " Regitro cargado ]"
+'		ElseIf filas = 1 Then
+'			lblContarFilas.Text = "[ " & filas & " Regitro cargado ]"
+'		Else
+'			lblContarFilas.Text = "[ " & filas & " Regitros cargados ]"
+'		End If
+'	End Sub
+
+'	Private Sub btnNuevoEmpleado_Click(sender As Object, e As EventArgs) Handles btnNuevoEmpleado.Click
+'		'
+'		' sino se le pasa un id ,el formulario entrara en modo alta
+'		'
+'		Dim frmEditar As New EditarEmpleado()
+'		AddHandler frmEditar.FormClosing, New FormClosingEventHandler(AddressOf frmEditar_FormClosing)
 
 
-End Class
+'		frmEditar.ShowDialog()
+'	End Sub
+
+
+'End Class

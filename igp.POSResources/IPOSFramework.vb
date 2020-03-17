@@ -1,11 +1,11 @@
 ﻿Imports igp.AccessController
 'Imports ewave.CardAuthorizationInterfaces
 'Imports ewave.CardReader
-'Imports ewave.EventLog
+Imports igp.EventLog
 'Imports ewave.FiscalPrinter
-'Imports ewave.GlobalResourcesEngine
+Imports igp.GlobalResourcesEngine
 'Imports ewave.MemberInterfaces
-'Imports ewave.POSResources.CommonClasses
+Imports igp.POSResources.CommonClasses
 'Imports ewave.TicketPrinter
 Imports System
 Imports System.Collections.Generic
@@ -23,7 +23,7 @@ Public Interface IPOSFramework
 
     ReadOnly Property TerminalId() As String
 
-    'Property User() As User
+    Property User() As User
 
     Property SessionId(ByVal SiteId As String) As Integer
 
@@ -33,13 +33,13 @@ Public Interface IPOSFramework
 
     Property Parameters() As Parameters
 
-    'ReadOnly Property AuditLogWriter() As AuditLogWriter
+    ReadOnly Property AuditLogWriter() As AuditLogWriter
 
     'ReadOnly Property Printer() As PrinterController
 
     'ReadOnly Property FiscalPrinter() As FiscalPrinterController
 
-    'Property LogFile() As LogFile
+    Property LogFile() As LogFile
 
     'ReadOnly Property CreditCardAuthorizator() As AuthorizatorBase
 
@@ -59,17 +59,17 @@ Public Interface IPOSFramework
 
     ReadOnly Property TerminalSiteId() As String
 
-    'ReadOnly Property TerminalSite() As Site
+    ReadOnly Property TerminalSite() As Site
 
     ReadOnly Property SystemUserId() As String
 
-    'ReadOnly Property GlobalResources() As ResourceLoader
+    ReadOnly Property GlobalResources() As ResourceLoader
 
     ReadOnly Property POSCode() As String
 
-    ReadOnly Property HaveFiscalPrinter() As Boolean
+    'ReadOnly Property HaveFiscalPrinter() As Boolean
 
-    ReadOnly Property PrintCinemaTicketWithFiscalPrinter() As Boolean
+    'ReadOnly Property PrintCinemaTicketWithFiscalPrinter() As Boolean
 
     'ReadOnly Property CardReader() As CardReaderBase
 
@@ -79,7 +79,7 @@ Public Interface IPOSFramework
 
     ReadOnly Property CommandLineArgs() As StringDictionary
 
-    'ReadOnly Property UserSites() As List(Of Site)
+    ReadOnly Property UserSites() As List(Of Site)
 
     ReadOnly Property SysModule() As SysModule
 
@@ -91,11 +91,11 @@ Public Interface IPOSFramework
 
     Sub LoadWorkingParameters()
 
-    Function InitPrinters() As Boolean
+    'Function InitPrinters() As Boolean
 
-    Sub InitializeCreditCardAuthorizator(ByVal AuthorizatorAltConnectionString As String)
+    'Sub InitializeCreditCardAuthorizator(ByVal AuthorizatorAltConnectionString As String)
 
-    Sub InitializeMemberShipClient()
+    'Sub InitializeMemberShipClient()
 
     Sub SetupLocalizationInfo()
 
@@ -117,9 +117,9 @@ Public Interface IPOSFramework
 
     Sub GetTerminalProperties()
 
-    Sub InitCardReader()
+    'Sub InitCardReader()
 
-    Sub InitMembershipCardReader()
+    'Sub InitMembershipCardReader()
 
     Function GetTransactionNumber() As Integer
 

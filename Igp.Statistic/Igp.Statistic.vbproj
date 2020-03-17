@@ -96,19 +96,35 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\MgrFramework.vb" />
+    <Compile Include="Dialogs\AuthorisationForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\BaseDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MessageDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\MsgPopup.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\PasswordChange.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\POSMessageBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\WorkingDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmMain.Designer.vb">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </Compile>
     <Compile Include="FrmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Module\ConnectionInfo.vb" />
     <Compile Include="Module\EntryPoint.vb" />
-    <Compile Include="Module\Global.vb" />
-    <Compile Include="Module\Metodo.vb" />
-    <Compile Include="Module\ReadXML.vb" />
-    <Compile Include="Module\WindowsFramework.vb" />
+    <Compile Include="Classes\WindowsFramework.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -140,33 +156,23 @@
     <Compile Include="View\Campeonato\frmCampeonato.Designer.vb">
       <DependentUpon>frmCampeonato.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Campeonato\frmCampeonato.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Campeonato\frmCampeonato.vb" />
     <Compile Include="View\Circuito\frmCircuito.Designer.vb">
       <DependentUpon>frmCircuito.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Circuito\frmCircuito.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Circuito\frmCircuito.vb" />
     <Compile Include="View\Circuito\frmEditCircuito.Designer.vb">
       <DependentUpon>frmEditCircuito.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Circuito\frmEditCircuito.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Circuito\frmEditCircuito.vb" />
     <Compile Include="View\Configuracion\frmConfiguracion.Designer.vb">
       <DependentUpon>frmConfiguracion.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Configuracion\frmConfiguracion.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Configuracion\frmConfiguracion.vb" />
     <Compile Include="View\Configuracion\frmEditConfig.Designer.vb">
       <DependentUpon>frmEditConfig.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Configuracion\frmEditConfig.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Configuracion\frmEditConfig.vb" />
     <Compile Include="View\DashBoard\frmDashboard.Designer.vb">
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
@@ -176,59 +182,54 @@
     <Compile Include="View\Equipo\frmEditNacion.Designer.vb">
       <DependentUpon>frmEditNacion.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Equipo\frmEditNacion.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Equipo\frmEditNacion.vb" />
     <Compile Include="View\Equipo\frmNacion.Designer.vb">
       <DependentUpon>frmNacion.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Equipo\frmNacion.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\LogonPad\frmLogonPad.Designer.vb">
-      <DependentUpon>frmLogonPad.vb</DependentUpon>
-    </Compile>
-    <Compile Include="View\LogonPad\frmLogonPad.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\LogonPad\frmMainLogon.Designer.vb">
-      <DependentUpon>frmMainLogon.vb</DependentUpon>
-    </Compile>
-    <Compile Include="View\LogonPad\frmMainLogon.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Equipo\frmNacion.vb" />
     <Compile Include="View\Piloto\frmEditPiloto.designer.vb">
       <DependentUpon>frmEditPiloto.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Piloto\frmEditPiloto.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Piloto\frmEditPiloto.vb" />
     <Compile Include="View\Piloto\frmPiloto.designer.vb">
       <DependentUpon>frmPiloto.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Piloto\frmPiloto.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Piloto\frmPiloto.vb" />
     <Compile Include="View\Posicion\frmPosicion.Designer.vb">
       <DependentUpon>frmPosicion.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Posicion\frmPosicion.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Posicion\frmPosicion.vb" />
     <Compile Include="View\Temporada\frmeditTempo.Designer.vb">
       <DependentUpon>frmeditTempo.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Temporada\frmeditTempo.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Temporada\frmeditTempo.vb" />
     <Compile Include="View\Temporada\frmTemporada.Designer.vb">
       <DependentUpon>frmTemporada.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Temporada\frmTemporada.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\Temporada\frmTemporada.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Dialogs\AuthorisationForm.resx">
+      <DependentUpon>AuthorisationForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\BaseDialog.resx">
+      <DependentUpon>BaseDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MessageDialog.resx">
+      <DependentUpon>MessageDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\MsgPopup.resx">
+      <DependentUpon>MsgPopup.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\PasswordChange.resx">
+      <DependentUpon>PasswordChange.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\POSMessageBox.resx">
+      <DependentUpon>POSMessageBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\WorkingDialog.resx">
+      <DependentUpon>WorkingDialog.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.vb</DependentUpon>
     </EmbeddedResource>
@@ -268,12 +269,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Equipo\frmNacion.resx">
       <DependentUpon>frmNacion.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\LogonPad\frmLogonPad.resx">
-      <DependentUpon>frmLogonPad.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\LogonPad\frmMainLogon.resx">
-      <DependentUpon>frmMainLogon.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Piloto\frmEditPiloto.resx">
       <DependentUpon>frmEditPiloto.vb</DependentUpon>
@@ -342,6 +337,26 @@
     <ProjectReference Include="..\Igp.Common\Igp.Common.vbproj">
       <Project>{a32013a9-ac40-4999-953f-359bd3ac285d}</Project>
       <Name>Igp.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.DataAccessFactory\Igp.DataAccessFactory.vbproj">
+      <Project>{d5d7534f-9b5e-4a9c-ba3a-03d6db747ad1}</Project>
+      <Name>Igp.DataAccessFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.EventLog\Igp.EventLog.vbproj">
+      <Project>{eaac107b-17a1-48b8-8b4e-7b542d44e981}</Project>
+      <Name>Igp.EventLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.GlobalResourcesEngine\Igp.GlobalResourcesEngine.vbproj">
+      <Project>{e03df081-3096-416b-8a84-098068bc04e8}</Project>
+      <Name>Igp.GlobalResourcesEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\igp.POSResources\Igp.POSResources.vbproj">
+      <Project>{e13e69e3-33f9-4474-b589-dfa4143efb89}</Project>
+      <Name>Igp.POSResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IgpManager.BACK\IgpManager.BACK.vbproj">
+      <Project>{db773dc9-f09f-4c47-bee8-c203eac0aa5c}</Project>
+      <Name>IgpManager.BACK</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -68,35 +68,11 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CommunicationManager.vb" />
-    <Compile Include="Classes\DataAccess\DAHelper.vb" />
-    <Compile Include="Classes\DataAccess\DALObjects.vb" />
-    <Compile Include="Consultas\Campeonato\CampeoDAL.vb" />
-    <Compile Include="Consultas\Campeonato\Entidades\CampeoEntity.vb" />
-    <Compile Include="Consultas\Circuitos\CircuitoDAL.vb" />
-    <Compile Include="Consultas\Basic\EmpleadosDAL.vb" />
-    <Compile Include="Consultas\Circuitos\Entidades\CircuitoEntity.vb" />
-    <Compile Include="Consultas\Basic\Entidades\EmpleadoEntity.vb" />
-    <Compile Include="Consultas\Basic\Entidades\EstadoCivilEntity.vb" />
-    <Compile Include="Consultas\Basic\Entidades\EstudioEntity.vb" />
-    <Compile Include="Consultas\Basic\EstudiosDAL.vb" />
-    <Compile Include="Classes\SecurityManager.vb" />
-    <Compile Include="Conexion\Conexion.vb" />
-    <Compile Include="Consultas\Configuracion\ConfigDAL.vb" />
-    <Compile Include="Consultas\Configuracion\Entidades\ConfigEntity.vb" />
-    <Compile Include="Connection\FrameworkBase.vb" />
-    <Compile Include="Connection\IFrameworkBase.vb" />
-    <Compile Include="Connection\ReadXML.vb" />
-    <Compile Include="Connection\POSFramework.vb" />
-    <Compile Include="Consultas\Equipos\Entidades\NacionEntity.vb" />
-    <Compile Include="Consultas\Temporada\dsTemporada.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsTemporada.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Parameters\ParameterEntity.vb" />
-    <Compile Include="Parameters\Parameters.vb" />
-    <Compile Include="Consultas\Pilotos\Entidades\PilotoEntity.vb" />
+    <Compile Include="AuditLogWriter.vb" />
+    <Compile Include="CommunicationManager.vb" />
+    <Compile Include="ewaveLicense.vb" />
+    <Compile Include="Parameters.vb" />
+    <Compile Include="SecurityManager.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -112,16 +88,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Consultas\Equipos\NacionDAL.vb" />
-    <Compile Include="Consultas\Pilotos\PilotosDAL.vb" />
-    <Compile Include="Consultas\Posicion\Entidades\PosicionEntity.vb" />
-    <Compile Include="Consultas\Posicion\PosicionDAL.vb" />
-    <Compile Include="Consultas\Temporada\dsTemporada.vb">
-      <DependentUpon>dsTemporada.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Consultas\Temporada\Entity\TempoEntity.vb" />
-    <Compile Include="Consultas\Temporada\TempoDAL.vb" />
-    <Compile Include="Consultas\Temporada\TempoDs.vb" />
+    <Compile Include="ConnectionInfo.vb" />
+    <Compile Include="SessionManager.vb" />
+    <Compile Include="User.vb" />
+    <Compile Include="UserMenu.vb" />
+    <Compile Include="UserMenuItem.vb" />
+    <Compile Include="UserMenuItemCollection.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -132,7 +104,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -142,20 +113,19 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="Consultas\Temporada\dsTemporada.xsc">
-      <DependentUpon>dsTemporada.xsd</DependentUpon>
-    </None>
-    <None Include="Consultas\Temporada\dsTemporada.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsTemporada.Designer.vb</LastGenOutput>
-    </None>
-    <None Include="Consultas\Temporada\dsTemporada.xss">
-      <DependentUpon>dsTemporada.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Igp.DataAccessFactory\Igp.DataAccessFactory.vbproj">
+      <Project>{d5d7534f-9b5e-4a9c-ba3a-03d6db747ad1}</Project>
+      <Name>Igp.DataAccessFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.EventLog\Igp.EventLog.vbproj">
+      <Project>{eaac107b-17a1-48b8-8b4e-7b542d44e981}</Project>
+      <Name>Igp.EventLog</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

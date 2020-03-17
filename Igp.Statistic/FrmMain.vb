@@ -100,7 +100,7 @@ Public Class FrmMain
 
     Private Sub btnPiloto_Click(sender As Object, e As EventArgs) Handles btnPiloto.Click
         btnPiloto.BackColor = Color.FromArgb(122, 181, 66)
-        AbrirFormEnPanel(Of frmPiloto)()
+        'AbrirFormEnPanel(Of frmPiloto)()
     End Sub
 
     Private Sub btnCircuito_Click(sender As Object, e As EventArgs) Handles btnCircuito.Click
@@ -197,7 +197,7 @@ Public Class FrmMain
     Private Sub FrmMain_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
 
         If e.KeyCode = Keys.F12 Then
-            frmMainLogon.Show()
+            'frmMainLogon.Show()
         End If
     End Sub
 

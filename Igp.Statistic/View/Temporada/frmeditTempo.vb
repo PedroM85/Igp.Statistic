@@ -1,94 +1,94 @@
-﻿Imports System.Collections.Generic
-Imports System.ComponentModel
-Imports System.Data
-Imports System.Drawing
-Imports System.Linq
-Imports System.Text
-Imports System.Windows.Forms
-Imports Igp.AccessControl
-Imports Igp.AccessControl.Entidades
-Partial Public Class frmeditTempo
-    Inherits Form
+﻿'Imports System.Collections.Generic
+'Imports System.ComponentModel
+'Imports System.Data
+'Imports System.Drawing
+'Imports System.Linq
+'Imports System.Text
+'Imports System.Windows.Forms
+'Imports Igp.AccessController
 
-	Private _idTempo As Nullable(Of Integer) = Nothing
+'Partial Public Class frmeditTempo
+'    Inherits Form
 
-	Public Sub New()
-		InitializeComponent()
-	End Sub
+'	Private _idTempo As Nullable(Of Integer) = Nothing
 
-	Public Sub New(idTempo As Integer)
-		Me.New()
-		_idTempo = idTempo
-	End Sub
+'	Public Sub New()
+'		InitializeComponent()
+'	End Sub
 
-	Private Sub frmeditTempo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-		txtTempo.Select()
+'	Public Sub New(idTempo As Integer)
+'		Me.New()
+'		_idTempo = idTempo
+'	End Sub
 
-		Try
-			If _idTempo.HasValue Then
+'	Private Sub frmeditTempo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+'		txtTempo.Select()
 
-				Dim change As String
-				Dim Tempo As TempoEntity = TempoDAL.ObtenerById(_idTempo.Value)
+'		Try
+'			If _idTempo.HasValue Then
 
-				_idTempo = Tempo.Idtempo
-				txtTempo.Text = Tempo.Descripcion
-				change = Tempo.isactive
+'				Dim change As String
+'				Dim Tempo As TempoEntity = TempoDAL.ObtenerById(_idTempo.Value)
 
-				If change = "Inactivo" Then
-					ckbIsActive.Checked = False
-				Else
-					ckbIsActive.Checked = True
-				End If
-				'ckbIsActive.Checked = Tempo.isactive
-				'txtApellido.Text = empleado.Apellido
-				'dtpFechaNacimiento.Value = empleado.FechaNacimiento
+'				_idTempo = Tempo.Idtempo
+'				txtTempo.Text = Tempo.Descripcion
+'				change = Tempo.isactive
 
-				'cbEstadoCivil.SelectedValue = Convert.ToInt32(empleado.Apellido)
+'				If change = "Inactivo" Then
+'					ckbIsActive.Checked = False
+'				Else
+'					ckbIsActive.Checked = True
+'				End If
+'				'ckbIsActive.Checked = Tempo.isactive
+'				'txtApellido.Text = empleado.Apellido
+'				'dtpFechaNacimiento.Value = empleado.FechaNacimiento
 
-
-			End If
-		Catch ex As Exception
-			MsgBox("Este error debe ir en log")
-			MsgBox("Funcion EditNacion_load: " + ex.ToString)
-
-		Finally
-			'DesconectarDB()
-			'MessageBox.Show("Hemos tenido problemas con la consulta ", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
+'				'cbEstadoCivil.SelectedValue = Convert.ToInt32(empleado.Apellido)
 
 
-		End Try
-	End Sub
+'			End If
+'		Catch ex As Exception
+'			MsgBox("Este error debe ir en log")
+'			MsgBox("Funcion EditNacion_load: " + ex.ToString)
 
-	Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
-		Me.Close()
-	End Sub
-
-	Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
-
-		If String.IsNullOrEmpty(txtTempo.Text) Then
-
-			ErrorProvider.SetError(txtTempo, "El campo esta vacio")
-		Else
+'		Finally
+'			'DesconectarDB()
+'			'MessageBox.Show("Hemos tenido problemas con la consulta ", "IgpManager", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
 
-			Dim Check As Integer
-			If ckbIsActive.Checked = True Then
-				Check = 1
-			Else
-				Check = 0
-			End If
+'		End Try
+'	End Sub
 
-			Dim Tempo As New TempoEntity() With
-			{
-		.Idtempo = _idTempo.GetValueOrDefault,
-		.Descripcion = txtTempo.Text,
-		 .isactive = Check
-		}
+'	Private Sub btnCancelar_Click(sender As Object, e As EventArgs) Handles btnCancelar.Click
+'		Me.Close()
+'	End Sub
 
-			TempoDAL.Save(Tempo)
+'	Private Sub btnGuardar_Click(sender As Object, e As EventArgs) Handles btnGuardar.Click
 
-			Me.DialogResult = DialogResult.OK
-			Me.Close()
-		End If
-	End Sub
-End Class
+'		If String.IsNullOrEmpty(txtTempo.Text) Then
+
+'			ErrorProvider.SetError(txtTempo, "El campo esta vacio")
+'		Else
+
+
+'			Dim Check As Integer
+'			If ckbIsActive.Checked = True Then
+'				Check = 1
+'			Else
+'				Check = 0
+'			End If
+
+'			Dim Tempo As New TempoEntity() With
+'			{
+'		.Idtempo = _idTempo.GetValueOrDefault,
+'		.Descripcion = txtTempo.Text,
+'		 .isactive = Check
+'		}
+
+'			TempoDAL.Save(Tempo)
+
+'			Me.DialogResult = DialogResult.OK
+'			Me.Close()
+'		End If
+'	End Sub
+'End Class

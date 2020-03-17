@@ -64,6 +64,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonClasses\Site.vb" />
+    <Compile Include="CommonManagers\ConcessionsSerialNumberManager.vb" />
     <Compile Include="IPOSFramework.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -106,6 +108,23 @@
       <Project>{8d4b827e-1ea7-4a19-832e-a8cbaf8a5814}</Project>
       <Name>Igp.AccessController</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Igp.EventLog\Igp.EventLog.vbproj">
+      <Project>{eaac107b-17a1-48b8-8b4e-7b542d44e981}</Project>
+      <Name>Igp.EventLog</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.GlobalResourcesEngine\Igp.GlobalResourcesEngine.vbproj">
+      <Project>{e03df081-3096-416b-8a84-098068bc04e8}</Project>
+      <Name>Igp.GlobalResourcesEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.TerminalConfig\Igp.TerminalConfig.vbproj">
+      <Project>{bb044cd3-c385-4888-b7a3-debe9dd545d8}</Project>
+      <Name>Igp.TerminalConfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.Tools\Igp.Tools.vbproj">
+      <Project>{e376a4b9-cff9-4e88-9959-7634d52d5240}</Project>
+      <Name>Igp.Tools</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
