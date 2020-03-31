@@ -10,7 +10,12 @@ Public Class BaseDialog
         InitializeComponent()
 
         'Add any initialization after the InitializeComponent() call
-        SetColorSchema()
+        Try
+            SetColorSchema()
+        Catch ex As Exception
+
+        End Try
+
     End Sub
 
     'Form overrides dispose to clean up the component list.

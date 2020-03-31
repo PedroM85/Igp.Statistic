@@ -9,6 +9,9 @@ Public Class FrmMain
     Dim cGrip As Integer = 10
 
 
+    Private oParConfigurationview As Igp.StatisticData.CircuitoView
+
+
     Protected Overrides Sub WndProc(ByRef m As Message)
         If (m.Msg = 132) Then
             Dim pos As Point = New Point((m.LParam.ToInt32 And 65535), (m.LParam.ToInt32 + 16))
@@ -104,8 +107,12 @@ Public Class FrmMain
     End Sub
 
     Private Sub btnCircuito_Click(sender As Object, e As EventArgs) Handles btnCircuito.Click
-        btnCircuito.BackColor = Color.FromArgb(122, 181, 66)
-        AbrirFormEnPanel(Of frmCircuito)()
+
+        ' btnCircuito.BackColor = Color.FromArgb(122, 181, 66)
+        'AbrirFormEnPanel(Of frmCircuito)()
+        oParConfigurationview = New StatisticData.CircuitoView
+        oParConfigurationview.Show()
+
     End Sub
 
     Private Sub btnNacion_Click(sender As Object, e As EventArgs) Handles btnNacion.Click

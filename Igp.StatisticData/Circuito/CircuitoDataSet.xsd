@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="SYS_Circuito" msprop:Generator_TableClassName="SYS_CircuitoDataTable" msprop:Generator_TableVarName="tableSYS_Circuito" msprop:Generator_TablePropName="SYS_Circuito" msprop:Generator_RowDeletingName="SYS_CircuitoRowDeleting" msprop:Generator_RowChangingName="SYS_CircuitoRowChanging" msprop:Generator_RowEvHandlerName="SYS_CircuitoRowChangeEventHandler" msprop:Generator_RowDeletedName="SYS_CircuitoRowDeleted" msprop:Generator_UserTableName="SYS_Circuito" msprop:Generator_RowChangedName="SYS_CircuitoRowChanged" msprop:Generator_RowEvArgName="SYS_CircuitoRowChangeEvent" msprop:Generator_RowClassName="SYS_CircuitoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="nCircuito" msprop:Generator_ColumnVarNameInTable="columnnCircuito" msprop:Generator_ColumnPropNameInRow="nCircuito" msprop:Generator_ColumnPropNameInTable="nCircuitoColumn" msprop:Generator_UserColumnName="nCircuito" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

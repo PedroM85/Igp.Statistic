@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BB044CD3-C385-4888-B7A3-DEBE9DD545D8}</ProjectGuid>
+    <ProjectGuid>{25D53C67-2975-4E17-AA49-897BCB2D2962}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Igp.TerminalConfig</RootNamespace>
-    <AssemblyName>Igp.TerminalConfig</AssemblyName>
+    <RootNamespace>Igp.StatisticData</RootNamespace>
+    <AssemblyName>Igp.StatisticData</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>Windows</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -19,7 +19,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>Igp.TerminalConfig.xml</DocumentationFile>
+    <DocumentationFile>Igp.StatisticData.xml</DocumentationFile>
     <DefineConstants>_MYFORMS=True</DefineConstants>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -29,7 +29,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>Igp.TerminalConfig.xml</DocumentationFile>
+    <DocumentationFile>Igp.StatisticData.xml</DocumentationFile>
     <DefineConstants>_MYFORMS=True</DefineConstants>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -70,12 +71,27 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigControl.vb">
+    <Compile Include="Circuito\CircuitoDAL.vb" />
+    <Compile Include="Circuito\CircuitoDataSet.vb">
+      <DependentUpon>CircuitoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Circuito\CircuitoEntity.vb" />
+    <Compile Include="Circuito\CircuitoDataLayer.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Circuito\CircuitoDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CircuitoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Circuito\CircuitoView.Designer.vb">
+      <DependentUpon>CircuitoView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Circuito\CircuitoView.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DataLayer.vb" />
     <Compile Include="EnvironmentObjects.vb" />
-    <Compile Include="FlatControl.vb" />
+    <Compile Include="EWFramework.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
@@ -91,18 +107,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="TerminalDataSet.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TerminalDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="TerminalDataSet.vb">
-      <DependentUpon>TerminalDataSet.xsd</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ConfigControl.resx">
-      <DependentUpon>ConfigControl.vb</DependentUpon>
+    <EmbeddedResource Include="Circuito\CircuitoDataLayer.resx">
+      <DependentUpon>CircuitoDataLayer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Circuito\CircuitoView.resx">
+      <DependentUpon>CircuitoView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
@@ -112,6 +123,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Circuito\CircuitoDataSet.xsc">
+      <DependentUpon>CircuitoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Circuito\CircuitoDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CircuitoDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Circuito\CircuitoDataSet.xss">
+      <DependentUpon>CircuitoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -121,25 +143,19 @@
       <CustomToolNamespace>My</CustomToolNamespace>
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
-    <None Include="TerminalDataSet.xsc">
-      <DependentUpon>TerminalDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TerminalDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TerminalDataSet.Designer.vb</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="TerminalDataSet.xss">
-      <DependentUpon>TerminalDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="TerminalDataSet.xsx">
-      <DependentUpon>TerminalDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Igp.AccessControl\Igp.AccessController.vbproj">
+      <Project>{8d4b827e-1ea7-4a19-832e-a8cbaf8a5814}</Project>
+      <Name>Igp.AccessController</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.Common\Igp.Common.vbproj">
+      <Project>{a32013a9-ac40-4999-953f-359bd3ac285d}</Project>
+      <Name>Igp.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Igp.DataAccessFactory\Igp.DataAccessFactory.vbproj">
       <Project>{d5d7534f-9b5e-4a9c-ba3a-03d6db747ad1}</Project>
       <Name>Igp.DataAccessFactory</Name>
@@ -147,6 +163,14 @@
     <ProjectReference Include="..\Igp.GlobalResourcesEngine\Igp.GlobalResourcesEngine.vbproj">
       <Project>{e03df081-3096-416b-8a84-098068bc04e8}</Project>
       <Name>Igp.GlobalResourcesEngine</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.TerminalConfig\Igp.TerminalConfig.vbproj">
+      <Project>{bb044cd3-c385-4888-b7a3-debe9dd545d8}</Project>
+      <Name>Igp.TerminalConfig</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.Tools\Igp.Tools.vbproj">
+      <Project>{e376a4b9-cff9-4e88-9959-7634d52d5240}</Project>
+      <Name>Igp.Tools</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />

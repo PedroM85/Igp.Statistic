@@ -196,62 +196,62 @@ Public Class DataLayer
         End With
     End Sub
 
-    'Public Sub FillLocation(ByVal ds As TerminalDataSet, ByVal Mode As ewave.TerminalConfig.ConfigControl.DataLoadMode)
-    '    Dim oRow As DataRow = ds.SYS_Location.NewRow
-    '    oRow("LOC_Id") = -1
-    '    oRow("LOC_Description") = DBNull.Value
-    '    ds.SYS_Location.Rows.Add(oRow)
+    Public Sub FillLocation(ByVal ds As TerminalDataSet, ByVal Mode As Igp.TerminalConfig.ConfigControl.DataLoadMode)
+        Dim oRow As DataRow = ds.SYS_Location.NewRow
+        oRow("LOC_Id") = -1
+        oRow("LOC_Description") = DBNull.Value
+        ds.SYS_Location.Rows.Add(oRow)
 
-    '    If Mode <> ConfigControl.DataLoadMode.Minimun Then
-    '        Dim oCmd As IDbCommand = oConn.CreateCommand
-    '        Dim adpLocation As IDataAdapter = DALObjects.GetDataAdapter(oCmd)
+        If Mode <> ConfigControl.DataLoadMode.Minimun Then
+            Dim oCmd As IDbCommand = oConn.CreateCommand
+            Dim adpLocation As IDataAdapter = DALObjects.GetDataAdapter(oCmd)
 
-    '        oCmd.CommandType = CommandType.StoredProcedure
-    '        oCmd.CommandText = "LOC_Select"
-    '        adpLocation.TableMappings.Add("Table", "SYS_Location")
-    '        adpLocation.Fill(ds) '.SYS_Location)
-    '    End If
+            oCmd.CommandType = CommandType.StoredProcedure
+            oCmd.CommandText = "LOC_Select"
+            adpLocation.TableMappings.Add("Table", "SYS_Location")
+            adpLocation.Fill(ds) '.SYS_Location)
+        End If
 
-    'End Sub
+    End Sub
 
-    'Public Sub FillStockLocation(ByVal ds As TerminalDataSet, ByVal Mode As ewave.TerminalConfig.ConfigControl.DataLoadMode)
+    Public Sub FillStockLocation(ByVal ds As TerminalDataSet, ByVal Mode As Igp.TerminalConfig.ConfigControl.DataLoadMode)
 
-    '    'Dim oRow As DataRow = ds.CON_Location.NewRow
-    '    'oRow("LCT_Id") = -1
-    '    'oRow("LCT_Description") = DBNull.Value
-    '    'ds.CON_Location.Rows.Add(oRow)
+        'Dim oRow As DataRow = ds.CON_Location.NewRow
+        'oRow("LCT_Id") = -1
+        'oRow("LCT_Description") = DBNull.Value
+        'ds.CON_Location.Rows.Add(oRow)
 
-    '    If Mode <> ConfigControl.DataLoadMode.Minimun Then
-    '        Dim oCmd As IDbCommand = oConn.CreateCommand
-    '        Dim adpSTLocation As IDataAdapter = DALObjects.GetDataAdapter(oCmd)
-    '        oCmd.CommandType = CommandType.StoredProcedure
-    '        oCmd.CommandText = "LCT_Select"
-    '        adpSTLocation.TableMappings.Add("Table", "CON_Location")
-    '        adpSTLocation.Fill(ds)
-    '    End If
+        If Mode <> ConfigControl.DataLoadMode.Minimun Then
+            Dim oCmd As IDbCommand = oConn.CreateCommand
+            Dim adpSTLocation As IDataAdapter = DALObjects.GetDataAdapter(oCmd)
+            oCmd.CommandType = CommandType.StoredProcedure
+            oCmd.CommandText = "LCT_Select"
+            adpSTLocation.TableMappings.Add("Table", "CON_Location")
+            adpSTLocation.Fill(ds)
+        End If
 
-    'End Sub
+    End Sub
 
-    'Public Sub FillPOSDesign(ByVal ds As TerminalDataSet, ByVal Mode As ewave.TerminalConfig.ConfigControl.DataLoadMode)
+    Public Sub FillPOSDesign(ByVal ds As TerminalDataSet, ByVal Mode As Igp.TerminalConfig.ConfigControl.DataLoadMode)
 
-    '    Dim oRow As DataRow = ds.CON_POSDesign.NewRow
-    '    oRow("PDS_Id") = -1
-    '    oRow("PDS_Name") = DBNull.Value
-    '    ds.CON_POSDesign.Rows.Add(oRow)
+        Dim oRow As DataRow = ds.CON_POSDesign.NewRow
+        oRow("PDS_Id") = -1
+        oRow("PDS_Name") = DBNull.Value
+        ds.CON_POSDesign.Rows.Add(oRow)
 
-    '    If Mode <> ConfigControl.DataLoadMode.Minimun Then
-    '        Dim oCmd As IDbCommand = oConn.CreateCommand
-    '        Dim adpPOSDesign As IDataAdapter = DALObjects.GetDataAdapter(oCmd)
-    '        oCmd.CommandType = CommandType.StoredProcedure
-    '        oCmd.CommandText = "PDS_Select"
-    '        adpPOSDesign.TableMappings.Add("Table", "CON_POSDesign")
-    '        adpPOSDesign.Fill(ds)
-    '    End If
+        If Mode <> ConfigControl.DataLoadMode.Minimun Then
+            Dim oCmd As IDbCommand = oConn.CreateCommand
+            Dim adpPOSDesign As IDataAdapter = DALObjects.GetDataAdapter(oCmd)
+            oCmd.CommandType = CommandType.StoredProcedure
+            oCmd.CommandText = "PDS_Select"
+            adpPOSDesign.TableMappings.Add("Table", "CON_POSDesign")
+            adpPOSDesign.Fill(ds)
+        End If
 
-    'End Sub
+    End Sub
 
     Public Sub SetTerminalInRegistry(ByVal sTerminalId As String)
-        Dim oRKey As RegistryKey = Registry.LocalMachine.CreateSubKey("SOFTWARE\ewave")
+        Dim oRKey As RegistryKey = Registry.LocalMachine.CreateSubKey("SOFTWARE\Unelca")
         oRKey.SetValue("TerminalId", sTerminalId)
         oRKey.Close()
     End Sub
@@ -259,7 +259,7 @@ Public Class DataLayer
     Public Shared Function GetTerminalInRegistry() As String
         Dim sTerminalId As String
 
-        Dim oRKey As RegistryKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\ewave", False)
+        Dim oRKey As RegistryKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\Unelca", False)
 
         If oRKey Is Nothing Then
             sTerminalId = ""
@@ -271,11 +271,12 @@ Public Class DataLayer
         Return sTerminalId
     End Function
 
+
     Public Function GetSiteId() As String
 
         Dim oCmd As IDbCommand = oConn.CreateCommand
         oCmd.CommandType = CommandType.Text
-        oCmd.CommandText = "SELECT PAR_StringValue FROM SYS_Parameter WHERE PAR_Id ='SITEID'"
+        oCmd.CommandText = "SELECT PAR_StringValue FROM SYS_Parameters WHERE PAR_Idv ='SITEID'"
         Return oCmd.ExecuteScalar.ToString
 
     End Function

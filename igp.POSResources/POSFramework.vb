@@ -499,15 +499,15 @@ Public MustInherit Class POSFramework
 
 
     Public Sub GetTerminalProperties() Implements IPOSFramework.GetTerminalProperties
-        'Dim cmd As IDbCommand = mConn.CreateCommand
+        Dim cmd As IDbCommand = mConn.CreateCommand
 
-        'cmd.CommandType = CommandType.StoredProcedure
-        'cmd.CommandText = "TRM_GetTerminal"
-        'Dim par As IDataParameter = cmd.CreateParameter
-        'par.ParameterName = "TerminalId"
-        'par.DbType = DbType.StringFixedLength
-        'par.Value = mTerminalId
-        'cmd.Parameters.Add(par)
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.CommandText = "TRM_GetTerminal"
+        Dim par As IDataParameter = cmd.CreateParameter
+        par.ParameterName = "TerminalId"
+        par.DbType = DbType.StringFixedLength
+        par.Value = mTerminalId
+        cmd.Parameters.Add(par)
         ''cmd.Parameters.Add("TerminalId", OleDb.OleDbType.Char, 5).Value = mFwk.TerminalId
         ''cmd.Parameters.Add("SiteId", OleDb.OleDbType.Char, 10).Value = EnvironmentObjects.Fwk.SiteId
 
@@ -756,7 +756,7 @@ Public MustInherit Class POSFramework
 
     Public Function InitConnection(ByVal smod As SysModule, ByVal useOffline As Boolean) As Boolean Implements IPOSFramework.InitConnection
         Dim retVal As Boolean
-        Dim offCinfo As ConnectionInfo = Nothing
+        'Dim offCinfo As ConnectionInfo = Nothing
 
         'If useOffline AndAlso OfflineManager.IsTransferDataInstalled Then
         '    offCinfo = New ConnectionInfo()
@@ -767,8 +767,9 @@ Public MustInherit Class POSFramework
         '    End If
         'End If
 
+
         Try
-            If smod = POSResources.SysModule.IgpManager Then
+            If smod = POSResources.SysModule.none Then
                 mConn = New SqlClient.SqlConnection(mConnInfo.SQLConnectionString)
             Else
                 mConn = New OleDb.OleDbConnection(mConnInfo.OLEDBConnectionString)

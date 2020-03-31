@@ -28,11 +28,11 @@ Partial Class frmCircuito
         Me.lblHelp = New System.Windows.Forms.Label()
         Me.btnNuevoEmpleado = New System.Windows.Forms.Button()
         Me.dgvCircuitos = New System.Windows.Forms.DataGridView()
-        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Nacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.CircuitoDataSet1 = New Igp.StatisticData.CircuitoDataSet()
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvCircuitos, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CircuitoDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -90,29 +90,11 @@ Partial Class frmCircuito
         Me.dgvCircuitos.BackgroundColor = System.Drawing.SystemColors.Control
         Me.dgvCircuitos.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.dgvCircuitos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvCircuitos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Nacion})
         Me.dgvCircuitos.Location = New System.Drawing.Point(183, 47)
         Me.dgvCircuitos.Name = "dgvCircuitos"
         Me.dgvCircuitos.ReadOnly = True
         Me.dgvCircuitos.Size = New System.Drawing.Size(228, 391)
         Me.dgvCircuitos.TabIndex = 22
-        '
-        'Id
-        '
-        Me.Id.DataPropertyName = "Id"
-        Me.Id.HeaderText = "IdEmpleado"
-        Me.Id.Name = "Id"
-        Me.Id.ReadOnly = True
-        Me.Id.Visible = False
-        Me.Id.Width = 30
-        '
-        'Nacion
-        '
-        Me.Nacion.DataPropertyName = "Circuito"
-        Me.Nacion.HeaderText = "Circuito"
-        Me.Nacion.Name = "Nacion"
-        Me.Nacion.ReadOnly = True
-        Me.Nacion.Width = 150
         '
         'Button1
         '
@@ -125,6 +107,11 @@ Partial Class frmCircuito
         Me.Button1.TabIndex = 25
         Me.Button1.Text = "Nuevo"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'CircuitoDataSet1
+        '
+        Me.CircuitoDataSet1.DataSetName = "DataSet1"
+        Me.CircuitoDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'frmCircuito
         '
@@ -142,6 +129,7 @@ Partial Class frmCircuito
         Me.Text = "frmCircuito"
         CType(Me.BtnCerrarForm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvCircuitos, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CircuitoDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -152,7 +140,6 @@ Partial Class frmCircuito
     Public WithEvents lblHelp As Label
     Private WithEvents btnNuevoEmpleado As Button
     Private WithEvents dgvCircuitos As DataGridView
-    Friend WithEvents Id As DataGridViewTextBoxColumn
-    Friend WithEvents Nacion As DataGridViewTextBoxColumn
     Private WithEvents Button1 As Button
+    Friend WithEvents CircuitoDataSet1 As StatisticData.CircuitoDataSet
 End Class

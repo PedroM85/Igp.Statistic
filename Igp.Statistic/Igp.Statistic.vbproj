@@ -114,6 +114,9 @@
     <Compile Include="Dialogs\POSMessageBox.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\TerminalConfigDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Dialogs\WorkingDialog.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +156,9 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reporte\Temporada\TemporadaReporte.vb" />
+    <Compile Include="User Controls\PanelNotMouse.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="View\Campeonato\frmCampeonato.Designer.vb">
       <DependentUpon>frmCampeonato.vb</DependentUpon>
     </Compile>
@@ -160,7 +166,9 @@
     <Compile Include="View\Circuito\frmCircuito.Designer.vb">
       <DependentUpon>frmCircuito.vb</DependentUpon>
     </Compile>
-    <Compile Include="View\Circuito\frmCircuito.vb" />
+    <Compile Include="View\Circuito\frmCircuito.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="View\Circuito\frmEditCircuito.Designer.vb">
       <DependentUpon>frmEditCircuito.vb</DependentUpon>
     </Compile>
@@ -226,6 +234,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\POSMessageBox.resx">
       <DependentUpon>POSMessageBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\TerminalConfigDialog.resx">
+      <DependentUpon>TerminalConfigDialog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\WorkingDialog.resx">
       <DependentUpon>WorkingDialog.vb</DependentUpon>
@@ -353,6 +364,14 @@
     <ProjectReference Include="..\igp.POSResources\Igp.POSResources.vbproj">
       <Project>{e13e69e3-33f9-4474-b589-dfa4143efb89}</Project>
       <Name>Igp.POSResources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.StatisticData\Igp.StatisticData.vbproj">
+      <Project>{25d53c67-2975-4e17-aa49-897bcb2d2962}</Project>
+      <Name>Igp.StatisticData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Igp.TerminalConfig\Igp.TerminalConfig.vbproj">
+      <Project>{bb044cd3-c385-4888-b7a3-debe9dd545d8}</Project>
+      <Name>Igp.TerminalConfig</Name>
     </ProjectReference>
     <ProjectReference Include="..\IgpManager.BACK\IgpManager.BACK.vbproj">
       <Project>{db773dc9-f09f-4c47-bee8-c203eac0aa5c}</Project>

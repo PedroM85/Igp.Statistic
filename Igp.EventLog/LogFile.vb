@@ -7,7 +7,7 @@ Imports System.IO
 Public Class LogFile
 
 #Region " Instance variables "
-    Const Separator As String = "_________________________________"
+    Const Separator As String = "---------------------------------"
 
     Public Enum DateTimeInfo
         DontPrintDateTime = 0

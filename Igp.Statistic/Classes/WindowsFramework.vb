@@ -203,27 +203,27 @@
 
     End Sub
 
-    'Public Overrides Function CheckIfTerminalRegistered() As Boolean
-    '    Dim termOk As Boolean
+    Public Overrides Function CheckIfTerminalRegistered() As Boolean
+        Dim termOk As Boolean
 
-    '    mTerminalId = ewave.TerminalConfig.DataLayer.GetTerminalInRegistry()
+        mTerminalId = Igp.TerminalConfig.DataLayer.GetTerminalInRegistry()
 
-    '    If mTerminalId = "" Then
-    '        Dim oTermConfig As New TerminalConfigDialog
+        If mTerminalId = "" Then
+            Dim oTermConfig As New TerminalConfigDialog
 
-    '        If oTermConfig.ShowDialog() = DialogResult.OK Then
-    '            mTerminalId = ewave.TerminalConfig.DataLayer.GetTerminalInRegistry()
-    '            termOk = True
-    '        Else
-    '            termOk = False
-    '        End If
+            If oTermConfig.ShowDialog() = DialogResult.OK Then
+                mTerminalId = Igp.TerminalConfig.DataLayer.GetTerminalInRegistry()
+                termOk = True
+            Else
+                termOk = False
+            End If
 
-    '    Else
-    '        termOk = True
-    '    End If
+        Else
+            termOk = True
+        End If
 
-    '    Return termOk
-    'End Function
+        Return termOk
+    End Function
 
     'Public Function GetExternalIdTypes() As DataTable
 

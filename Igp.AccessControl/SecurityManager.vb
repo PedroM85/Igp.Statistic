@@ -635,7 +635,7 @@ Public Class SecurityManager
 
     End Sub
 
-#Const LicScheme = 2
+#Const LicScheme = 1
 
 #If LicScheme = 1 Then
     Public Function HasLicensesFree(ByVal moduleId As Integer, ByVal siteId As String) As Boolean
@@ -676,7 +676,7 @@ Public Class SecurityManager
         If IsDBNull(paramMaxLics.Value) Then
             Return False
         Else
-            maxLics = Int32.Parse(ewave.Tools.ProtectData.DecryptData(CType(paramMaxLics.Value, String), bKey, bIV))
+            maxLics = Int32.Parse(Igp.Tools.ProtectData.DecryptData(CType(paramMaxLics.Value, String), bKey, bIV))
 
 
             Dim paramUsedLics As IDataParameter = CType(cmd.Parameters("UsedLics"), IDataParameter)

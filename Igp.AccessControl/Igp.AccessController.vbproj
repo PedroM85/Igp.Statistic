@@ -126,6 +126,10 @@
       <Project>{eaac107b-17a1-48b8-8b4e-7b542d44e981}</Project>
       <Name>Igp.EventLog</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Igp.Tools\Igp.Tools.vbproj">
+      <Project>{e376a4b9-cff9-4e88-9959-7634d52d5240}</Project>
+      <Name>Igp.Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
