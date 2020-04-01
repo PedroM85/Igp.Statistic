@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Text
+Imports Igp.AccessController
 Imports Igp.AccessControl.Entidades
 Imports System.Data.SqlClient
 Imports System.Transactions
@@ -71,9 +72,9 @@ Public NotInheritable Class ConfigDAL
 
         Select Case Config.type
             Case "N"
-                Config.Valor = Convert.ToString(reader("PAR_Numeric")).Trim
+                Config.Valor = Convert.ToString(reader("PAR_NumericValue")).Trim
             Case "S"
-                Config.Valor = Convert.ToString(reader("PAR_String")).Trim
+                Config.Valor = Convert.ToString(reader("PAR_StringValue")).Trim
         End Select
 
 

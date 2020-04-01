@@ -44,6 +44,9 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Janus.Data.v4, Version=4.0.52.0, Culture=neutral, PublicKeyToken=21d5517571b185bf" />
+    <Reference Include="Janus.Windows.Common.v4, Version=4.0.52.0, Culture=neutral, PublicKeyToken=21d5517571b185bf" />
+    <Reference Include="Janus.Windows.GridEX.v4, Version=4.0.52.0, Culture=neutral, PublicKeyToken=21d5517571b185bf, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -68,8 +71,6 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\CommunicationManager.vb" />
-    <Compile Include="Classes\DataAccess\DAHelper.vb" />
     <Compile Include="Consultas\Campeonato\CampeoDAL.vb" />
     <Compile Include="Consultas\Campeonato\Entidades\CampeoEntity.vb" />
     <Compile Include="Consultas\Circuitos\CircuitoDAL.vb" />
@@ -80,17 +81,9 @@
     <Compile Include="Consultas\Basic\Entidades\EstudioEntity.vb" />
     <Compile Include="Consultas\Basic\EstadoCivilDAL.vb" />
     <Compile Include="Consultas\Basic\EstudiosDAL.vb" />
-    <Compile Include="Classes\SecurityManager.vb" />
-    <Compile Include="Conexion\Conexion.vb" />
     <Compile Include="Consultas\Configuracion\ConfigDAL.vb" />
     <Compile Include="Consultas\Configuracion\Entidades\ConfigEntity.vb" />
-    <Compile Include="Connection\FrameworkBase.vb" />
-    <Compile Include="Connection\IFrameworkBase.vb" />
-    <Compile Include="Connection\ReadXML.vb" />
-    <Compile Include="Connection\POSFramework.vb" />
     <Compile Include="Consultas\Equipos\Entidades\NacionEntity.vb" />
-    <Compile Include="Parameters\ParameterEntity.vb" />
-    <Compile Include="Parameters\Parameters.vb" />
     <Compile Include="Consultas\Pilotos\Entidades\PilotoEntity.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -119,6 +112,7 @@
     <Compile Include="Consultas\Temporada\TempoDs.vb" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -149,6 +143,15 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Igp.AccessController\Igp.AccessController.vbproj">
+      <Project>{bcb8f25f-f426-4bb9-9032-d67e8669d495}</Project>
+      <Name>Igp.AccessController</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{94E38DFF-614B-4CBD-B67C-F211BB35CE8B}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

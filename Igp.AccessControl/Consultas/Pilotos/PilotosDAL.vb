@@ -3,6 +3,7 @@ Imports System.Linq
 Imports System.Text
 Imports System.Data.SqlClient
 Imports Igp.AccessControl.Entidades
+Imports Igp.AccessController
 Imports System.Data
 Imports System.Transactions
 Public NotInheritable Class PilotosDAL

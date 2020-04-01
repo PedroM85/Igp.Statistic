@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports Igp.AccessController
 Public Class TempoDs
     Private cnPubs As SqlConnection
     Private daPubs As SqlDataAdapter

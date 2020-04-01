@@ -1,8 +1,8 @@
 ﻿Public Class WindowsFramework
-    Inherits Igp.AccessControl.FrameworkBase
+    Inherits Igp.AccessController.FrameworkBase
 
     Public Sub New()
-        MyBase.New(AccessControl.SysModule.IgpManager)
+        MyBase.New(AccessController.SysModule.IgpManager)
     End Sub
 
 End Class

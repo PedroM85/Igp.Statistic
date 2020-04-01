@@ -81,22 +81,22 @@ Public Class EWFramework
 
 #Region " Instance variables "
 
-    Protected mConnInfo As Igp.AccessControl.ConnectionInfo
+    Protected mConnInfo As Igp.AccessController.ConnectionInfo
     Protected mConn As OleDb.OleDbConnection
     Protected mResMgr As System.Resources.ResourceManager
     Protected mTxIconMgr As System.Resources.ResourceManager
     'Protected mTranslatedResources As ewave.GlobalResourcesEngine.ResourceLoader
     'Protected mAudit As AccessController.AuditLogWriter
     'Protected mLockMgr As AccessController.LockManager
-    Protected mParams As Igp.AccessControl.Parameters
-    Protected WithEvents mCommMgr As AccessControl.CommunicationManager
+    Protected mParams As Igp.AccessController.Parameters
+    Protected WithEvents mCommMgr As AccessController.CommunicationManager
     Protected mTerminalId As String
     Protected mConnectionName As String
     Protected mShutdownForced As Boolean = False
     'Protected mUser As ewave.AccessController.User
     Protected mLastAction As Date
     Protected mSiteId As String
-    Protected mTypeModule As AccessControl.CommunicationManager.ModuleEnum
+    Protected mTypeModule As AccessController.CommunicationManager.ModuleEnum
     Protected mNewSession As Boolean
     Protected mAuthorizatorTerminalParameters As String
 
@@ -152,7 +152,7 @@ Public Class EWFramework
             mConn = New OleDb.OleDbConnection(GetConnectionString)
             mConn.Open()
 
-            Dim oSecMgr As New AccessControl.SecurityManager(mConn)
+            Dim oSecMgr As New AccessController.SecurityManager(mConn)
             mConnInfo.SPID = oSecMgr.GetSPID
 
             Dim oCmd As OleDb.OleDbCommand = mConn.CreateCommand
@@ -168,7 +168,7 @@ Public Class EWFramework
 
     Public Overridable Function Init() As Boolean
         Try
-            Dim oSecMgr As New AccessControl.SecurityManager(mConn)
+            Dim oSecMgr As New AccessController.SecurityManager(mConn)
             Try
                 'ewave.Tools.OperatingSystem.SetDateTime(oSecMgr.GetServerDateTime)
             Catch
@@ -176,7 +176,7 @@ Public Class EWFramework
             End Try
 
 
-            mParams = New AccessControl.Parameters(mConn)
+            mParams = New AccessController.Parameters(mConn)
             mSiteId = mParams.GetValue("SITEID").TrimEnd().ToUpper()
             'mLockMgr = New AccessControl.LockManager(mConn)
             'mAudit = New AccessControl.AuditLogWriter(mConn, mSiteId)
@@ -209,7 +209,7 @@ Public Class EWFramework
     '    dr.Close()
     'End Sub
     Public Sub InitCommunicationManager()
-        mCommMgr = New AccessControl.CommunicationManager(AccessControl.CommunicationManager.ModuleEnum.Manager)
+        mCommMgr = New AccessController.CommunicationManager(AccessController.CommunicationManager.ModuleEnum.Manager)
         mCommMgr.Start()
     End Sub
 
@@ -447,7 +447,7 @@ Public Class EWFramework
         Dim sName As String = String.Empty
         Dim nI As Integer
 
-        mConnInfo = New AccessControl.ConnectionInfo
+        mConnInfo = New AccessController.ConnectionInfo
 
         sArgs = Environment.GetCommandLineArgs
 
@@ -636,7 +636,7 @@ Public Class EWFramework
         End Get
     End Property
 
-    Public ReadOnly Property ConnectionInfo() As AccessControl.ConnectionInfo
+    Public ReadOnly Property ConnectionInfo() As AccessController.ConnectionInfo
         Get
             Return mConnInfo
         End Get
@@ -684,13 +684,13 @@ Public Class EWFramework
     '    End Get
     'End Property
 
-    Public ReadOnly Property Parameters() As AccessControl.Parameters
+    Public ReadOnly Property Parameters() As AccessController.Parameters
         Get
             Return mParams
         End Get
     End Property
 
-    Public ReadOnly Property CommunicationManager() As AccessControl.CommunicationManager
+    Public ReadOnly Property CommunicationManager() As AccessController.CommunicationManager
         Get
             Return mCommMgr
         End Get
@@ -732,11 +732,11 @@ Public Class EWFramework
         End Set
     End Property
 
-    Public Property TypeModule() As AccessControl.CommunicationManager.ModuleEnum
+    Public Property TypeModule() As AccessController.CommunicationManager.ModuleEnum
         Get
             Return mTypeModule
         End Get
-        Set(ByVal value As AccessControl.CommunicationManager.ModuleEnum)
+        Set(ByVal value As AccessController.CommunicationManager.ModuleEnum)
             mTypeModule = value
         End Set
     End Property

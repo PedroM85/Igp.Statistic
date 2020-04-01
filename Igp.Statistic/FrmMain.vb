@@ -109,8 +109,9 @@ Public Class FrmMain
     End Sub
 
     Private Sub btnNacion_Click(sender As Object, e As EventArgs) Handles btnNacion.Click
-        btnNacion.BackColor = Color.FromArgb(122, 181, 66)
-        AbrirFormEnPanel(Of frmNacion)()
+        'btnNacion.BackColor = Color.FromArgb(122, 181, 66)
+        'AbrirFormEnPanel(Of frmNacion)()
+
     End Sub
 
     Private Sub btnConfiguracion_Click(sender As Object, e As EventArgs) Handles btnConfiguracion.Click

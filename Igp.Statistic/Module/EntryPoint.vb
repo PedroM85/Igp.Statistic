@@ -18,7 +18,7 @@ Module entrepoint
     Public Sub Main()
 
         oApp = New MgrFramework
-        oApp.TypeModule = AccessControl.CommunicationManager.ModuleEnum.Manager
+        oApp.TypeModule = AccessController.CommunicationManager.ModuleEnum.Manager
 
         'oConn = New AccessControl.ConnectionInfo
         If oApp.GetConnectionInfo() Then

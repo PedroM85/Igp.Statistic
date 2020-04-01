@@ -1,6 +1,7 @@
 ﻿Imports System.Collections.Generic
 Imports System.Linq
 Imports System.Text
+Imports Igp.AccessController
 Imports Igp.AccessControl.Entidades
 Imports System.Data.SqlClient
 Imports System.Transactions

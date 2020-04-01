@@ -3,7 +3,7 @@ Imports System.Data.OleDb
 Imports System.Linq
 Imports System.Text
 Imports Igp.AccessControl.Entidades
-Imports Igp.AccessControl.Conexion
+Imports Igp.AccessController
 Imports Igp.AccessControl
 Imports System.Data.SqlClient
 Imports System.Transactions

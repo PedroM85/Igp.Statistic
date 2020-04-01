@@ -67,9 +67,11 @@ Partial Class FrmMain
         '
         'PanelFormularios
         '
+        Me.PanelFormularios.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.PanelFormularios.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.PanelFormularios.Controls.Add(Me.LOGO)
-        Me.PanelFormularios.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelFormularios.Location = New System.Drawing.Point(200, 32)
         Me.PanelFormularios.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelFormularios.Name = "PanelFormularios"
@@ -78,6 +80,7 @@ Partial Class FrmMain
         '
         'LOGO
         '
+        Me.LOGO.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.LOGO.BackColor = System.Drawing.Color.Transparent
         Me.LOGO.Image = CType(resources.GetObject("LOGO.Image"), System.Drawing.Image)
         Me.LOGO.Location = New System.Drawing.Point(135, 79)
@@ -292,6 +295,7 @@ Partial Class FrmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(222, Byte), Integer), CType(CType(221, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(1024, 551)
         Me.Controls.Add(Me.PanelContenedor)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
